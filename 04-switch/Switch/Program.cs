@@ -207,3 +207,35 @@ if (hour is >= 6 and < 21)
 }
 else Console.WriteLine("A lámpa éjszakai fénnyel világít.");
 #endregion
+
+#region 12.feldat
+int[] card = { random.Next(1, 10), random.Next(10), random.Next(10), random.Next(10) };
+
+bool firstRoom = card[0] > 4;
+bool secondRoom = card[1] > 4;
+bool thirdRoom = card[2] > 4;
+bool fourthRoom = card[3] > 4;
+bool fifthRoom = card[0] % 2 == 0 && card[2] % 2 == 0;
+bool sixthRoom = card[1] % 2 == 0 && card[3] % 2 == 0;
+bool seventhRoom = card[0] > 4
+    && card[1] > 4
+    && card[2] > 4
+    && card[3] > 4
+    && card[0] % 2 == 0
+    && card[1] % 2 == 0
+    && card[2] % 2 == 0
+    && card[3] % 2 == 0
+    && !(card[0] == card[1] && card[1] == card[2] && card[2] == card[3]);
+
+Console.Write($"\nA generált kód a {string.Join("", card)}:");
+
+if (!(firstRoom || secondRoom || thirdRoom || fourthRoom || fifthRoom || sixthRoom || seventhRoom))
+    Console.WriteLine(" A kód érvénytelen!");
+else Console.WriteLine($"\n\t- 1. helyiségbe: {(firstRoom ? "beléphet" : "nem léphet be")}" +
+    $"\n\t- 2. helyiségbe: {(secondRoom ? "beléphet" : "nem léphet be")}" +
+    $"\n\t- 3. helyiségbe: {(thirdRoom ? "beléphet" : "nem léphet be")}" +
+    $"\n\t- 4. helyiségbe: {(fourthRoom ? "beléphet" : "nem léphet be")}" +
+    $"\n\t- 5. helyiségbe: {(fifthRoom ? "beléphet" : "nem léphet be")}" +
+    $"\n\t- 6. helyiségbe: {(sixthRoom ? "beléphet" : "nem léphet be")}" +
+    $"\n\t- 7. helyiségbe: {(seventhRoom ? "beléphet" : "nem léphet be")}");
+#endregion
