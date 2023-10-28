@@ -77,7 +77,7 @@ double eurToBuy = Convert.ToDouble(Console.ReadLine());
 Console.Write("Adja meg az euró aktuális árfolyamát: ");
 float eurToHuf = Convert.ToSingle(Console.ReadLine());
 
-Console.WriteLine($"{eurToBuy} EUR-ért {eurToBuy * eurToHuf} Ft-ot kell fizetni.");
+Console.WriteLine($"{eurToBuy} EUR-ért {(eurToBuy * eurToHuf):C0}-ot kell fizetni.");
 #endregion
 
 #region 8. feladat
@@ -112,10 +112,10 @@ Console.Write("Adja meg, hogy hány kg szőlőt vásárolt: ");
 double grapeKg = Convert.ToDouble(Console.ReadLine());
 double grape = grapeKg * 650;
 
-Console.WriteLine($"- {appleKg} kg alma - {apple} Ft");
-Console.WriteLine($"- {plumKg} kg szilva - {plum} Ft");
-Console.WriteLine($"- {grapeKg} kg szőlő - {grape} Ft");
-Console.WriteLine($"Összesen: {apple + plum + grape} Ft");
+Console.WriteLine($"- {appleKg} kg alma - {apple:C0}");
+Console.WriteLine($"- {plumKg} kg szilva - {plum:C0}");
+Console.WriteLine($"- {grapeKg} kg szőlő - {grape:C0}");
+Console.WriteLine($"Összesen: {(apple + plum + grape):C0}");
 #endregion
 
 #region 10. feladat
@@ -137,7 +137,7 @@ int blue = Convert.ToInt32(Console.ReadLine());
 Console.BackgroundColor = ConsoleColor.Black;
 Console.ForegroundColor = ConsoleColor.Red;
 Console.Clear();
-Console.WriteLine($"Fizetendő összeg: {(red * 125) + (green * 150) + (blue * 135)} Ft");
+Console.WriteLine($"Fizetendő összeg: {(red * 125) + (green * 150) + (blue * 135):C0}");
 Console.ResetColor();
 #endregion
 
