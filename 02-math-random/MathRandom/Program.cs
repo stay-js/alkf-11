@@ -4,11 +4,11 @@
 Console.Write("Adja meg a maximális pontszámot: ");
 int maxScore = Convert.ToInt32(Console.ReadLine());
 
-Console.WriteLine("Ponthatárok:");
-Console.WriteLine($"\t- elégséges: {Math.Ceiling(maxScore * 0.4)}");
-Console.WriteLine($"\t- közepes: {Math.Ceiling(maxScore * 0.55)}");
-Console.WriteLine($"\t- jó: {Math.Ceiling(maxScore * 0.70)}");
-Console.WriteLine($"\t- jeles: {Math.Ceiling(maxScore * 0.85)}");
+Console.WriteLine("Ponthatárok:" +
+    $"\n\t- elégséges: {Math.Ceiling(maxScore * 0.4)}" +
+    $"\n\t- közepes: {Math.Ceiling(maxScore * 0.55)}" +
+    $"\n\t- jó: {Math.Ceiling(maxScore * 0.70)}" +
+    $"\n\t- jeles: {Math.Ceiling(maxScore * 0.85)}");
 #endregion
 
 #region 2. feladat
