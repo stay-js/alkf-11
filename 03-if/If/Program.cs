@@ -137,10 +137,10 @@ Console.Write("\nAdja meg a termék árát: ");
 int fullPrice = Convert.ToInt32(Console.ReadLine());
 
 Console.Write("Adja meg a leárazás mértékét: ");
-int discountRate = Convert.ToInt32(Console.ReadLine());
+double discountRate = Convert.ToDouble(Console.ReadLine());
 
 Console.WriteLine($"A terméket {(discountRate > 50 ? "megéri" : "nem éri meg")} megvenni." +
-    $"\nA termék kedvezményes ára: {(fullPrice * discountRate / 100):N0}Ft");
+    $"\nA termék kedvezményes ára: {(fullPrice * 1 - (discountRate / 100)):C0}");
 #endregion
 
 #region 13. feladat
