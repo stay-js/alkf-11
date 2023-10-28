@@ -27,12 +27,12 @@ int x = Convert.ToInt32(Console.ReadLine());
 Console.Write("Adjon meg egy számot: ");
 int y = Convert.ToInt32(Console.ReadLine());
 
-Console.WriteLine($"\nKét szám összege: {x + y}");
-Console.WriteLine($"Két szám különbsége: {x - y}");
-Console.WriteLine($"Két szám szorzata: {x * y}");
-Console.WriteLine($"A második szám {x / y}x van meg az első számban.");
-Console.WriteLine($"Két szám osztási maradéka: {x % y}");
-Console.WriteLine($"Valós osztás eredménye: {Convert.ToDecimal(x) / y}");
+Console.WriteLine($"\nKét szám összege: {x + y}" +
+    $"\nKét szám különbsége: {x - y}" +
+    $"\nKét szám szorzata: {x * y}" +
+    $"\nA második szám {x / y}x van meg az első számban." +
+    $"\nKét szám osztási maradéka: {x % y}" +
+    $"\nValós osztás eredménye: {Convert.ToDecimal(x) / y}");
 #endregion
 
 #region 3. feladat
@@ -93,10 +93,10 @@ double bSz = Convert.ToDouble(Console.ReadLine());
 Console.Write("Adja meg az második tört nevezőjét: ");
 int bN = Convert.ToInt32(Console.ReadLine());
 
-Console.WriteLine($"A két tört összege: {(aSz * bN) + (bSz * aN)}/{(aN * bSz) + (bN * aSz)}");
-Console.WriteLine($"A két tört különbsége: {(aSz * bN) - (bSz * aN)}/{(aN * bSz) - (bN * aSz)}");
-Console.WriteLine($"A két tört szorzata: {aSz * bSz}/{aN * bN}");
-Console.WriteLine($"A két tört hányadosa: {aSz / bSz}/{aN / bN}");
+Console.WriteLine($"A két tört összege: {(aSz * bN) + (bSz * aN)}/{(aN * bSz) + (bN * aSz)}" +
+    $"A két tört különbsége: {(aSz * bN) - (bSz * aN)}/{(aN * bSz) - (bN * aSz)}" +
+    $"A két tört szorzata: {aSz * bSz}/{aN * bN}" +
+    $"A két tört hányadosa: {aSz / bSz}/{aN / bN}");
 #endregion
 
 #region 9. feladat
@@ -112,10 +112,10 @@ Console.Write("Adja meg, hogy hány kg szőlőt vásárolt: ");
 double grapeKg = Convert.ToDouble(Console.ReadLine());
 double grape = grapeKg * 650;
 
-Console.WriteLine($"- {appleKg} kg alma - {apple:C0}");
-Console.WriteLine($"- {plumKg} kg szilva - {plum:C0}");
-Console.WriteLine($"- {grapeKg} kg szőlő - {grape:C0}");
-Console.WriteLine($"Összesen: {(apple + plum + grape):C0}");
+Console.WriteLine($"\nÖsszesen: {(apple + plum + grape):C0}" +
+    $"\n\t- {appleKg} kg alma - {apple:C0}" +
+    $"\n\t- {plumKg} kg szilva - {plum:C0}" +
+    $"\n\t- {grapeKg} kg szőlő - {grape:C0}");
 #endregion
 
 #region 10. feladat
