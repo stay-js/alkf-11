@@ -53,10 +53,10 @@ Console.WriteLine($"A két koordináta távolsága " +
 #region 4. feladat
 Console.Write("\nAdja meg a vásárolt könyvek összértékét: ");
 int sum = Convert.ToInt32(Console.ReadLine());
-int salePercent = random.Next(0, 50);
+double salePercent = random.Next(0, 50) / 100.0;
 
-Console.WriteLine($"A vásárlónak {Math.Round(sum * (100 - salePercent) / 100.0)} " +
-    $"Ft-ot kell fizetnie {salePercent}% kedvezmény után.");
+Console.WriteLine($"A vásárlónak {Math.Round(sum * (1 - salePercent)):C0}" +
+    $"-ot kell fizetnie {salePercent:P0} kedvezmény után.");
 #endregion
 
 #region 5.feladat
