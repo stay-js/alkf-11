@@ -188,7 +188,7 @@ if(!password.Any(new[] { '!', '?', '.', '@', '#', '$' }.Contains))
     Console.WriteLine("A jelszó nem tartalmaz speciális karaktert!");
 
 //g.
-if(!password.Any(char.IsNumber)) Console.WriteLine("A jelszó nem tartalmaz számot!");
+if(!password.Any(char.IsDigit)) Console.WriteLine("A jelszó nem tartalmaz számot!");
 #endregion
 
 #region 8.feladat
