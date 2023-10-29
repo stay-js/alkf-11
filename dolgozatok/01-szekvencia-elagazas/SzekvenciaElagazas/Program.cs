@@ -1,8 +1,6 @@
-﻿Random random = new Random();
+﻿var random = new Random();
 
 #region 1.feladat
-Console.WriteLine("1. feladat");
-
 Console.Write("Adja meg a körkúp sugarát (cm): ");
 double radius = Convert.ToDouble(Console.ReadLine());
 
@@ -13,16 +11,12 @@ double radiusSquared = Math.Pow(radius, 2);
 double heightSquared = Math.Pow(height, 2);
 
 Console.WriteLine($"A körkúp térfogata: {(1.0 / 3.0 * Math.PI * radiusSquared * height):N2} cm3.");
-Console.WriteLine($"A körkúp felszíne: {(
-    (Math.PI * radiusSquared) +
-    (Math.PI * radius * Math.Sqrt(radiusSquared + heightSquared))
-    ):N2} cm2.");
+Console.WriteLine($"A körkúp felszíne: {((Math.PI * radiusSquared) +
+    (Math.PI * radius * Math.Sqrt(radiusSquared + heightSquared))):N2} cm2.");
 #endregion
 
 #region 2. feladat
-Console.WriteLine("\n2. feladat");
-
-Console.Write("Adja meg a sípálya legmeredekebb lejtőjét: ");
+Console.Write("\nAdja meg a sípálya legmeredekebb lejtőjét: ");
 uint steepness = Convert.ToUInt32(Console.ReadLine());
 
 Console.BackgroundColor = ConsoleColor.White;
@@ -49,32 +43,27 @@ Console.Clear();
 #endregion
 
 #region 3. feladat
-Console.WriteLine("\n3. feladat");
-
-Console.WriteLine(random.Next(1, 7) switch
+Console.WriteLine($"\n{(random.Next(1, 7) switch
 {
     1 => "1-et dobtál, kimaradsz a dobásból!",
     6 => "Lépj előre 6-ot, és újra dobhatsz!",
     int x => $"Lépj előre {x} mezőt!"
-});
+})}");
 #endregion
 
 #region 4. feladat
-Console.WriteLine("\n4. feladat");
-
 double number = random.NextDouble() * 200 - 100;
 double floor = Math.Floor(number);
 double math = Math.Round(number);
 double ceil = Math.Ceiling(number);
 
-Console.WriteLine($"A generált szám a {number}");
-Console.WriteLine($"A szám {(
-    number switch
-    {
-        < 0 => "negatív",
-        0 => "nulla",
-        _ => "pozitív"
-    })}.");
+Console.WriteLine($"\nA generált szám a {number}");
+Console.WriteLine($"A szám {(number switch
+{
+    < 0 => "negatív",
+    0 => "nulla",
+    _ => "pozitív"
+})}.");
 Console.WriteLine($"Lefele kerekített értéke: {floor}");
 Console.WriteLine($"Matematikai kerekített értéke: {math}");
 Console.WriteLine($"Felfelé kerekített értéke: {ceil}");
