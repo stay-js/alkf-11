@@ -207,7 +207,7 @@ for (int i = 0; i < rows; i++)
             toPrint.Append(j % 2 == 0 ? 'O' : 'X');
     }
 
-    toPrint.Append('\n');
+    toPrint.AppendLine();
 }
 
 Console.Write($"\n{toPrint}");
@@ -231,7 +231,7 @@ for (int i = 0; i < k3; i++)
         toPrint.Append('*');
     }
 
-    toPrint.Append('\n');
+    toPrint.AppendLine();
 }
 
 Console.Write($"\n{toPrint}");
@@ -268,9 +268,6 @@ for (int i = 100; i <= 999; i++)
         num /= 10;
     }
 
-    double sum1 = 0;
-    digits.ForEach(x => sum1 += Math.Pow(x, 3));
-
-    if (sum1 == i) Console.WriteLine(i);
+    if (i == digits.Select(x => Math.Pow(x, 3)).Sum()) Console.WriteLine(i);
 }
 #endregion
