@@ -1,0 +1,5 @@
+Dolgozunk a probléma megoldásán, türelmüket kérjük.
+Ez a funkció csak a következő verzióban lesz elérhető.
+Kipróbáltuk, nekünk működik. Kérjük, olvassa el figyelmesebben a dokumentációt!
+Ez a funkció technikai okok miatt nem megvalósítható.
+Kérjük, pontosítsa a hibabejelentését, a hibajelenségről küldjön egy képernyő képet is!

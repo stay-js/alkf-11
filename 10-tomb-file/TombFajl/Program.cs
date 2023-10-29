@@ -1,11 +1,10 @@
-﻿Random random = new Random();
+﻿var random = new Random();
 
 #region 1.feladat
 Console.Write("Adja meg az osztály létszámát: ");
 int numberOfStudents = Convert.ToInt32(Console.ReadLine());
 
 // int[] grades = Enumerable.Range(0, numberOfStudents).Select((_) => random.Next(2, 6)).ToArray();
-
 int[] grades = new int[numberOfStudents];
 for (int i = 0; i < grades.Length; i++)
 {
@@ -16,7 +15,7 @@ Console.WriteLine($"Érdemjegyek: {string.Join(", ", grades)}");
 #endregion
 
 #region 2.feladat
-int[] categories = new int[] { 1000, 1500, 2000, 2500, 3500 };
+int[] categories = { 1000, 1500, 2000, 2500, 3500 };
 
 Console.WriteLine("\nKategóriák: ");
 foreach (int category in categories)
@@ -25,9 +24,11 @@ foreach (int category in categories)
 }
 #endregion
 
+
 #region 3.feladat
 int[] throws = Enumerable.Range(1, 50).Select((_) => random.Next(1, 7)).ToArray();
-StreamWriter throwsOutput = new StreamWriter("dobasok.txt");
+
+var throwsOutput = new StreamWriter("dobasok.txt");
 
 foreach (int thr in throws)
 {
@@ -36,41 +37,37 @@ foreach (int thr in throws)
 
 throwsOutput.Close();
 #endregion
-
 #region 4.feladat
 const int NUMBER_OF_STUDENTS = 17;
 
 //string[] students = File.ReadAllLines("diakok.txt");
 
-StreamReader studentsReader = new StreamReader("diakok.txt");
+var studentsInput = new StreamReader("diakok.txt");
 
 string[] students = new string[NUMBER_OF_STUDENTS];
 int count = 0;
 
-while(count < NUMBER_OF_STUDENTS && !studentsReader.EndOfStream)
+while(count < NUMBER_OF_STUDENTS && !studentsInput.EndOfStream)
 {
-    students[count] = (studentsReader.ReadLine() ?? "").Trim();
+    students[count] = (studentsInput.ReadLine() ?? "").Trim();
     count++;
 }
 
-studentsReader.Close();
+studentsInput.Close();
 
-Console.WriteLine($"\nA kisorsolt tanuló: {students[random.Next(0, students.Length - 1)]}");
+Console.WriteLine($"\nA kisorsolt tanuló: {students[random.Next(students.Length - 1)]}");
 #endregion
 
 #region 5.feladat
-string[] responses = new string[] { "Dolgozunk a probléma megoldásán, türelmüket kérjük.",
-    "Ez a funkció csak a következő verzióban lesz elérhető.",
-    "Kipróbáltuk, nekünk működik. Kérjük, olvassa el figyelmesebben a dokumentációt!",
-    "Ez a funkció technikai okok miatt nem megvalósítható.",
-    "Kérjük, pontosítsa a hibabejelentését, a hibajelenségről küldjön egy képernyő képet is!" };
+string[] responses = File.ReadAllLines("valaszok.txt");
 
-Console.Write("\nAdja meg a válasz sorszámát: ");
+Console.Write("\nAdja meg a válasz sorszámát (1-5): ");
 Console.WriteLine(responses[Convert.ToInt32(Console.ReadLine()) - 1]);
 #endregion
 
+
 #region 6.feladat
-Console.Write("\nAdjon meg egy számot: ");
+Console.Write("\nAdjon meg egy számot (min 3): ");
 int max = Convert.ToInt32(Console.ReadLine());
 
 int[] fib = new int[max];
@@ -88,10 +85,10 @@ Console.WriteLine($"Az első {max} fibonacci szám: {string.Join(", ", fib)}");
 
 #region 7.feladat
 int[] binary = Enumerable.Range(0, 10).Select((_) => random.Next(2)).ToArray();
-int[] decimalValues = new int[] { 512, 256, 128, 64, 32, 16, 8, 4, 2, 1 };
+int[] decimalValues = { 512, 256, 128, 64, 32, 16, 8, 4, 2, 1 };
 int[] value = new int[10];
 
-Console.WriteLine(string.Concat(binary));
+Console.WriteLine($"\nBináris érték: {string.Concat(binary)}");
 
 for (int i = 0; i < 10; i++)
 {
@@ -117,7 +114,7 @@ for (int i = 0; i < AMOUNT_OF_RECORDS; i++)
 speedRecords = speedRecords.Select((val) => val * 0.9).ToArray();
 
 Console.WriteLine("\nSebesség értékek: ");
-foreach(double record in speedRecords)
+foreach (double record in speedRecords)
 {
     Console.WriteLine($"{record} km/h{(record > 65 ? " - büntetés" : "")}");
 }
@@ -134,11 +131,11 @@ for (int i = 0; i <= doors.Length; i++)
     }
 }
 
-StreamWriter doorsOutput = new StreamWriter("doors.txt");
+var doorsOutput = new StreamWriter("ajtok.txt");
 
 for (int i = 0; i < doors.Length; i++)
 {
-    doorsOutput.WriteLine($"{i + 1}. ajtó: {(doors[i] ? "nyitva": "zárva")}.");
+    doorsOutput.WriteLine($"{i + 1}. ajtó: {(doors[i] ? "nyitva" : "zárva")}.");
 }
 
 doorsOutput.Close();

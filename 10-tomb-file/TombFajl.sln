@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TombFajlNZ", "TombFajlNZ\TombFajlNZ.csproj", "{4B31CF40-D1B0-4F8B-AD67-16C4E3E53F3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TombFajl", "TombFajl\TombFajl.csproj", "{4B31CF40-D1B0-4F8B-AD67-16C4E3E53F3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
