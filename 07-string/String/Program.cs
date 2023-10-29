@@ -107,20 +107,16 @@ Console.WriteLine(toPrint);
 
 #region 4.feladat
 Console.Write("\nAdja meg a teljes nevét: ");
-string[] fullName= (Console.ReadLine() ?? "").Split(" ");
-
-string firstName = fullName[0];
-string lastName = fullName[1];
-string? secondLastName = fullName.Length >= 3 ? string.Join(" ", fullName[2..]) : null;
+string[] name = (Console.ReadLine() ?? "").Split(" ");
 
 //a.
-Console.WriteLine(string.Join('.', fullName).ToLower());
+Console.WriteLine(string.Join('.', name).ToLower());
 
 //b.
 toPrint.Clear();
 
 //i.
-toPrint.Append(firstName[..2].ToLower());
+toPrint.Append(name[0][..2].ToLower());
 
 //ii.
 for (int i = 0; i < 3; i++) 
@@ -129,16 +125,16 @@ for (int i = 0; i < 3; i++)
 }
 
 //iii.
-for (int i = 0; i < lastName.Length; i++) 
+for (int i = 0; i < name[1].Length; i++) 
 {
-     if (i % 2 != 0) toPrint.Append(lastName[i]);
+     if (i % 2 != 0) toPrint.Append(name[1][i]);
 }
 
 //iv.
 toPrint.Append(new[] { '!', '?', '#' }[random.Next(3)]);
 
 //v.
-toPrint.Append((secondLastName ?? lastName)[^2..].ToUpper());
+toPrint.Append(name[^1][^2..].ToUpper());
 
 Console.WriteLine(toPrint);
 #endregion

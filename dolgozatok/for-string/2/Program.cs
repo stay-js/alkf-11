@@ -1,22 +1,23 @@
-﻿Random random = new();
+﻿using System.Text;
+
+var random = new Random();
 
 Console.Write("Kérem adja meg a felhasználó teljes nevét: ");
-string fullName = (Console.ReadLine() ?? "").Trim();
-string[] nameAsArray = fullName.Split(' ');
+string[] name = (Console.ReadLine() ?? "").Trim().Split(' ');
 
 Console.Write("Kérem adja meg a felhasználó osztályát: ");
 string schoolClass = (Console.ReadLine() ?? "").Trim();
 
-string password = "";
+var toPrint = new StringBuilder();
 
-password += char.ToUpper(schoolClass[^1]);
-password += random.Next(100, 1000);
-password += new[] { '?', '!', '%' }[random.Next(3)];
-password += fullName[..3];
+toPrint.Append(char.ToUpper(schoolClass[^1]));
+toPrint.Append(random.Next(100, 1000));
+toPrint.Append(new[] { '?', '!', '%' }[random.Next(3)]);
+toPrint.Append(name[0][..3]);
 
-for (int i = 0; i < nameAsArray[^1].Length; i++)
+for (int i = 0; i < name[^1].Length; i++)
 {
-    if (i % 2 == 0) password += nameAsArray[^1][i];
+    if (i % 2 == 0) toPrint.Append(name[^1][i]);
 }
 
-Console.WriteLine($"Az elkészült jelszó: {password}");
+Console.WriteLine($"Az elkészült jelszó: {toPrint}");
