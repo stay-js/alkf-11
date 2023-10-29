@@ -1,4 +1,4 @@
-﻿Random random = new Random();
+﻿var random = new Random();
 
 #region 1.feldat
 int i = 0;
@@ -97,8 +97,8 @@ do
     
     Console.WriteLine($"{currentThrow}; {currentThrow2}; {currentThrow3}");
 } while (currentThrow != currentThrow2
-         && currentThrow != currentThrow3
-         && currentThrow2 != currentThrow3);
+    && currentThrow != currentThrow3
+    && currentThrow2 != currentThrow3);
 Console.WriteLine($"{i}. dobásra lett legalább 2 kockán ugyanaz az érték.");
 #endregion
 
@@ -115,7 +115,7 @@ do
     
     Console.WriteLine($"{currentThrow}; {currentThrow2}; {currentThrow3}");
 } while (currentThrow == currentThrow2 
-         || currentThrow == currentThrow3
-         || currentThrow2 == currentThrow3);
+    || currentThrow == currentThrow3
+    || currentThrow2 == currentThrow3);
 Console.WriteLine($"{i}. dobásra lett mindhárom kockán különböző az érték.");
 #endregion

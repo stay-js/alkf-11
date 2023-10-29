@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhileDoWhileNZ", "WhileDoWhileNZ\WhileDoWhileNZ.csproj", "{D85309CF-8EAD-4AE2-B642-37E5CDCDF67E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhileDoWhile", "WhileDoWhile\WhileDoWhile.csproj", "{D85309CF-8EAD-4AE2-B642-37E5CDCDF67E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
