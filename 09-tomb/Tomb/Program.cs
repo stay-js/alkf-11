@@ -1,4 +1,4 @@
-﻿Random random = new Random();
+﻿var random = new Random();
 
 #region 1.feladat
 Console.Write("Adja meg az osztály létszámát: ");
@@ -15,7 +15,7 @@ Console.WriteLine($"Érdemjegyek: {string.Join(", ", grades)}");
 #endregion
 
 #region 2.feladat
-int[] categories = new int[] { 1000, 1500, 2000, 2500, 3500 };
+int[] categories = { 1000, 1500, 2000, 2500, 3500 };
 
 Console.WriteLine("\nKategóriák: ");
 foreach (int category in categories)
@@ -35,30 +35,30 @@ foreach (int thr in throws)
 #endregion
 
 #region 4.feladat
-string[] students = new string[] { "Ádám János Dániel", "Bottka Balázs", "Csengeri Barnabás",
+string[] students = { "Ádám János Dániel", "Bottka Balázs", "Csengeri Barnabás",
     "Jovanovski Viktor", "K.Papp Benjamin", "Kis Dávid", "Kun Géza Márk", "Nagy Bernát",
     "Nagy Zétény", "Pálinkás Nikolett", "Péter-Szabó Alex", "Polyák Panna", "Szabó András Péter",
     "Szerencsi Ádám", "Vadász Balázs", "Veress Csaba", "Zsigmond-Barna Zoltán László" };
 
-Console.WriteLine($"\nA kisorsolt tanuló: {students[random.Next(0, students.Length - 1)]}");
+Console.WriteLine($"\nA kisorsolt tanuló: {students[random.Next(students.Length - 1)]}");
 #endregion
 
 #region 5.feladat
-string[] responses = new string[] { "Dolgozunk a probléma megoldásán, türelmüket kérjük.",
+string[] responses = { "Dolgozunk a probléma megoldásán, türelmüket kérjük.",
     "Ez a funkció csak a következő verzióban lesz elérhető.",
     "Kipróbáltuk, nekünk működik. Kérjük, olvassa el figyelmesebben a dokumentációt!",
     "Ez a funkció technikai okok miatt nem megvalósítható.",
     "Kérjük, pontosítsa a hibabejelentését, a hibajelenségről küldjön egy képernyő képet is!" };
 
-Console.Write("\nAdja meg a válasz sorszámát: ");
+Console.Write("\nAdja meg a válasz sorszámát (1-5): ");
 Console.WriteLine(responses[Convert.ToInt32(Console.ReadLine()) - 1]);
 #endregion
 
 #region 6.feladat
-Console.Write("\nAdjon meg egy számot: ");
+Console.Write("\nAdjon meg egy számot (min 3): ");
 int max = Convert.ToInt32(Console.ReadLine());
 
-int[] fib = new int[max];
+int[] fib = new int [max];
 
 fib[0] = 0;
 fib[1] = 1;
@@ -73,10 +73,10 @@ Console.WriteLine($"Az első {max} fibonacci szám: {string.Join(", ", fib)}");
 
 #region 7.feladat
 int[] binary = Enumerable.Range(0, 10).Select((_) => random.Next(2)).ToArray();
-int[] decimalValues = new int[] { 512, 256, 128, 64, 32, 16, 8, 4, 2, 1 };
+int[] decimalValues = { 512, 256, 128, 64, 32, 16, 8, 4, 2, 1 };
 int[] value = new int[10];
 
-Console.WriteLine(string.Concat(binary));
+Console.WriteLine($"\nBináris érték: {string.Concat(binary)}");
 
 for (int i = 0; i < 10; i++)
 {
@@ -122,7 +122,7 @@ for (int i = 0; i <= doors.Length; i++)
 Console.WriteLine("\nAz ajtók végleges állapota: ");
 for (int i = 0; i < doors.Length; i++)
 {
-    Console.WriteLine($"{i+1}. ajtó: {(doors[i] ? "nyitva": "zárva")}.");
+    Console.WriteLine($"{i + 1}. ajtó: {(doors[i] ? "nyitva": "zárva")}.");
 }
 #endregion
 
