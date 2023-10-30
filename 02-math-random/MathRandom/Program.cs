@@ -36,14 +36,14 @@ Console.ResetColor();
 #endregion
 
 #region 3.feladat
-Console.Write("\nAdja meg az első pont x koordinátáját: ");
+Console.Write("\nAdja meg az első pont \"x\" koordinátáját: ");
 int x1 = Convert.ToInt32(Console.ReadLine());
-Console.Write("Adja meg az első pont y koordinátáját: ");
+Console.Write("Adja meg az első pont \"y\" koordinátáját: ");
 int y1 = Convert.ToInt32(Console.ReadLine());
 
-Console.Write("Adja meg az mádodik pont x koordinátáját: ");
+Console.Write("Adja meg a mádodik pont \"x\" koordinátáját: ");
 int x2 = Convert.ToInt32(Console.ReadLine());
-Console.Write("Adja meg az második pont y koordinátáját: ");
+Console.Write("Adja meg a második pont \"y\" koordinátáját: ");
 int y2 = Convert.ToInt32(Console.ReadLine());
 
 Console.WriteLine($"A két koordináta távolsága " +
@@ -55,16 +55,16 @@ Console.Write("\nAdja meg a vásárolt könyvek összértékét: ");
 int sum = Convert.ToInt32(Console.ReadLine());
 double salePercent = random.Next(0, 50) / 100.0;
 
-Console.WriteLine($"A vásárlónak {Math.Round(sum * (1 - salePercent)):C0}" +
+Console.WriteLine($"A vásárlónak {(sum * (1 - salePercent)):C0}" +
     $"-ot kell fizetnie {salePercent:P0} kedvezmény után.");
 #endregion
 
 #region 5.feladat
 Console.Write("\nAdja meg a kör átmérőjét: ");
-int d = Convert.ToInt32(Console.ReadLine());
+double d = Convert.ToDouble(Console.ReadLine());
 
 Console.WriteLine($"A kör kerülete: {d * Math.PI}");
-Console.WriteLine($"A kör területe: {Math.Pow(d / 2.0, 2) * Math.PI}");
+Console.WriteLine($"A kör területe: {Math.Pow(d / 2, 2) * Math.PI}");
 #endregion
 
 #region 6. feladat
