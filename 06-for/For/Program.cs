@@ -44,10 +44,10 @@ for (int i = 2; i <= n * 2; i += 2)
 #endregion
 
 #region 5. feladat
-Console.Write("\nAdja meg az intervallum minumum értékét: ");
+Console.Write("\nAdja meg az intervallum alsó határát: ");
 int min = Convert.ToInt32(Console.ReadLine());
 
-Console.Write("Adja meg az intervallum maximum értékét: ");
+Console.Write("Adja meg az intervallum felső határát: ");
 int max = Convert.ToInt32(Console.ReadLine());
 
 for (int i = min; i < max; i++)
@@ -104,10 +104,10 @@ Console.WriteLine($"A hatvány értéke: {power}");
 
 
 #region 10.feladat
-Console.Write("\nAdja meg az intervallum minumum értékét: ");
+Console.Write("\nAdja meg az intervallum alsó határát: ");
 int min1 = Convert.ToInt32(Console.ReadLine());
 
-Console.Write("Adja meg az intervallum maximum értékét: ");
+Console.Write("Adja meg az intervallum felső határát: ");
 int max1 = Convert.ToInt32(Console.ReadLine());
 
 Console.Write("Adjon meg egy osztót: ");
@@ -132,10 +132,10 @@ for (int i = 0; i < n; i++)
 
 
 #region 12.feladat
-Console.Write("\nAdja meg az intervallum minumum értékét: ");
+Console.Write("\nAdja meg az intervallum alsó határát: ");
 int min2 = Convert.ToInt32(Console.ReadLine());
 
-Console.Write("Adja meg az intervallum maximum értékét: ");
+Console.Write("Adja meg az intervallum felső határát: ");
 int max2 = Convert.ToInt32(Console.ReadLine());
 
 for (int i = 0; i < n; i++)
