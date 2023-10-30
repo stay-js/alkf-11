@@ -74,6 +74,7 @@ Console.WriteLine(Convert.ToInt32(Console.ReadLine()) switch
 Console.Write("\nAdjon megy egy szeptemberi napot: ");
 int day = Convert.ToInt32(Console.ReadLine());
 var dateValue = new DateTime(2023, 09, day, 0, 0, 0, DateTimeKind.Utc);
+
 Console.WriteLine(dateValue.DayOfWeek switch
 {
     DayOfWeek.Monday => "Hétfő: Matek, Töri, Angol, Német, Irodalom, Tesi",
@@ -132,7 +133,7 @@ Console.WriteLine(Console.ReadLine() switch
 {
     "+" => a + b,
     "-" => a - b,
-    "/" => a / b,
+    "/" => a / Convert.ToDouble(b),
     "*" => a * b,
     "^" => Math.Pow(a, b),
     _ => "Nincs ilyen operátor!"
@@ -202,7 +203,7 @@ if (hour is >= 6 and < 21)
     {
         "i" => "A lámpa nem világít.",
         "n" => "A lámpa nappali fénnyel világít.",
-        _ => "Igennel vagy nemmel válaszoljon!",
+        _ => "Csak igennel vagy nemmel válaszolhat!",
     });
 }
 else Console.WriteLine("A lámpa éjszakai fénnyel világít.");
@@ -231,7 +232,8 @@ Console.Write($"\nA generált kód a {string.Join("", card)}:");
 
 if (!(firstRoom || secondRoom || thirdRoom || fourthRoom || fifthRoom || sixthRoom || seventhRoom))
     Console.WriteLine(" A kód érvénytelen!");
-else Console.WriteLine($"\n\t- 1. helyiségbe: {(firstRoom ? "beléphet" : "nem léphet be")}" +
+else
+    Console.WriteLine($"\n\t- 1. helyiségbe: {(firstRoom ? "beléphet" : "nem léphet be")}" +
     $"\n\t- 2. helyiségbe: {(secondRoom ? "beléphet" : "nem léphet be")}" +
     $"\n\t- 3. helyiségbe: {(thirdRoom ? "beléphet" : "nem léphet be")}" +
     $"\n\t- 4. helyiségbe: {(fourthRoom ? "beléphet" : "nem léphet be")}" +
