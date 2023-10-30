@@ -127,7 +127,7 @@ for (int i = 0; i < 3; i++)
 //iii.
 for (int i = 0; i < name[1].Length; i++) 
 {
-     if (i % 2 != 0) toPrint.Append(name[1][i]);
+    if (i % 2 != 0) toPrint.Append(name[1][i]);
 }
 
 //iv.
