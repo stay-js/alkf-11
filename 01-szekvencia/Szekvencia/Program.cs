@@ -1,6 +1,4 @@
-﻿// Nagy Zétény 11.a (11_SZFT1)
-
-#region 1.feladat
+﻿#region 1.feladat
 Console.BackgroundColor = ConsoleColor.Red;
 Console.ForegroundColor = ConsoleColor.Black;
 Console.WriteLine("Hey, hey");
@@ -28,15 +26,15 @@ Console.Write("Adjon meg egy számot: ");
 int y = Convert.ToInt32(Console.ReadLine());
 
 Console.WriteLine($"\nKét szám összege: {x + y}" +
-    $"\nKét szám különbsége: {x - y}" +
+    $"\nKét szám különbsége: {Math.Abs(x - y)}" +
     $"\nKét szám szorzata: {x * y}" +
     $"\nA második szám {x / y}x van meg az első számban." +
     $"\nKét szám osztási maradéka: {x % y}" +
-    $"\nValós osztás eredménye: {Convert.ToDecimal(x) / y}");
+    $"\nValós osztás eredménye: {Convert.ToDouble(x) / y}");
 #endregion
 
 #region 3. feladat
-Console.Write("\nAdjon meg egy születési évet: ");
+Console.Write("\nAdja meg a diák születési évet: ");
 int year = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine($"A megadott évben született diák {DateTime.Today.Year - year} éves.");
 #endregion
@@ -61,10 +59,10 @@ Console.WriteLine($"A háromszög kerülete: {a + b + c}");
 #endregion
 
 #region 6. feladat
-Console.Write("\nAdja meg a testsúlyát: ");
+Console.Write("\nAdja meg a testsúlyát (kg): ");
 double weight = Convert.ToDouble(Console.ReadLine());
 
-Console.Write("Adja meg a magasságát: ");
+Console.Write("Adja meg a magasságát (cm): ");
 double height = Convert.ToDouble(Console.ReadLine());
 
 Console.WriteLine($"Az ön testtömegindexe: {(weight / Math.Pow(height / 100, 2)):N2}");
@@ -75,28 +73,28 @@ Console.Write("\nAdja meg, hogy mennyi eurót szeretne vásárolni: ");
 double eurToBuy = Convert.ToDouble(Console.ReadLine());
 
 Console.Write("Adja meg az euró aktuális árfolyamát: ");
-float eurToHuf = Convert.ToSingle(Console.ReadLine());
+double eurToHuf = Convert.ToDouble(Console.ReadLine());
 
 Console.WriteLine($"{eurToBuy} EUR-ért {(eurToBuy * eurToHuf):C0}-ot kell fizetni.");
 #endregion
 
 #region 8. feladat
 Console.Write("\nAdja meg az első tört számlálóját: ");
-double aSz = Convert.ToDouble(Console.ReadLine());
+double xN = Convert.ToDouble(Console.ReadLine());
 
 Console.Write("Adja meg az első tört nevezőjét: ");
-double aN = Convert.ToDouble(Console.ReadLine());
+double xD = Convert.ToDouble(Console.ReadLine());
 
 Console.Write("Adja meg az második tört számlálóját: ");
-double bSz = Convert.ToDouble(Console.ReadLine());
+double yN = Convert.ToDouble(Console.ReadLine());
 
 Console.Write("Adja meg az második tört nevezőjét: ");
-int bN = Convert.ToInt32(Console.ReadLine());
+double yD = Convert.ToDouble(Console.ReadLine());
 
-Console.WriteLine($"A két tört összege: {(aSz * bN) + (bSz * aN)}/{(aN * bSz) + (bN * aSz)}" +
-    $"A két tört különbsége: {(aSz * bN) - (bSz * aN)}/{(aN * bSz) - (bN * aSz)}" +
-    $"A két tört szorzata: {aSz * bSz}/{aN * bN}" +
-    $"A két tört hányadosa: {aSz / bSz}/{aN / bN}");
+Console.WriteLine($"A két tört összege: {(xN * yD) + (yN * xD)}/{(xD * yN) + (yD * xN)}" +
+    $"A két tört különbsége: {(xN * yD) - (yN * xD)}/{(xD * yN) - (yD * xN)}" +
+    $"A két tört szorzata: {xN * yN}/{xD * yD}" +
+    $"A két tört hányadosa: {xN / yN}/{xD / yD}");
 #endregion
 
 #region 9. feladat
@@ -143,7 +141,7 @@ Console.ResetColor();
 
 #region 11. feladat
 Console.Write("\nAdja meg a szoba falfelületét: ");
-int allArea = Convert.ToInt32(Console.ReadLine());
+int roomArea = Convert.ToInt32(Console.ReadLine());
 
 Console.Write("Adja meg az ablak felületét: ");
 int windowArea = Convert.ToInt32(Console.ReadLine());
@@ -151,14 +149,14 @@ int windowArea = Convert.ToInt32(Console.ReadLine());
 Console.Write("Adja meg az ajtó felületét: ");
 int doorArea = Convert.ToInt32(Console.ReadLine());
 
-Console.WriteLine($"{((allArea - windowArea - doorArea) * 1.1 / 1000):N2} m2 tapétára van szükség.");
+Console.WriteLine($"{((roomArea - windowArea - doorArea) * 1.1 / 1000):N2} m2 tapétára van szükség.");
 #endregion
 
 #region 12. feladat
 Console.Write("\nAdja meg az egyik oldalt (m): ");
 int aInM = Convert.ToInt32(Console.ReadLine());
 
-Console.Write("Adja meg az másik oldalt (m): ");
+Console.Write("Adja meg a másik oldalt (m): ");
 int bInM = Convert.ToInt32(Console.ReadLine());
 
 Console.Write("Adja meg a kapu méretét (cm): ");
