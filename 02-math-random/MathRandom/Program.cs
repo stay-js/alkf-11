@@ -69,9 +69,8 @@ Console.WriteLine($"A kör területe: {Math.Pow(d / 2, 2) * Math.PI}");
 
 #region 6. feladat
 Console.Write("\nAdja meg az osztálylétszámot: ");
-int numberOfStudents = Convert.ToInt32(Console.ReadLine());
-
-Console.WriteLine($"A felelő az osztály {random.Next(numberOfStudents) + 1}. tagja legyen.");
+Console.WriteLine($"A felelő az osztály" +
+    $"{random.Next(Convert.ToInt32(Console.ReadLine())) + 1}. tagja legyen.");
 #endregion
 
 #region 7. feladat
