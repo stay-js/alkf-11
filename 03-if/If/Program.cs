@@ -68,37 +68,32 @@ Console.WriteLine($"A szám " +
 #endregion
 
 #region 7. feladat
-Console.Write("\nSzeretne ötöst kapni programozásból? ");
-Console.WriteLine(Console.ReadLine() switch
-{
-    "igen" => "Akkor gyakorolj!",
-    "nem" => "Helytelen a hozzáállásod!",
-    _ => "Csak igennel és nemmel válaszolhat!"
-});
+Console.Write("\nSzeretnél ötöst kapni programozásból? ");
+string answer = Console.ReadLine() ?? "";
+
+if (answer == "igen") Console.WriteLine("Akkor gyakorolj!");
+else if (answer == "nem") Console.WriteLine("Helytelen a hozzáállásod!");
+else Console.WriteLine("Csak igennel és nemmel válaszolhatsz!");
 #endregion
 
 #region 8. feladat
 Console.Write("\nAdjon meg egy számot: ");
-Console.WriteLine($"A megadott szám {(Convert.ToInt32(Console.ReadLine()) switch
-{
-    < 0 => "negatív",
-    0 => "nulla",
-    _ => "pozitív"
-})}.");
+double number = Convert.ToDouble(Console.ReadLine());
+
+if (number == 0) Console.WriteLine("A megadott szám nulla.");
+else if (number < 0) Console.WriteLine("A megadott szám negatív.");
+else Console.WriteLine("A megadott szám pozitív.");
 #endregion
 
 #region 9. feladat
 Console.Write("\nAdja meg egy hónap sorszámát: ");
-Console.WriteLine(Convert.ToInt32(Console.ReadLine()) switch
-{
-    < 1 => "Nincs ilyen hónap",
-    <= 2 => "Tél",
-    <= 5 => "Tavasz",
-    <= 8 => "Nyár",
-    <= 11 => "Ősz",
-    12 => "Tél",
-    _ => "Nincs ilyen hónap"
-});
+int monthAsInt = Convert.ToInt32(Console.ReadLine());
+
+if (monthAsInt is < 0 or > 12) Console.WriteLine("Nincs ilyen hónap.");
+else if (monthAsInt is <= 2 or 12) Console.WriteLine("Tél");
+else if (monthAsInt <= 5) Console.WriteLine("Tavasz");
+else if (monthAsInt <= 8) Console.WriteLine("Nyár");
+else if (monthAsInt <= 11) Console.WriteLine("Ősz");
 #endregion
 
 #region 10. feladat
@@ -128,12 +123,11 @@ Console.WriteLine($"A terméket {(discountRate > 50 ? "megéri" : "nem éri meg"
 
 #region 13. feladat
 Console.Write("\nAdja meg a víz hőmérsékletét (°C): ");
-Console.WriteLine($"{(Convert.ToInt32(Console.ReadLine()) switch
-{
-    < 0 => "Szilárd",
-    < 100 => "Folyékony",
-    _ => "Gáz"
-})} halmazállapotú.");
+double temperature = Convert.ToDouble(Console.ReadLine());
+
+if (temperature < 0) Console.WriteLine("Szilárd halmazállapotú.");
+else if (temperature < 100) Console.WriteLine("Folyékony halmazállapotú.");
+else Console.WriteLine("Gáz halmazállapotú.");
 #endregion
 
 #region 14. feladat
