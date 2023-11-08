@@ -9,9 +9,9 @@ static int CountNumbersWithinRange(int[] numbers)
     double avg = numbers.Average();
     int count = 0;
 
-    foreach(int number in numbers)
+    foreach (int number in numbers)
     {
-        if(Math.Abs(number - avg) <= 10) count++;
+        if (Math.Abs(number - avg) <= 10) count++;
     }
 
     return count;

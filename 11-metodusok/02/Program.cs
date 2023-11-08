@@ -16,7 +16,7 @@ static void RombuszRajzolo(int oldal)
     {
         for (int j = 0; j < (oldal / 2) - i; j++)
         {
-           toPrint.Append(' ');
+            toPrint.Append(' ');
         }
 
         for (int j = 0; j < (2 * i) + 1; j++)
