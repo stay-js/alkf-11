@@ -56,18 +56,18 @@ output.Close();
 
 #region f.
 string[] firstNames = new string[names.Length];
-int j = 0;
+i = 0;
 
 foreach (string name in names)
 {
     string firstName = string.Join(' ', name.Split()[1..]);
-    if (!Contains(firstNames, j, firstName)) firstNames[j++] = firstName;
+    if (!Contains(firstNames, i, firstName)) firstNames[i++] = firstName;
 }
 
-string[] firstNamesActualLength = new string[j];
-for (int k = 0; k < j; k++)
+string[] firstNamesActualLength = new string[i];
+for (int j = 0; j < i; j++)
 {
-    firstNamesActualLength[k] = firstNames[k];
+    firstNamesActualLength[j] = firstNames[j];
 }
 
 Console.WriteLine("\nKeresztnevek ABC sorrendben:\n" +
@@ -78,16 +78,15 @@ Console.WriteLine("\nKeresztnevek ABC sorrendben:\n" +
 Console.Write("\nAdjon meg egy monogrammot: ");
 string monogramm = (Console.ReadLine() ?? "").ToUpper();
 
-int l = 0;
+int k = 0;
 
-while (l < names.Length && string.Concat(names[l].Split().Select((name) => name[0])) != monogramm)
+while (k < names.Length && string.Concat(names[k].Split().Select((name) => name[0])) != monogramm)
 {
-    l++;
+    k++;
 }
 
-if (l < names.Length) Console.WriteLine(names[l]);
+if (k < names.Length) Console.WriteLine(names[k]);
 else Console.WriteLine("Nincs ilyen monogrammal rendelkező ember a listán.");
-
 #endregion
 
 
