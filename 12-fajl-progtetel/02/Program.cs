@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-string[] names = File.ReadAllLines("nevek.txt");
+﻿string[] names = File.ReadAllLines("nevek.txt");
 
 #region a.
 int count = 0;
@@ -32,12 +30,12 @@ output.Close();
 #region c.
 const int AMOUNT_TO_PICK = 3;
 string[] randomNames = new string[AMOUNT_TO_PICK];
-int k = 0;
+int i = 0;
 
-while(k < AMOUNT_TO_PICK)
+while(i < AMOUNT_TO_PICK)
 {
     string selectedName = names[Random.Shared.Next(names.Length)];
-    if (!Contains(randomNames, k, selectedName)) randomNames[k++] = selectedName;
+    if (!Contains(randomNames, i, selectedName)) randomNames[i++] = selectedName;
 }
 
 output = new StreamWriter("felelok.txt");
@@ -58,18 +56,18 @@ output.Close();
 
 #region f.
 string[] firstNames = new string[names.Length];
-int l = 0;
+int j = 0;
 
 foreach (string name in names)
 {
     string firstName = string.Join(' ', name.Split()[1..]);
-    if (!Contains(firstNames, l, firstName)) firstNames[l++] = firstName;
+    if (!Contains(firstNames, j, firstName)) firstNames[j++] = firstName;
 }
 
-string[] firstNamesActualLength = new string[l];
-for (int i = 0; i < l; i++)
+string[] firstNamesActualLength = new string[j];
+for (int k = 0; k < j; k++)
 {
-    firstNamesActualLength[i] = firstNames[i];
+    firstNamesActualLength[k] = firstNames[k];
 }
 
 Console.WriteLine("\nKeresztnevek ABC sorrendben:\n" +
@@ -80,14 +78,14 @@ Console.WriteLine("\nKeresztnevek ABC sorrendben:\n" +
 Console.Write("\nAdjon meg egy monogrammot: ");
 string monogramm = (Console.ReadLine() ?? "").ToUpper();
 
-int m = 0;
+int l = 0;
 
-while (m < names.Length && string.Concat(names[m].Split().Select((name) => name[0])) != monogramm)
+while (l < names.Length && string.Concat(names[l].Split().Select((name) => name[0])) != monogramm)
 {
-    m++;
+    l++;
 }
 
-if (m < names.Length) Console.WriteLine(names[m]);
+if (l < names.Length) Console.WriteLine(names[l]);
 else Console.WriteLine("Nincs ilyen monogrammal rendelkező ember a listán.");
 
 #endregion
