@@ -10,7 +10,7 @@ for (int i = 0; i < length; i++)
 }
 
 int j = 0;
-while (j < length && !(data[j].Item1 == "Szekszard" && data[j].Item2 == -1))
+while (j < length && data[j] != ("Szekszard", -1))
 {
     j++;
 }
