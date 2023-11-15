@@ -1,14 +1,13 @@
-﻿var random = new Random();
-
-#region 1.feladat
+﻿#region 1.feladat
 Console.Write("Adja meg az osztály létszámát: ");
 int numberOfStudents = Convert.ToInt32(Console.ReadLine());
 
-// int[] grades = Enumerable.Range(0, numberOfStudents).Select((_) => random.Next(2, 6)).ToArray();
+//int[] grades = Enumerable.Range(0, numberOfStudents).Select((_) => Random.Shared.Next(2, 6)).ToArray();
 int[] grades = new int[numberOfStudents];
+
 for (int i = 0; i < grades.Length; i++)
 {
-    grades[i] = random.Next(2, 6);
+    grades[i] = Random.Shared.Next(2, 6);
 }
 
 Console.WriteLine($"Érdemjegyek: {string.Join(", ", grades)}");
@@ -24,38 +23,36 @@ foreach (int category in categories)
 }
 #endregion
 
-
 #region 3.feladat
-int[] throws = Enumerable.Range(1, 50).Select((_) => random.Next(1, 7)).ToArray();
+int[] throws = Enumerable.Range(1, 50).Select((_) => Random.Shared.Next(1, 7)).ToArray();
 
-var throwsOutput = new StreamWriter("dobasok.txt");
+var output = new StreamWriter("dobasok.txt");
 
 foreach (int thr in throws)
 {
-    throwsOutput.WriteLine(thr + (thr == 6 ? " Újra dobhat!" : ""));
+    output.WriteLine(thr + (thr == 6 ? " Újra dobhat!" : ""));
 }
 
-throwsOutput.Close();
+output.Close();
 #endregion
+
 #region 4.feladat
 const int NUMBER_OF_STUDENTS = 17;
 
 //string[] students = File.ReadAllLines("diakok.txt");
-
-var studentsInput = new StreamReader("diakok.txt");
+var input = new StreamReader("diakok.txt");
 
 string[] students = new string[NUMBER_OF_STUDENTS];
 int count = 0;
 
-while(count < NUMBER_OF_STUDENTS && !studentsInput.EndOfStream)
+while(count < NUMBER_OF_STUDENTS && !input.EndOfStream)
 {
-    students[count] = (studentsInput.ReadLine() ?? "").Trim();
-    count++;
+    students[count++] = (input.ReadLine() ?? "").Trim();
 }
 
-studentsInput.Close();
+input.Close();
 
-Console.WriteLine($"\nA kisorsolt tanuló: {students[random.Next(students.Length - 1)]}");
+Console.WriteLine($"\nA kisorsolt tanuló: {students[Random.Shared.Next(students.Length - 1)]}");
 #endregion
 
 #region 5.feladat
@@ -64,7 +61,6 @@ string[] responses = File.ReadAllLines("valaszok.txt");
 Console.Write("\nAdja meg a válasz sorszámát (1-5): ");
 Console.WriteLine(responses[Convert.ToInt32(Console.ReadLine()) - 1]);
 #endregion
-
 
 #region 6.feladat
 Console.Write("\nAdjon meg egy számot (min 3): ");
@@ -84,7 +80,7 @@ Console.WriteLine($"Az első {max} fibonacci szám: {string.Join(", ", fib)}");
 #endregion
 
 #region 7.feladat
-int[] binary = Enumerable.Range(0, 10).Select((_) => random.Next(2)).ToArray();
+int[] binary = Enumerable.Range(0, 10).Select((_) => Random.Shared.Next(2)).ToArray();
 int[] decimalValues = { 512, 256, 128, 64, 32, 16, 8, 4, 2, 1 };
 int[] value = new int[10];
 
@@ -131,19 +127,20 @@ for (int i = 0; i <= doors.Length; i++)
     }
 }
 
-var doorsOutput = new StreamWriter("ajtok.txt");
+output = new StreamWriter("ajtok.txt");
 
 for (int i = 0; i < doors.Length; i++)
 {
-    doorsOutput.WriteLine($"{i + 1}. ajtó: {(doors[i] ? "nyitva" : "zárva")}.");
+    output.WriteLine($"{i + 1}. ajtó: {(doors[i] ? "nyitva" : "zárva")}.");
 }
 
-doorsOutput.Close();
+output.Close();
 #endregion
 
 #region 10.feladat
 Console.WriteLine();
-int[] pin = Enumerable.Range(0, 6).Select((_) => random.Next(10)).ToArray();
+
+int[] pin = Enumerable.Range(0, 6).Select((_) => Random.Shared.Next(10)).ToArray();
 
 for (int i = 0; i < pin.Length; i++)
 {

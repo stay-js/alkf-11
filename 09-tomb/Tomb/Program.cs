@@ -1,14 +1,13 @@
-﻿var random = new Random();
-
-#region 1.feladat
+﻿#region 1.feladat
 Console.Write("Adja meg az osztály létszámát: ");
 int numberOfStudents = Convert.ToInt32(Console.ReadLine());
 
-// int[] grades = Enumerable.Range(0, numberOfStudents).Select((_) => random.Next(2, 6)).ToArray();
+//int[] grades = Enumerable.Range(0, numberOfStudents).Select((_) => Random.Shared.Next(2, 6)).ToArray();
 int[] grades = new int[numberOfStudents];
+
 for (int i = 0; i < grades.Length; i++)
 {
-    grades[i] = random.Next(2, 6);
+    grades[i] = Random.Shared.Next(2, 6);
 }
 
 Console.WriteLine($"Érdemjegyek: {string.Join(", ", grades)}");
@@ -25,7 +24,7 @@ foreach (int category in categories)
 #endregion
 
 #region 3.feladat
-int[] throws = Enumerable.Range(1, 50).Select((_) => random.Next(1, 7)).ToArray();
+int[] throws = Enumerable.Range(1, 50).Select((_) => Random.Shared.Next(1, 7)).ToArray();
 
 Console.WriteLine("\nDobások: ");
 foreach (int thr in throws)
@@ -40,7 +39,7 @@ string[] students = { "Ádám János Dániel", "Bottka Balázs", "Csengeri Barna
     "Nagy Zétény", "Pálinkás Nikolett", "Péter-Szabó Alex", "Polyák Panna", "Szabó András Péter",
     "Szerencsi Ádám", "Vadász Balázs", "Veress Csaba", "Zsigmond-Barna Zoltán László" };
 
-Console.WriteLine($"\nA kisorsolt tanuló: {students[random.Next(students.Length - 1)]}");
+Console.WriteLine($"\nA kisorsolt tanuló: {students[Random.Shared.Next(students.Length - 1)]}");
 #endregion
 
 #region 5.feladat
@@ -58,7 +57,7 @@ Console.WriteLine(responses[Convert.ToInt32(Console.ReadLine()) - 1]);
 Console.Write("\nAdjon meg egy számot (min 3): ");
 int max = Convert.ToInt32(Console.ReadLine());
 
-int[] fib = new int [max];
+int[] fib = new int[max];
 
 fib[0] = 0;
 fib[1] = 1;
@@ -72,7 +71,7 @@ Console.WriteLine($"Az első {max} fibonacci szám: {string.Join(", ", fib)}");
 #endregion
 
 #region 7.feladat
-int[] binary = Enumerable.Range(0, 10).Select((_) => random.Next(2)).ToArray();
+int[] binary = Enumerable.Range(0, 10).Select((_) => Random.Shared.Next(2)).ToArray();
 int[] decimalValues = { 512, 256, 128, 64, 32, 16, 8, 4, 2, 1 };
 int[] value = new int[10];
 
@@ -102,7 +101,7 @@ for (int i = 0; i < AMOUNT_OF_RECORDS; i++)
 speedRecords = speedRecords.Select((val) => val * 0.9).ToArray();
 
 Console.WriteLine("\nSebesség értékek: ");
-foreach(double record in speedRecords)
+foreach (double record in speedRecords)
 {
     Console.WriteLine($"{record} km/h{(record > 65 ? " - büntetés" : "")}");
 }
@@ -128,7 +127,8 @@ for (int i = 0; i < doors.Length; i++)
 
 #region 10.feladat
 Console.WriteLine();
-int[] pin = Enumerable.Range(0, 6).Select((_) => random.Next(10)).ToArray();
+
+int[] pin = Enumerable.Range(0, 6).Select((_) => Random.Shared.Next(10)).ToArray();
 
 for (int i = 0; i < pin.Length; i++)
 {
