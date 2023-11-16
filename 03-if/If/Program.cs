@@ -1,11 +1,9 @@
-﻿var random = new Random();
-
-#region 1. feladat
+﻿#region 1. feladat
 Console.Write("Adja meg a téglalap egyik oldalát: ");
-int a = Convert.ToInt32(Console.ReadLine());
+int a = int.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adja meg a téglalap másik oldalát: ");
-int b = Convert.ToInt32(Console.ReadLine());
+int b = int.Parse(Console.ReadLine() ?? "");
 
 if (a > 0 && b > 0)
 {
@@ -18,10 +16,10 @@ else Console.Write("A megadott adatok nem megfelelőek!");
 
 #region 2. feladat
 Console.Write("\nAdjon meg egy valós számot: ");
-double x = Convert.ToDouble(Console.ReadLine());
+double x = double.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adjon meg egy valós számot: ");
-double y = Convert.ToDouble(Console.ReadLine());
+double y = double.Parse(Console.ReadLine() ?? "");
 
 Console.WriteLine($"A két szám összege: {x + y}");
 Console.WriteLine($"A két szám különbsége: {x - y}");
@@ -35,7 +33,7 @@ Console.Write("\nAdja meg a nevét: ");
 string name = Console.ReadLine() ?? "";
 
 Console.Write("Adja meg a születési évét: ");
-int birthYear = Convert.ToInt32(Console.ReadLine());
+int birthYear = int.Parse(Console.ReadLine() ?? "");
 
 Console.WriteLine($"{(birthYear < 2000 ? "Jó napot" : "Szia")} {name}!");
 #endregion
@@ -46,7 +44,7 @@ Console.WriteLine();
 for (int i = 0; i < 3; i++)
 {
     Console.Write("Adja meg az ajándék árát: ");
-    int price = Convert.ToInt32(Console.ReadLine());
+    int price = int.Parse(Console.ReadLine() ?? "");
 
     if (price == 20_000)
         Console.WriteLine("Az ajándék pontosan 20 000 Ft-ba került.");
@@ -58,13 +56,13 @@ for (int i = 0; i < 3; i++)
 #endregion
 
 #region 5. feladat
-Console.WriteLine(random.Next(2) == 0 ? "\nfej" : "\nírás");
+Console.WriteLine(Random.Shared.Next(2) == 0 ? "\nfej" : "\nírás");
 #endregion
 
 #region 6.feladat
 Console.Write("\nAdojon meg egy számot: ");
 Console.WriteLine($"A szám " +
-    $"{(Convert.ToInt32(Console.ReadLine()) % 2 == 0? "páros" : "páratlan")}.");
+    $"{(int.Parse(Console.ReadLine() ?? "") % 2 == 0? "páros" : "páratlan")}.");
 #endregion
 
 #region 7. feladat
@@ -78,7 +76,7 @@ else Console.WriteLine("Csak igennel és nemmel válaszolhatsz!");
 
 #region 8. feladat
 Console.Write("\nAdjon meg egy számot: ");
-double number = Convert.ToDouble(Console.ReadLine());
+double number = double.Parse(Console.ReadLine() ?? "");
 
 if (number == 0) Console.WriteLine("A megadott szám nulla.");
 else if (number < 0) Console.WriteLine("A megadott szám negatív.");
@@ -87,7 +85,7 @@ else Console.WriteLine("A megadott szám pozitív.");
 
 #region 9. feladat
 Console.Write("\nAdja meg egy hónap sorszámát: ");
-int monthAsInt = Convert.ToInt32(Console.ReadLine());
+int monthAsInt = int.Parse(Console.ReadLine() ?? "");
 
 if (monthAsInt is < 0 or > 12) Console.WriteLine("Nincs ilyen hónap.");
 else if (monthAsInt is <= 2 or 12) Console.WriteLine("Tél");
@@ -98,7 +96,7 @@ else if (monthAsInt <= 11) Console.WriteLine("Ősz");
 
 #region 10. feladat
 Console.Write("\nAdjon meg egy évszámot: ");
-int year = Convert.ToInt32(Console.ReadLine());
+int year = int.Parse(Console.ReadLine() ?? "");
 
 if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
     Console.WriteLine("A megadott év szökőév.");
@@ -112,10 +110,10 @@ Console.WriteLine($"A legnagyobb megadott szám a {threeSortedNumbres()[^1]}");
 
 #region 12. feladat
 Console.Write("\nAdja meg a termék árát: ");
-int fullPrice = Convert.ToInt32(Console.ReadLine());
+int fullPrice = int.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adja meg a leárazás mértékét: ");
-double discountRate = Convert.ToDouble(Console.ReadLine());
+double discountRate = double.Parse(Console.ReadLine() ?? "");
 
 Console.WriteLine($"A terméket {(discountRate > 50 ? "megéri" : "nem éri meg")} megvenni." +
     $"\nA termék kedvezményes ára: {(fullPrice * 1 - (discountRate / 100)):C0}.");
@@ -123,7 +121,7 @@ Console.WriteLine($"A terméket {(discountRate > 50 ? "megéri" : "nem éri meg"
 
 #region 13. feladat
 Console.Write("\nAdja meg a víz hőmérsékletét (°C): ");
-double temperature = Convert.ToDouble(Console.ReadLine());
+double temperature = double.Parse(Console.ReadLine() ?? "");
 
 if (temperature < 0) Console.WriteLine("Szilárd halmazállapotú.");
 else if (temperature < 100) Console.WriteLine("Folyékony halmazállapotú.");
@@ -160,19 +158,19 @@ else
 #endregion
 
 
-static List<int> threeSortedNumbres()
+static int[] threeSortedNumbres()
 {
     Console.WriteLine();
 
-    var numbers = new List<int>();
+    int[] numbers = new int[3];
 
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < numbers.Length; i++)
     {
         Console.Write("Adjon meg egy számot: ");
-        numbers.Add(Convert.ToInt32(Console.ReadLine()));
+        numbers[i] = int.Parse(Console.ReadLine() ?? "");
     }
 
-    numbers.Sort();
+    Array.Sort(numbers);
 
     return numbers;
 }

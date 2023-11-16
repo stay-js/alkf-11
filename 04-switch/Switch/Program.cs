@@ -1,8 +1,6 @@
-﻿var random = new Random();
-
-#region 1. feladat
+﻿#region 1. feladat
 Console.Write("Adjon meg egy érdemjegyet: ");
-Console.WriteLine(Convert.ToInt32(Console.ReadLine()) switch
+Console.WriteLine(int.Parse(Console.ReadLine() ?? "") switch
 {
     1 => "Elégtelen",
     2 => "Elégséges",
@@ -45,7 +43,7 @@ switch ((Console.ReadLine() ?? "").ToLower())
 
 #region 3.feladat
 Console.Write("\nAdja meg egy hónap sorszámát: ");
-Console.WriteLine(Convert.ToInt32(Console.ReadLine()) switch
+Console.WriteLine(int.Parse(Console.ReadLine() ?? "") switch
 {
     < 1 => "Nincs ilyen hónap",
     <= 2 => "Tél",
@@ -59,7 +57,7 @@ Console.WriteLine(Convert.ToInt32(Console.ReadLine()) switch
 
 #region 4.feladat
 Console.Write("\nAdja meg, hogy átlagosan hány órát alszik naponta: ");
-Console.WriteLine(Convert.ToInt32(Console.ReadLine()) switch
+Console.WriteLine(int.Parse(Console.ReadLine() ?? "") switch
 {
     < 0 => "Csak természetes számot adhat meg!",
     <= 6 => "Kevés",
@@ -72,7 +70,7 @@ Console.WriteLine(Convert.ToInt32(Console.ReadLine()) switch
 
 #region 5. feladat
 Console.Write("\nAdjon megy egy szeptemberi napot: ");
-int day = Convert.ToInt32(Console.ReadLine());
+int day = int.Parse(Console.ReadLine() ?? "");
 var dateValue = new DateTime(2023, 09, day, 0, 0, 0, DateTimeKind.Utc);
 
 Console.WriteLine(dateValue.DayOfWeek switch
@@ -123,10 +121,10 @@ Console.WriteLine((Console.ReadLine() ?? "").ToLower() switch
 
 #region 7. feladat
 Console.Write("\nAdjon meg egy számot: ");
-int a = Convert.ToInt32(Console.ReadLine());
+int a = int.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adjon meg egy számot: ");
-int b = Convert.ToInt32(Console.ReadLine());
+int b = int.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adjon meg egy műveleti jelet: ");
 Console.WriteLine(Console.ReadLine() switch
@@ -142,14 +140,14 @@ Console.WriteLine(Console.ReadLine() switch
 
 #region 8.feladat
 Console.Write("\nAdjon meg egy összeget: ");
-double amount = Convert.ToDouble(Console.ReadLine());
+double amount = double.Parse(Console.ReadLine() ?? "");
 
-Console.WriteLine($"Készpénzben fizetendő összeg: {Convert.ToInt32(Math.Round(amount / 5) * 5):C0}");
+Console.WriteLine($"Készpénzben fizetendő összeg: {(Math.Round(amount / 5) * 5):C0}");
 #endregion
 
 #region 9.feladat
 Console.Write("\nAdjon meg egy évszámot: ");
-int year = Convert.ToInt32(Console.ReadLine());
+int year = int.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adja meg egy hónap nevét");
 Console.WriteLine((Console.ReadLine() ?? "").ToLower() switch
@@ -172,7 +170,7 @@ Console.WriteLine((Console.ReadLine() ?? "").ToLower() switch
 
 #region 10.feladat
 Console.Write("\nAdja meg a vásárlás összegét: ");
-int spentAmount = Convert.ToInt32(Console.ReadLine());
+int spentAmount = int.Parse(Console.ReadLine() ?? "");
 string? gift = spentAmount switch
 {
     > 10000 => "zsákbamacska",
@@ -182,10 +180,10 @@ string? gift = spentAmount switch
 };
 
 if (gift == "zsákbamacska")
-    gift = new string[] { "pohárkrém", "kandírozott gyümölcs", "marcipán figura" }[random.Next(3)];
+    gift = new string[] { "pohárkrém", "kandírozott gyümölcs", "marcipán figura" }[Random.Shared.Next(3)];
 
 if (gift == "pohárkrém")
-    gift = new string[] { "csokoládé", "vanília", "mogyoró", "puncs" }[random.Next(4)] + " ízű pohárkrém";
+    gift = new string[] { "csokoládé", "vanília", "mogyoró", "puncs" }[Random.Shared.Next(4)] + " ízű pohárkrém";
 
 Console.WriteLine($"A vásárlás összege: {spentAmount}, " +
     $"ezért {spentAmount / 500} db nyereményszelvény, " +
@@ -210,7 +208,7 @@ else Console.WriteLine("A lámpa éjszakai fénnyel világít.");
 #endregion
 
 #region 12.feldat
-int[] card = { random.Next(1, 10), random.Next(10), random.Next(10), random.Next(10) };
+int[] card = { Random.Shared.Next(1, 10), Random.Shared.Next(10), Random.Shared.Next(10), Random.Shared.Next(10) };
 
 bool firstRoom = card[0] > 4;
 bool secondRoom = card[1] > 4;

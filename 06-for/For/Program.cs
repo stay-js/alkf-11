@@ -1,10 +1,8 @@
 ﻿using System.Text;
 
-var random = new Random();
-
 #region 0.feladat
 Console.Write("Adjon meg egy számot: ");
-int n = Convert.ToInt32(Console.ReadLine());
+int n = int.Parse(Console.ReadLine() ?? "");
 #endregion
 
 #region 1. feladat
@@ -45,10 +43,10 @@ for (int i = 2; i <= n * 2; i += 2)
 
 #region 5. feladat
 Console.Write("\nAdja meg az intervallum alsó határát: ");
-int min = Convert.ToInt32(Console.ReadLine());
+int min = int.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adja meg az intervallum felső határát: ");
-int max = Convert.ToInt32(Console.ReadLine());
+int max = int.Parse(Console.ReadLine() ?? "");
 
 for (int i = min; i < max; i++)
 {
@@ -58,7 +56,7 @@ for (int i = min; i < max; i++)
 
 #region 6. feladat
 Console.Write("\nAdjon meg egy számot: ");
-int number = Convert.ToInt32(Console.ReadLine());
+int number = int.Parse(Console.ReadLine() ?? "");
 
 for (int i = 1; i <= 10; i++)
 {
@@ -68,30 +66,30 @@ for (int i = 1; i <= 10; i++)
 
 #region 7. feladat
 Console.Write("\nAdjon meg egy számot: ");
-int number1 = Convert.ToInt32(Console.ReadLine());
+number = int.Parse(Console.ReadLine() ?? "");
 
-for (int i = 1; i * number1 < 100; i++)
+for (int i = 1; i * number < 100; i++)
 {
-    Console.WriteLine(number1 * i);
+    Console.WriteLine(number * i);
 }
 #endregion
 
 #region 8. feladat
 Console.Write("\nAdjon meg egy számot: ");
-uint number2 = Convert.ToUInt32(Console.ReadLine());
+uint uNumber = uint.Parse(Console.ReadLine() ?? "");
 
-for (int i = 1; i < number2; i++)
+for (int i = 1; i < uNumber; i++)
 {
-    if (number2 % i == 0) Console.WriteLine(i);
+    if (uNumber % i == 0) Console.WriteLine(i);
 }
 #endregion
 
 #region 9. feladat
 Console.Write("\nAdja meg a hatvány alapját: ");
-int powerBase = Convert.ToInt32(Console.ReadLine());
+int powerBase = int.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adja meg a hatvány kitevőjét: ");
-int powerExponent = Convert.ToInt32(Console.ReadLine());
+int powerExponent = int.Parse(Console.ReadLine() ?? "");
 
 int power = 1;
 for (int i = 1; i <= powerExponent; i++)
@@ -105,17 +103,17 @@ Console.WriteLine($"A hatvány értéke: {power}");
 
 #region 10.feladat
 Console.Write("\nAdja meg az intervallum alsó határát: ");
-int min1 = Convert.ToInt32(Console.ReadLine());
+min = int.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adja meg az intervallum felső határát: ");
-int max1 = Convert.ToInt32(Console.ReadLine());
+max = int.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adjon meg egy osztót: ");
-int divisor = Convert.ToInt32(Console.ReadLine());
+int divisor = int.Parse(Console.ReadLine() ?? "");
 
 Console.WriteLine($"Az intervallumba eső {divisor}-val/vel osztható számok:");
 
-for (int i = min1; i <= max1; i++)
+for (int i = min; i <= max; i++)
 {
     if (i % divisor == 0) Console.WriteLine(i);
 }
@@ -126,40 +124,40 @@ Console.WriteLine();
 
 for (int i = 0; i < n; i++)
 {
-    Console.WriteLine(random.Next(101));
+    Console.WriteLine(Random.Shared.Next(101));
 }
 #endregion
 
 
 #region 12.feladat
 Console.Write("\nAdja meg az intervallum alsó határát: ");
-int min2 = Convert.ToInt32(Console.ReadLine());
+min = int.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adja meg az intervallum felső határát: ");
-int max2 = Convert.ToInt32(Console.ReadLine());
+max = int.Parse(Console.ReadLine() ?? "");
 
 for (int i = 0; i < n; i++)
 {
-    Console.WriteLine(random.NextDouble() * (max2 - min2) + min2);
+    Console.WriteLine(Random.Shared.NextDouble() * (max - min) + min);
 }
 #endregion
 
 #region 13. feladat
 Console.Write("\nAdjon meg egy számot: ");
-int k = Convert.ToInt32(Console.ReadLine());
+int k = int.Parse(Console.ReadLine() ?? "");
 
 for (int i = 0; i < k; i++)
 {
-    Console.WriteLine(random.Next(2) == 0 ? "fej" : "írás");
+    Console.WriteLine(Random.Shared.Next(2) == 0 ? "fej" : "írás");
 }
 #endregion
 
 #region 14.feladat
 Console.Write("\nAdjon meg egy számot: ");
-int k1 = Convert.ToInt32(Console.ReadLine());
+k = int.Parse(Console.ReadLine() ?? "");
 
 int sum = 0;
-for (int i = 1; i <= k1; i++)
+for (int i = 1; i <= k; i++)
 {
     sum += i * (i + 1);
 }
@@ -168,17 +166,17 @@ Console.WriteLine(sum);
 
 #region 15. feladat
 Console.Write("\nAdjon meg egy számot: ");
-int k2 = Convert.ToInt32(Console.ReadLine());
+k = int.Parse(Console.ReadLine() ?? "");
 
 var toPrint = new StringBuilder();
 
-for (int i = 0; i < k2; i++)
+for (int i = 0; i < k; i++)
 {
     toPrint.Append('#');
 
-    for (int j = 0; j < k2 - 2; j++)
+    for (int j = 0; j < k - 2; j++)
     {
-        toPrint.Append(i == 0 || i == k2 - 1 ? " #" : "  ");
+        toPrint.Append(i == 0 || i == k - 1 ? " #" : "  ");
     }
 
     toPrint.Append(" #\n");
@@ -189,10 +187,10 @@ Console.Write($"\n{toPrint}");
 
 #region 16.feladat
 Console.Write("\nAdja meg a sorok számát: ");
-int rows = Convert.ToInt32(Console.ReadLine());
+int rows = int.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adja meg az oszlopok számát: ");
-int columns = Convert.ToInt32(Console.ReadLine());
+int columns = int.Parse(Console.ReadLine() ?? "");
 
 toPrint.Clear();
 
@@ -215,13 +213,13 @@ Console.Write($"\n{toPrint}");
 
 #region 17.feladat
 Console.Write("\nAdjon meg egy számot: ");
-int k3 = Convert.ToInt32(Console.ReadLine());
+k = int.Parse(Console.ReadLine() ?? "");
 
 toPrint.Clear();
 
-for (int i = 0; i < k3; i++)
+for (int i = 0; i < k; i++)
 {
-    for (int j = 0; j < k3 - 1 - i; j++)
+    for (int j = 0; j < k - 1 - i; j++)
     {
         toPrint.Append(' ');
     }
@@ -251,7 +249,7 @@ Console.WriteLine();
 
 for (int i = 1; i <= 14; i++)
 {
-    Console.WriteLine($"{i}. nap - {random.Next(30, 121)} perc");
+    Console.WriteLine($"{i}. nap - {Random.Shared.Next(30, 121)} perc");
 }
 #endregion
 
