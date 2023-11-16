@@ -1,91 +1,33 @@
 ﻿string[] names = File.ReadAllLines("nevek.txt");
 
 #region a.
-int count = 0;
-
-foreach (string name in names)
-{
-    if (name.Split().Length == 3) count++;
-}
-
-Console.WriteLine($"{count} beolvasott embernek van 2 keresztneve.");
+Console.WriteLine($"{CountPeopleWithMultipleLastNames(names)}" +
+    $"beolvasott embernek van legalább 2 keresztneve.");
 #endregion
 
-#region b - e.
-string[] sortedNames = StringBubbleSort(names);
-
-var output = new StreamWriter("rendezett.txt");
-
-Console.WriteLine("\nBeolvasott nevek ABC sorrendben:");
-
-foreach (string name in sortedNames)
-{
-    Console.WriteLine(name);
-    output.WriteLine(name);
-}
-
-output.Close();
+#region b.
+Console.WriteLine($"\nBeolvasott nevek ABC sorrendben:" +
+    $"{string.Join(", ", StringBubbleSort(names))}");
 #endregion
 
 #region c.
-const int AMOUNT_TO_PICK = 3;
-string[] randomNames = new string[AMOUNT_TO_PICK];
-int i = 0;
-
-while(i < AMOUNT_TO_PICK)
-{
-    string selectedName = names[Random.Shared.Next(names.Length)];
-    if (!Contains(randomNames, i, selectedName)) randomNames[i++] = selectedName;
-}
-
-output = new StreamWriter("felelok.txt");
-output.WriteLine(string.Join("\n", randomNames));
-output.Close();
+SelectFelelok(names);
 #endregion
 
 #region d.
-output = new StreamWriter("nagybetus.txt");
+WriteUpperNamesToFile(names);
+#endregion
 
-foreach (string name in names)
-{
-    output.WriteLine(name.ToUpper());
-}
-
-output.Close();
+#region e.
+WriteOrderedNamesToFile(names);
 #endregion
 
 #region f.
-string[] firstNames = new string[names.Length];
-i = 0;
-
-foreach (string name in names)
-{
-    string firstName = string.Join(' ', name.Split()[1..]);
-    if (!Contains(firstNames, i, firstName)) firstNames[i++] = firstName;
-}
-
-string[] firstNamesActualLength = new string[i];
-for (int j = 0; j < i; j++)
-{
-    firstNamesActualLength[j] = firstNames[j];
-}
-
-Console.WriteLine("\nKeresztnevek ABC sorrendben:\n" +
-    string.Join(", ", StringBubbleSort(firstNamesActualLength)));
+Console.WriteLine("\nKeresztnevek ABC sorrendben:\n" + string.Join(", ", SortedLastNames(names)));
 #endregion
 
 #region g.
-Console.Write("\nAdjon meg egy monogrammot: ");
-string monogramm = (Console.ReadLine() ?? "").ToUpper();
-
-int k = 0;
-
-while (k < names.Length && string.Concat(names[k].Split().Select((name) => name[0])) != monogramm)
-{
-    k++;
-}
-
-if (k < names.Length) Console.WriteLine(names[k]);
+if (FindNameByMonogram(names, out string foundName)) Console.WriteLine(foundName);
 else Console.WriteLine("Nincs ilyen monogrammal rendelkező ember a listán.");
 #endregion
 
@@ -118,4 +60,83 @@ static bool Contains(string[] array, int length, string item)
     }
 
    return i < length;
+}
+
+static int CountPeopleWithMultipleLastNames(string[] names)
+{
+    int count = 0;
+
+    foreach (string name in names)
+    {
+        if (name.Split().Length >= 3) count++;
+    }
+
+    return count;
+}
+
+static void SelectFelelok(string[] names)
+{
+    const int AMOUNT_TO_PICK = 3;
+    string[] randomNames = new string[AMOUNT_TO_PICK];
+    int i = 0;
+
+    while (i < AMOUNT_TO_PICK)
+    {
+        string selectedName = names[Random.Shared.Next(names.Length)];
+        if (!Contains(randomNames, i, selectedName)) randomNames[i++] = selectedName;
+    }
+
+    var output = new StreamWriter("felelok.txt");
+    output.WriteLine(string.Join("\n", randomNames));
+    output.Close();
+}
+
+static void WriteUpperNamesToFile(string[] names)
+{
+    var output = new StreamWriter("nagybetus.txt");
+
+    foreach (string name in names)
+    {
+        output.WriteLine(name.ToUpper());
+    }
+
+    output.Close();
+}
+
+static void WriteOrderedNamesToFile(string[] names)
+{
+    var output = new StreamWriter("rendezett.txt");
+    output.WriteLine(string.Join("\n", StringBubbleSort(names)));
+    output.Close();
+}
+
+static string[] SortedLastNames(string[] names)
+{
+    string[] lastNames = new string[names.Length];
+    int i = 0;
+
+    foreach (string name in names)
+    {
+        string firstName = string.Join(' ', name.Split()[1..]);
+        if (!Contains(lastNames, i, firstName)) lastNames[i++] = firstName;
+    }
+
+    return StringBubbleSort(lastNames[..i]);
+}
+
+static bool FindNameByMonogram(string[] names, out string name)
+{
+    Console.Write("\nAdjon meg egy monogrammot: ");
+    string monogramm = (Console.ReadLine() ?? "").ToUpper();
+
+    int i = 0;
+
+    while (i < names.Length
+        && string.Concat(names[i].Split().Select((name) => name[0])) != monogramm)
+    {
+        i++;
+    }
+
+    name = names[i];
+    return i < names.Length;
 }
