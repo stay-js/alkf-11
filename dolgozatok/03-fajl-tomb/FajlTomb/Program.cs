@@ -4,27 +4,27 @@ int days = int.Parse(input.ReadLine() ?? "");
 int hard = int.Parse(input.ReadLine() ?? "");
 int easy = int.Parse(input.ReadLine() ?? "");
 
-int[] data = new int[days];
-int i = 0;
+var data = new (int, string)[days];
 
-while(i < days && !input.EndOfStream)
+for (int i = 0; i < data.Length && !input.EndOfStream; i++)
 {
-    data[i++] = int.Parse(input.ReadLine() ?? "");
+    int correctAnswers = int.Parse(input.ReadLine() ?? "");
+    data[i] = (correctAnswers, Difficulty(correctAnswers));
 }
 
 input.Close();
 
-for(i = 0; i < data.Length; i++)
+for (int i = 0; i < data.Length; i++)
 {
-    Console.WriteLine($"{i + 1}. nap: {data[i]} helyes válasz - {Difficulty(data[i])}");
+    Console.WriteLine($"{i + 1}. nap: {data[i].Item1} helyes válasz - {data[i].Item2}");
 }
 
 Console.Write($"\nKiemelkedő nehézségű feladatok: ");
-for (i = 0; i < data.Length - 1; i++)
+for (int i = 0; i < data.Length - 1; i++)
 {
-    if ((i == 0 || Difficulty(data[i - 1]) == "könnyű")
-        && Difficulty(data[i]) == "nehéz"
-        && Difficulty(data[i + 1]) == "könnyű")
+    if ((i == 0 || data[i - 1].Item2 == "könnyű")
+        && data[i].Item2 == "nehéz"
+        && data[i + 1].Item2 == "könnyű")
     {
         Console.Write($"{i + 1} ");
     }
