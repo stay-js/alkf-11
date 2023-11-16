@@ -1,13 +1,13 @@
 ﻿string[] names = File.ReadAllLines("nevek.txt");
 
 #region a.
-Console.WriteLine($"{CountPeopleWithMultipleLastNames(names)}" +
+Console.WriteLine(CountPeopleWithMultipleLastNames(names) +
     $"beolvasott embernek van legalább 2 keresztneve.");
 #endregion
 
 #region b.
 Console.WriteLine($"\nBeolvasott nevek ABC sorrendben:" +
-    $"{string.Join(", ", StringBubbleSort(names))}");
+    string.Join(", ", StringBubbleSort(names)));
 #endregion
 
 #region c.

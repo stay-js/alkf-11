@@ -1,5 +1,5 @@
 ﻿Console.Write("Adjon meg egy számlistát, a számokat vesszővel és szőközzel válassza el: ");
-int[] numbers = (Console.ReadLine() ?? "").Split(", ").Select((x) => Convert.ToInt32(x)).ToArray();
+int[] numbers = (Console.ReadLine() ?? "").Split(", ").Select(int.Parse).ToArray();
 
 Console.WriteLine($"{CountNumbersWithinRange(numbers)} olyan szám van ami az értékek átlagától maximum 10-el tér el.");
 

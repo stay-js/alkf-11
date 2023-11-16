@@ -1,7 +1,5 @@
 ﻿using System.Text;
 
-var random = new Random();
-
 Console.Write("Kérem adja meg a felhasználó teljes nevét: ");
 string[] name = (Console.ReadLine() ?? "").Trim().Split(' ');
 
@@ -11,8 +9,8 @@ string schoolClass = (Console.ReadLine() ?? "").Trim();
 var toPrint = new StringBuilder();
 
 toPrint.Append(char.ToUpper(schoolClass[^1]));
-toPrint.Append(random.Next(100, 1000));
-toPrint.Append(new[] { '?', '!', '%' }[random.Next(3)]);
+toPrint.Append(Random.Shared.Next(100, 1000));
+toPrint.Append(new[] { '?', '!', '%' }[Random.Shared.Next(3)]);
 toPrint.Append(name[0][..3]);
 
 for (int i = 0; i < name[^1].Length; i++)

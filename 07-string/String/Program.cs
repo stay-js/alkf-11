@@ -1,9 +1,6 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
 
-
-var random = new Random();
-
 #region 1.feladat
 Console.Write("Adjon meg egy szöveget: ");
 string str = Console.ReadLine() ?? "";
@@ -34,7 +31,7 @@ Console.Write("\nAdjon meg egy szót, amely legalább 3 betűből áll: ");
 string word = Console.ReadLine() ?? "";
 
 Console.WriteLine(word[0] +
-    string.Concat(word[1..^1].OrderBy(_ => random.Next())) +
+    string.Concat(word[1..^1].OrderBy(_ => Random.Shared.Next())) +
     word[^1]);
 #endregion
 
@@ -121,7 +118,7 @@ toPrint.Append(name[0][..2].ToLower());
 //ii.
 for (int i = 0; i < 3; i++) 
 {
-     toPrint.Append(random.Next(0, 10));
+     toPrint.Append(Random.Shared.Next(0, 10));
 }
 
 //iii.
@@ -131,7 +128,7 @@ for (int i = 0; i < name[1].Length; i++)
 }
 
 //iv.
-toPrint.Append(new[] { '!', '?', '#' }[random.Next(3)]);
+toPrint.Append(new[] { '!', '?', '#' }[Random.Shared.Next(3)]);
 
 //v.
 toPrint.Append(name[^1][^2..].ToUpper());

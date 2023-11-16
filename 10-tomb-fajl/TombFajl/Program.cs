@@ -1,6 +1,6 @@
 ﻿#region 1.feladat
 Console.Write("Adja meg az osztály létszámát: ");
-int numberOfStudents = Convert.ToInt32(Console.ReadLine());
+int numberOfStudents = int.Parse(Console.ReadLine() ?? "");
 
 //int[] grades = Enumerable.Range(0, numberOfStudents).Select((_) => Random.Shared.Next(2, 6)).ToArray();
 int[] grades = new int[numberOfStudents];
@@ -59,12 +59,12 @@ Console.WriteLine($"\nA kisorsolt tanuló: {students[Random.Shared.Next(students
 string[] responses = File.ReadAllLines("valaszok.txt");
 
 Console.Write("\nAdja meg a válasz sorszámát (1-5): ");
-Console.WriteLine(responses[Convert.ToInt32(Console.ReadLine()) - 1]);
+Console.WriteLine(responses[int.Parse(Console.ReadLine() ?? "") - 1]);
 #endregion
 
 #region 6.feladat
 Console.Write("\nAdjon meg egy számot (min 3): ");
-int max = Convert.ToInt32(Console.ReadLine());
+int max = int.Parse(Console.ReadLine() ?? "");
 
 int[] fib = new int[max];
 
@@ -98,13 +98,12 @@ Console.WriteLine($"{string.Join(" + ", value)} = {value.Sum()}");
 #region 8.feladat
 Console.WriteLine();
 
-const int AMOUNT_OF_RECORDS = 6;
-double[] speedRecords = new double[AMOUNT_OF_RECORDS];
+double[] speedRecords = new double[6];
 
-for (int i = 0; i < AMOUNT_OF_RECORDS; i++)
+for (int i = 0; i < speedRecords.Length; i++)
 {
     Console.Write("Adjon meg egy sebességet: ");
-    speedRecords[i] = Convert.ToDouble(Console.ReadLine());
+    speedRecords[i] = double.Parse(Console.ReadLine() ?? "");
 }
 
 speedRecords = speedRecords.Select((val) => val * 0.9).ToArray();

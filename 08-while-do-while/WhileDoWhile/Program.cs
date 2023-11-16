@@ -1,6 +1,4 @@
-﻿var random = new Random();
-
-#region 1.feldat
+﻿#region 1.feldat
 int i = 0;
 int currentThrow = 0;
 
@@ -8,7 +6,7 @@ Console.WriteLine("Dobások:");
 while (currentThrow != 6)
 {
     i++;
-    currentThrow = random.Next(1, 7);
+    currentThrow = Random.Shared.Next(1, 7);
     
     Console.WriteLine(currentThrow);
 }
@@ -23,8 +21,8 @@ Console.WriteLine("\nDobások:");
 do
 {
     i++;
-    currentThrow = random.Next(1, 7);
-    currentThrow2 = random.Next(1, 7);
+    currentThrow = Random.Shared.Next(1, 7);
+    currentThrow2 = Random.Shared.Next(1, 7);
     
     Console.WriteLine($"{currentThrow}; {currentThrow2}");
 } while (currentThrow != currentThrow2);
@@ -41,9 +39,9 @@ Console.WriteLine("\nDobások:");
 while (currentThrow != 6 && currentThrow2 != 6 && currentThrow3 != 6)
 {
     i++;
-    currentThrow = random.Next(1, 7);
-    currentThrow2 = random.Next(1, 7);
-    currentThrow3 = random.Next(1, 7);
+    currentThrow = Random.Shared.Next(1, 7);
+    currentThrow2 = Random.Shared.Next(1, 7);
+    currentThrow3 = Random.Shared.Next(1, 7);
     
     Console.WriteLine($"{currentThrow}; {currentThrow2}; {currentThrow3}");
 }
@@ -59,9 +57,9 @@ currentThrow = 0;
 while (currentThrow < 5 || currentThrow2 < 5 || currentThrow3 < 5)
 {
     i++;
-    currentThrow = random.Next(1, 7);
-    currentThrow2 = random.Next(1, 7);
-    currentThrow3 = random.Next(1, 7);
+    currentThrow = Random.Shared.Next(1, 7);
+    currentThrow2 = Random.Shared.Next(1, 7);
+    currentThrow3 = Random.Shared.Next(1, 7);
     
     Console.WriteLine($"{currentThrow}; {currentThrow2}; {currentThrow3}");
 }
@@ -75,9 +73,9 @@ Console.WriteLine("\nDobások:");
 do
 {
     i++;
-    currentThrow = random.Next(1, 7);
-    currentThrow2 = random.Next(1, 7);
-    currentThrow3 = random.Next(1, 7);
+    currentThrow = Random.Shared.Next(1, 7);
+    currentThrow2 = Random.Shared.Next(1, 7);
+    currentThrow3 = Random.Shared.Next(1, 7);
     
     Console.WriteLine($"{currentThrow}; {currentThrow2}; {currentThrow3}");
 } while (currentThrow % 3 != 0 || currentThrow2 % 3 != 0 || currentThrow3 % 3 != 0);
@@ -91,9 +89,9 @@ Console.WriteLine("\nDobások:");
 do
 {
     i++;
-    currentThrow = random.Next(1, 7);
-    currentThrow2 = random.Next(1, 7);
-    currentThrow3 = random.Next(1, 7);
+    currentThrow = Random.Shared.Next(1, 7);
+    currentThrow2 = Random.Shared.Next(1, 7);
+    currentThrow3 = Random.Shared.Next(1, 7);
     
     Console.WriteLine($"{currentThrow}; {currentThrow2}; {currentThrow3}");
 } while (currentThrow != currentThrow2
@@ -109,9 +107,9 @@ Console.WriteLine("\nDobások:");
 do
 {
     i++;
-    currentThrow = random.Next(1, 7);
-    currentThrow2 = random.Next(1, 7);
-    currentThrow3 = random.Next(1, 7);
+    currentThrow = Random.Shared.Next(1, 7);
+    currentThrow2 = Random.Shared.Next(1, 7);
+    currentThrow3 = Random.Shared.Next(1, 7);
     
     Console.WriteLine($"{currentThrow}; {currentThrow2}; {currentThrow3}");
 } while (currentThrow == currentThrow2 
