@@ -49,9 +49,9 @@ for (int i = 0; i < 3; i++)
     if (price == 20_000)
         Console.WriteLine("Az ajándék pontosan 20 000 Ft-ba került.");
     else if (price < 20_000)
-        Console.WriteLine($"Az ajándék {(20_000 - price):C0}-al a limit alatt van.");
+        Console.WriteLine($"Az ajándék {20_000 - price:C0}-al a limit alatt van.");
     else
-        Console.WriteLine($"Az ajándék {(price - 20_000):C0}-al lépte túl a limitet.");
+        Console.WriteLine($"Az ajándék {price - 20_000:C0}-al lépte túl a limitet.");
 }
 #endregion
 
@@ -116,7 +116,7 @@ Console.Write("Adja meg a leárazás mértékét: ");
 double discountRate = double.Parse(Console.ReadLine() ?? "");
 
 Console.WriteLine($"A terméket {(discountRate > 50 ? "megéri" : "nem éri meg")} megvenni." +
-    $"\nA termék kedvezményes ára: {(fullPrice * 1 - (discountRate / 100)):C0}.");
+    $"\nA termék kedvezményes ára: {fullPrice * 1 - (discountRate / 100):C0}.");
 #endregion
 
 #region 13. feladat
@@ -139,7 +139,7 @@ string firstGene = Console.ReadLine() ?? "";
 Console.Write("Adja meg a génpár második elemét: ");
 string secondGene = Console.ReadLine() ?? "";
 
-string[] valid = { "A", "B", "0" };
+string[] valid = ["A", "B", "0"];
 
 if (!valid.Contains(firstGene) || !valid.Contains(secondGene))
     Console.WriteLine("A megadott génpár nem létezik!");

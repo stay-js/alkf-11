@@ -53,7 +53,7 @@ Console.Write("\nAdja meg a vásárolt könyvek összértékét: ");
 int sum = int.Parse(Console.ReadLine() ?? "");
 double salePercent = Random.Shared.Next(0, 50) / 100.0;
 
-Console.WriteLine($"A vásárlónak {(sum * (1 - salePercent)):C0}" +
+Console.WriteLine($"A vásárlónak {sum * (1 - salePercent):C0}" +
     $"-ot kell fizetnie {salePercent:P0} kedvezmény után.");
 #endregion
 
