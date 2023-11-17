@@ -16,7 +16,7 @@ Console.Write("Adja meg, hogy hány kg szőlőt vásárolt: ");
 double grapeKg = double.Parse(Console.ReadLine() ?? "");
 double grape = grapeKg * 650;
 
-Console.WriteLine($"\nÖsszesen: {(apple + plum + grape):C0}" +
+Console.WriteLine($"\nÖsszesen: {apple + plum + grape:C0}" +
     $"\n\t- {appleKg} kg alma - {apple:C0}" +
     $"\n\t- {plumKg} kg szilva - {plum:C0}" +
     $"\n\t- {grapeKg} kg szőlő - {grape:C0}");
@@ -26,7 +26,7 @@ Console.WriteLine($"\nÖsszesen: {(apple + plum + grape):C0}" +
 Console.Write("\nAdja meg a napi bevételét: ");
 int income = int.Parse(Console.ReadLine() ?? "");
 
-Console.WriteLine($"A mai jutalma: {(income * 0.05):C0}");
+Console.WriteLine($"A mai jutalma: {income * 0.05:C0}");
 #endregion
 
 #region 3. feladat
@@ -42,7 +42,7 @@ Console.Write("Adja meg, hogy hány fő választota a népzenei koncertet: ");
 int folkMusicCount = int.Parse(Console.ReadLine() ?? "");
 int folkMusic = folkMusicCount * 2400;
 
-Console.WriteLine($"\nÖsszesen: {(theatre + classicalMusic + folkMusic):C0}" +
+Console.WriteLine($"\nÖsszesen: {theatre + classicalMusic + folkMusic:C0}" +
     $"\n\t- {theatreCount} fő színház - {theatre:C0}" +
     $"\n\t- {classicalMusicCount} fő komolyzenei koncert - {classicalMusic:C0}" +
     $"\n\t- {folkMusicCount} fő népzenei koncertet - {folkMusic:C0}");

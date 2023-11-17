@@ -9,7 +9,7 @@ Penzvaltas(amount);
 static void Penzvaltas(int osszeg)
 {
     osszeg = Convert.ToInt32(Math.Round(osszeg / 5.0) * 5);
-    int[] coins = { 200, 100, 50, 20, 10, 5 };
+    int[] coins = [200, 100, 50, 20, 10, 5];
     var coinsUsed = new List<int>();
 
     foreach (int coin in coins)

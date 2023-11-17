@@ -6,7 +6,7 @@ Madar(Console.ReadLine() ?? "");
 
 static void Madar(string szoveg)
 {
-    char[] vowels = { 'a', 'á', 'e', 'é', 'i', 'í', 'o', 'ó', 'ö', 'ő', 'u', 'ú', 'ü', 'ű' };
+    char[] vowels = ['a', 'á', 'e', 'é', 'i', 'í', 'o', 'ó', 'ö', 'ő', 'u', 'ú', 'ü', 'ű'];
     var toPrint = new StringBuilder();
 
     foreach (char ch in szoveg)

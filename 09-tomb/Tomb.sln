@@ -1,6 +1,6 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tomb", "Tomb\Tomb.csproj", "{4B31CF40-D1B0-4F8B-AD67-16C4E3E53F3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tomb", "Tomb\Tomb.csproj", "{4B31CF40-D1B0-4F8B-AD67-16C4E3E53F3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

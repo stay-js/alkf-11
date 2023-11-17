@@ -6,6 +6,6 @@ Console.WriteLine(ReversedUppercase(words));
 
 static string ReversedUppercase(string[] words)
 {
-    words = words.Select(word => char.ToUpper(word[0]) + word[1..]).Reverse().ToArray();
+    words = words.Select((word) => char.ToUpper(word[0]) + word[1..]).Reverse().ToArray();
     return string.Join(' ', words);
 }

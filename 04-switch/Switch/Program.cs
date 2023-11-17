@@ -142,7 +142,7 @@ Console.WriteLine(Console.ReadLine() switch
 Console.Write("\nAdjon meg egy összeget: ");
 double amount = double.Parse(Console.ReadLine() ?? "");
 
-Console.WriteLine($"Készpénzben fizetendő összeg: {(Math.Round(amount / 5) * 5):C0}");
+Console.WriteLine($"Készpénzben fizetendő összeg: {Math.Round(amount / 5) * 5:C0}");
 #endregion
 
 #region 9.feladat
@@ -208,7 +208,7 @@ else Console.WriteLine("A lámpa éjszakai fénnyel világít.");
 #endregion
 
 #region 12.feldat
-int[] card = { Random.Shared.Next(1, 10), Random.Shared.Next(10), Random.Shared.Next(10), Random.Shared.Next(10) };
+int[] card = [Random.Shared.Next(1, 10), Random.Shared.Next(10), Random.Shared.Next(10), Random.Shared.Next(10)];
 
 bool firstRoom = card[0] > 4;
 bool secondRoom = card[1] > 4;

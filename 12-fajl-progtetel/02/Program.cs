@@ -11,7 +11,7 @@ Console.WriteLine($"\nBeolvasott nevek ABC sorrendben:" +
 #endregion
 
 #region c.
-SelectFelelok(names);
+SelectFelelok(names, 3);
 #endregion
 
 #region d.
@@ -74,13 +74,12 @@ static int CountPeopleWithMultipleLastNames(string[] names)
     return count;
 }
 
-static void SelectFelelok(string[] names)
+static void SelectFelelok(string[] names, int amount)
 {
-    const int AMOUNT_TO_PICK = 3;
-    string[] randomNames = new string[AMOUNT_TO_PICK];
+    string[] randomNames = new string[amount];
     int i = 0;
 
-    while (i < AMOUNT_TO_PICK)
+    while (i < randomNames.Length)
     {
         string selectedName = names[Random.Shared.Next(names.Length)];
         if (!Contains(randomNames, i, selectedName)) randomNames[i++] = selectedName;

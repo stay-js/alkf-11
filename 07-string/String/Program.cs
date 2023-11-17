@@ -31,7 +31,7 @@ Console.Write("\nAdjon meg egy szót, amely legalább 3 betűből áll: ");
 string word = Console.ReadLine() ?? "";
 
 Console.WriteLine(word[0] +
-    string.Concat(word[1..^1].OrderBy(_ => Random.Shared.Next())) +
+    string.Concat(word[1..^1].OrderBy((_) => Random.Shared.Next())) +
     word[^1]);
 #endregion
 
@@ -139,7 +139,7 @@ Console.WriteLine(toPrint);
 #region 5.feladat
 toPrint.Clear();
 
-char[] vowels = { 'a', 'á', 'e', 'é', 'i', 'í', 'o', 'ó', 'ö', 'ő', 'u', 'ú', 'ü', 'ű' };
+char[] vowels = ['a', 'á', 'e', 'é', 'i', 'í', 'o', 'ó', 'ö', 'ő', 'u', 'ú', 'ü', 'ű' ];
 
 Console.Write("\nAdjon meg egy szöveget: ");
 

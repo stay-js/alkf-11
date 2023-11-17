@@ -14,7 +14,7 @@ Console.WriteLine($"Érdemjegyek: {string.Join(", ", grades)}");
 #endregion
 
 #region 2.feladat
-int[] categories = { 1000, 1500, 2000, 2500, 3500 };
+int[] categories = [1000, 1500, 2000, 2500, 3500];
 
 Console.WriteLine("\nKategóriák: ");
 foreach (int category in categories)
@@ -37,15 +37,13 @@ output.Close();
 #endregion
 
 #region 4.feladat
-const int NUMBER_OF_STUDENTS = 17;
-
 //string[] students = File.ReadAllLines("diakok.txt");
 var input = new StreamReader("diakok.txt");
 
-string[] students = new string[NUMBER_OF_STUDENTS];
+string[] students = new string[17];
 int count = 0;
 
-while(count < NUMBER_OF_STUDENTS && !input.EndOfStream)
+while(count < students.Length && !input.EndOfStream)
 {
     students[count++] = (input.ReadLine() ?? "").Trim();
 }
@@ -81,7 +79,7 @@ Console.WriteLine($"Az első {max} fibonacci szám: {string.Join(", ", fib)}");
 
 #region 7.feladat
 int[] binary = Enumerable.Range(0, 10).Select((_) => Random.Shared.Next(2)).ToArray();
-int[] decimalValues = { 512, 256, 128, 64, 32, 16, 8, 4, 2, 1 };
+int[] decimalValues = [512, 256, 128, 64, 32, 16, 8, 4, 2, 1];
 int[] value = new int[10];
 
 Console.WriteLine($"\nBináris érték: {string.Concat(binary)}");

@@ -14,7 +14,7 @@ Console.WriteLine($"Érdemjegyek: {string.Join(", ", grades)}");
 #endregion
 
 #region 2.feladat
-int[] categories = { 1000, 1500, 2000, 2500, 3500 };
+int[] categories = [1000, 1500, 2000, 2500, 3500];
 
 Console.WriteLine("\nKategóriák: ");
 foreach (int category in categories)
@@ -34,20 +34,20 @@ foreach (int thr in throws)
 #endregion
 
 #region 4.feladat
-string[] students = { "Ádám János Dániel", "Bottka Balázs", "Csengeri Barnabás",
-    "Jovanovski Viktor", "K.Papp Benjamin", "Kis Dávid", "Kun Géza Márk", "Nagy Bernát",
+string[] students = ["Ádám János Dániel", "Bottka Balázs", "Csengeri Barnabás",
+"Jovanovski Viktor", "K.Papp Benjamin", "Kis Dávid", "Kun Géza Márk", "Nagy Bernát",
     "Nagy Zétény", "Pálinkás Nikolett", "Péter-Szabó Alex", "Polyák Panna", "Szabó András Péter",
-    "Szerencsi Ádám", "Vadász Balázs", "Veress Csaba", "Zsigmond-Barna Zoltán László" };
+    "Szerencsi Ádám", "Vadász Balázs", "Veress Csaba", "Zsigmond-Barna Zoltán László"];
 
 Console.WriteLine($"\nA kisorsolt tanuló: {students[Random.Shared.Next(students.Length - 1)]}");
 #endregion
 
 #region 5.feladat
-string[] responses = { "Dolgozunk a probléma megoldásán, türelmüket kérjük.",
+string[] responses = ["Dolgozunk a probléma megoldásán, türelmüket kérjük.",
     "Ez a funkció csak a következő verzióban lesz elérhető.",
     "Kipróbáltuk, nekünk működik. Kérjük, olvassa el figyelmesebben a dokumentációt!",
     "Ez a funkció technikai okok miatt nem megvalósítható.",
-    "Kérjük, pontosítsa a hibabejelentését, a hibajelenségről küldjön egy képernyő képet is!" };
+    "Kérjük, pontosítsa a hibabejelentését, a hibajelenségről küldjön egy képernyő képet is!"];
 
 Console.Write("\nAdja meg a válasz sorszámát (1-5): ");
 Console.WriteLine(responses[int.Parse(Console.ReadLine() ?? "") - 1]);
@@ -72,7 +72,7 @@ Console.WriteLine($"Az első {max} fibonacci szám: {string.Join(", ", fib)}");
 
 #region 7.feladat
 int[] binary = Enumerable.Range(0, 10).Select((_) => Random.Shared.Next(2)).ToArray();
-int[] decimalValues = { 512, 256, 128, 64, 32, 16, 8, 4, 2, 1 };
+int[] decimalValues = [512, 256, 128, 64, 32, 16, 8, 4, 2, 1];
 int[] value = new int[10];
 
 Console.WriteLine($"\nBináris érték: {string.Concat(binary)}");
