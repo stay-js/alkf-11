@@ -42,7 +42,7 @@ Console.WriteLine($"A megadott évben született diák {DateTime.Today.Year - ye
 #region 4. feladat
 Console.Write("\nAdja meg, hogy hány pontot ért el: ");
 double score = double.Parse(Console.ReadLine() ?? "");
-Console.WriteLine($"Az ön által elért eredmény: {(score / 120 * 100):N2}%");
+Console.WriteLine($"Az ön által elért eredmény: {score / 120 * 100:N2}%");
 #endregion
 
 #region 5. feladat
@@ -65,7 +65,7 @@ double weight = double.Parse(Console.ReadLine() ?? "");
 Console.Write("Adja meg a magasságát (cm): ");
 double height = double.Parse(Console.ReadLine() ?? "");
 
-Console.WriteLine($"Az ön testtömegindexe: {(weight / Math.Pow(height / 100, 2)):N2}");
+Console.WriteLine($"Az ön testtömegindexe: {weight / Math.Pow(height / 100, 2):N2}");
 #endregion
 
 #region 7. feladat
@@ -75,26 +75,26 @@ double eurToBuy = double.Parse(Console.ReadLine() ?? "");
 Console.Write("Adja meg az euró aktuális árfolyamát: ");
 double eurToHuf = double.Parse(Console.ReadLine() ?? "");
 
-Console.WriteLine($"{eurToBuy} EUR-ért {(eurToBuy * eurToHuf):C0}-ot kell fizetni.");
+Console.WriteLine($"{eurToBuy} EUR-ért {eurToBuy * eurToHuf:C0}-ot kell fizetni.");
 #endregion
 
 #region 8. feladat
 Console.Write("\nAdja meg az első tört számlálóját: ");
-double xN = double.Parse(Console.ReadLine() ?? "");
+int xN = int.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adja meg az első tört nevezőjét: ");
-double xD = double.Parse(Console.ReadLine() ?? "");
+int xD = int.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adja meg az második tört számlálóját: ");
-double yN = double.Parse(Console.ReadLine() ?? "");
+int yN = int.Parse(Console.ReadLine() ?? "");
 
 Console.Write("Adja meg az második tört nevezőjét: ");
-double yD = double.Parse(Console.ReadLine() ?? "");
+int yD = int.Parse(Console.ReadLine() ?? "");
 
-Console.WriteLine($"A két tört összege: {(xN * yD) + (yN * xD)}/{(xD * yN) + (yD * xN)}" +
-    $"A két tört különbsége: {(xN * yD) - (yN * xD)}/{(xD * yN) - (yD * xN)}" +
-    $"A két tört szorzata: {xN * yN}/{xD * yD}" +
-    $"A két tört hányadosa: {xN / yN}/{xD / yD}");
+Console.WriteLine($"A két tört összege: {(xN * yD) + (yN * xD)}/{xD * yD} " +
+    $"A két tört különbsége: {(xN * yD) - (yN * xD)}/{xD * yD} " +
+    $"A két tört szorzata: {xN * yN}/{xD * yD} " +
+    $"A két tört hányadosa: {xN * yD}/{xD * yN}");
 #endregion
 
 #region 9. feladat
@@ -110,7 +110,7 @@ Console.Write("Adja meg, hogy hány kg szőlőt vásárolt: ");
 double grapeKg = double.Parse(Console.ReadLine() ?? "");
 double grape = grapeKg * 650;
 
-Console.WriteLine($"\nÖsszesen: {(apple + plum + grape):C0}" +
+Console.WriteLine($"\nÖsszesen: {apple + plum + grape:C0}" +
     $"\n\t- {appleKg} kg alma - {apple:C0}" +
     $"\n\t- {plumKg} kg szilva - {plum:C0}" +
     $"\n\t- {grapeKg} kg szőlő - {grape:C0}");
@@ -149,7 +149,7 @@ int windowArea = int.Parse(Console.ReadLine() ?? "");
 Console.Write("Adja meg az ajtó felületét: ");
 int doorArea = int.Parse(Console.ReadLine() ?? "");
 
-Console.WriteLine($"{((roomArea - windowArea - doorArea) * 1.1 / 1000):N2} " +
+Console.WriteLine($"{(roomArea - windowArea - doorArea) * 1.1 / 1000:N2} " +
     $"m2 tapétára van szükség.");
 #endregion
 
