@@ -45,66 +45,66 @@ static (string, int)[] ReadData()
         }).ToArray();
 }
 
-static void PrintAllFruits((string, int)[] fruits)
+static void PrintAllFruits((string, int)[] data)
 {
-    foreach (var fruit in fruits)
+    foreach (var item in data)
     {
-        Console.WriteLine($"{fruit.Item1} ({fruit.Item2} kg)");
+        Console.WriteLine($"{item.Item1} ({item.Item2} kg)");
     }
 }
 
-static int SumWeight((string, int)[] fruits)
+static int SumWeight((string, int)[] data)
 {
     int sum = 0;
 
-    foreach (var fruit in fruits)
+    foreach (var item in data)
     {
-        sum += fruit.Item2;
+        sum += item.Item2;
     }
 
     return sum;
 }
 
-static int CountExactly10Kg((string, int)[] fruits)
+static int CountExactly10Kg((string, int)[] data)
 {
     int count = 0;
 
-    foreach (var fruit in fruits)
+    foreach (var item in data)
     {
-        if (fruit.Item2 == 10) count++;
+        if (item.Item2 == 10) count++;
     }
 
     return count;
 }
 
-static int MostWeight((string, int)[] fruits)
+static int MostWeight((string, int)[] data)
 {
     var mostWeight = 0;
 
-    for (int i = 1; i < fruits.Length; i++)
+    for (int i = 1; i < data.Length; i++)
     {
-        if (fruits[i].Item2 > fruits[mostWeight].Item2) mostWeight = 1;
+        if (data[i].Item2 > data[mostWeight].Item2) mostWeight = 1;
     }
 
     return mostWeight;
 }
 
-static void MoreThanOrEqualTo30Kg((string, int)[] fruits)
+static void MoreThanOrEqualTo30Kg((string, int)[] data)
 {
-    foreach (var fruit in fruits)
+    foreach (var item in data)
     {
-        if (fruit.Item2 >= 30) Console.WriteLine("\t- " + fruit.Item1);
+        if (item.Item2 >= 30) Console.WriteLine("\t- " + item.Item1);
     }
 }
 
-static bool FindLessThan10((string, int)[] fruits, out int index)
+static bool FindLessThan10((string, int)[] data, out int index)
 {
     index = 0;
 
-    while (index < fruits.Length && fruits[index].Item2 >= 10)
+    while (index < data.Length && data[index].Item2 >= 10)
     {
         index++;
     }
 
-    return index < fruits.Length;
+    return index < data.Length;
 }

@@ -37,58 +37,58 @@ static (string, int)[] ReadData()
         }).ToArray();
 }
 
-static void PrintAllCakes((string, int)[] cakes)
+static void PrintAllCakes((string, int)[] data)
 {
-    foreach (var cake in cakes)
+    foreach (var item in data)
     {
-        Console.WriteLine($"{cake.Item1} ({cake.Item2:C0})");
+        Console.WriteLine($"{item.Item1} ({item.Item2:C0})");
     }
 }
 
-static double AvgPrice((string, int)[] cakes)
+static double AvgPrice((string, int)[] data)
 {
     double sum = 0;
 
-    foreach (var cake in cakes)
+    foreach (var item in data)
     {
-        sum += cake.Item2;
+        sum += item.Item2;
     }
 
-    return sum / cakes.Length;
+    return sum / data.Length;
 }
 
-static int MostExpensiveCake((string, int)[] cakes)
+static int MostExpensiveCake((string, int)[] data)
 {
     var mostExpensive = 0;
 
-    for (int i = 1; i < cakes.Length; i++)
+    for (int i = 1; i < data.Length; i++)
     {
-        if (cakes[i].Item2 > cakes[mostExpensive].Item2) mostExpensive = 1;
+        if (data[i].Item2 > data[mostExpensive].Item2) mostExpensive = i;
     }
 
     return mostExpensive;
 }
 
-static void PrintCheaperThanOrEqualTo4500((string, int)[] cakes)
+static void PrintCheaperThanOrEqualTo4500((string, int)[] data)
 {
-    foreach (var cake in cakes)
+    foreach (var item in data)
     {
-        if (cake.Item2 <= 4500) Console.WriteLine("\t- " + cake.Item1);
+        if (item.Item2 <= 4500) Console.WriteLine("\t- " + item.Item1);
     }
 }
 
-static bool FindCake((string, int)[] cakes, out int index)
+static bool FindCake((string, int)[] data, out int index)
 {
     Console.Write("\nAdja meg egy torta nevét: ");
     string name = Console.ReadLine() ?? "";
 
     index = 0;
 
-    while (index < cakes.Length
-        && !cakes[index].Item1.Equals(name, StringComparison.CurrentCultureIgnoreCase))
+    while (index < data.Length
+        && !data[index].Item1.Equals(name, StringComparison.CurrentCultureIgnoreCase))
     {
         index++;
     }
 
-    return index < cakes.Length;
+    return index < data.Length;
 }
