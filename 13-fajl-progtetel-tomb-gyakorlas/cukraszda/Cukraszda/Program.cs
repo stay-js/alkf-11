@@ -80,11 +80,12 @@ static void PrintCheaperThanOrEqualTo4500((string, int)[] cakes)
 static bool FindCake((string, int)[] cakes, out int index)
 {
     Console.Write("\nAdja meg egy torta nevét: ");
-    string name = (Console.ReadLine() ?? "").ToLower();
+    string name = Console.ReadLine() ?? "";
 
     index = 0;
 
-    while (index < cakes.Length && name != cakes[index].Item1.ToLower())
+    while (index < cakes.Length
+        && !cakes[index].Item1.Equals(name, StringComparison.CurrentCultureIgnoreCase))
     {
         index++;
     }
