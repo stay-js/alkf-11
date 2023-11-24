@@ -1,8 +1,10 @@
-﻿#region a
+﻿using Local;
+
+#region a
 var data = ReadData();
 foreach (var item in data)
 {
-    Console.WriteLine($"{item.Item1}: {item.Item2} pont");
+    Console.WriteLine($"{item.Name}: {item.Score} pont");
 }
 #endregion
 
@@ -21,26 +23,24 @@ Console.WriteLine($"Az átlagos pontszám: {Math.Round(AvgScore(data), 2)}. pont
 
 #region e
 Console.WriteLine("A megadott versenyző " + (FindCompetitor(data, out int index)
-    ? $"{data[index].Item2} pontot ért el."
+    ? $"{data[index].Score} pontot ért el."
     : "nem található."));
 #endregion
 
-static (string, int)[] ReadData()
+static Competitor[] ReadData()
 {
-    var data = new (string, int)[50];
+    var data = new Competitor[50];
     var input = new StreamReader("pontszamok.txt");
 
     int i = 0;
     while (i < data.Length && !input.EndOfStream)
     {
-        string name = input.ReadLine() ?? "";
-        int score = int.Parse(input.ReadLine() ?? "");
-        data[i++] = (name, score);
+        data[i++] = new Competitor(input.ReadLine() ?? "", int.Parse(input.ReadLine() ?? ""));
     }
 
     input.Close();
 
-    var actualLength = new (string, int)[i];
+    var actualLength = new Competitor[i];
 
     for (i = 0; i < actualLength.Length; i++)
     {
@@ -51,43 +51,43 @@ static (string, int)[] ReadData()
     return actualLength;
 }
 
-static int MinScore((string, int)[] data)
+static int MinScore(Competitor[] data)
 {
-    int min = data[0].Item2;
+    int min = data[0].Score;
 
     for (int i = 1; i < data.Length; i++)
     {
-        if (data[i].Item2 < min) min = data[i].Item2;
+        if (data[i].Score < min) min = data[i].Score;
     }
 
     return min;
 }
 
-static int MaxScore((string, int)[] data)
+static int MaxScore(Competitor[] data)
 {
-    int max = data[0].Item2;
+    int max = data[0].Score;
 
     for (int i = 1; i < data.Length; i++)
     {
-        if (data[i].Item2 > max) max = data[i].Item2;
+        if (data[i].Score > max) max = data[i].Score;
     }
 
     return max;
 }
 
-static double AvgScore((string, int)[] data)
+static double AvgScore(Competitor[] data)
 {
     double sum = 0;
 
     foreach (var item in data)
     {
-        sum += item.Item2;
+        sum += item.Score;
     }
 
     return sum / data.Length;
 }
 
-static bool FindCompetitor((string, int)[] data, out int index)
+static bool FindCompetitor(Competitor[] data, out int index)
 {
     Console.Write("\nAdja meg egy versenyző nevét: ");
     string name = Console.ReadLine() ?? "";
@@ -95,10 +95,15 @@ static bool FindCompetitor((string, int)[] data, out int index)
     index = 0;
 
     while (index < data.Length
-        && !data[index].Item1.Equals(name, StringComparison.CurrentCultureIgnoreCase))
+        && !data[index].Name.Equals(name, StringComparison.CurrentCultureIgnoreCase))
     {
         index++;
     }
 
     return index < data.Length;
+}
+
+namespace Local
+{
+    public record Competitor(string Name, int Score);
 }

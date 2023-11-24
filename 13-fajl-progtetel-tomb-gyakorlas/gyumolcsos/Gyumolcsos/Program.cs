@@ -1,4 +1,6 @@
-﻿#region 1.feladat
+﻿using Local;
+
+#region 1.feladat
 var data = ReadData();
 #endregion
 
@@ -21,7 +23,7 @@ Console.WriteLine($"{CountExactly10Kg(data)} gyümölcsből termett pontosan 10 
 
 #region 6. feladat
 var mostWeight = data[MostWeight(data)];
-Console.WriteLine($"{mostWeight.Item1}-ból/ből termett a legtöbb ({mostWeight.Item2} kg).");
+Console.WriteLine($"{mostWeight.Name}-ból/ből termett a legtöbb ({mostWeight.Weight} kg).");
 #endregion
 
 #region 7. feladat
@@ -31,80 +33,85 @@ MoreThanOrEqualTo30Kg(data);
 
 #region 8.feladat
 Console.WriteLine(FindLessThan10(data, out int index)
-    ? $"{data[index].Item2:C0}-ból/ből termett kevesebb mint 10 kg."
+    ? $"{data[index].Weight:C0}-ból/ből termett kevesebb mint 10 kg."
     : "Nem volt olyan gyümölcs amiből kevesebb mint 10 kg termett.");
 #endregion
 
-static (string, int)[] ReadData()
+static Fruit[] ReadData()
 {
     return File.ReadLines("gyumolcsok.txt")
         .Select((line) =>
         {
             string[] lineArr = line.Split(';');
-            return (lineArr[0], int.Parse(lineArr[1]));
+            return new Fruit(lineArr[0], int.Parse(lineArr[1]));
         }).ToArray();
 }
 
-static void PrintAllFruits((string, int)[] data)
+static void PrintAllFruits(Fruit[] data)
 {
     foreach (var item in data)
     {
-        Console.WriteLine($"{item.Item1} ({item.Item2} kg)");
+        Console.WriteLine($"{item.Name} ({item.Weight} kg)");
     }
 }
 
-static int SumWeight((string, int)[] data)
+static int SumWeight(Fruit[] data)
 {
     int sum = 0;
 
     foreach (var item in data)
     {
-        sum += item.Item2;
+        sum += item.Weight;
     }
 
     return sum;
 }
 
-static int CountExactly10Kg((string, int)[] data)
+static int CountExactly10Kg(Fruit[] data)
 {
     int count = 0;
 
     foreach (var item in data)
     {
-        if (item.Item2 == 10) count++;
+        if (item.Weight == 10) count++;
     }
 
     return count;
 }
 
-static int MostWeight((string, int)[] data)
+static int MostWeight(Fruit[] data)
 {
-    var mostWeight = 0;
+    int mostWeight = 0;
 
     for (int i = 1; i < data.Length; i++)
     {
-        if (data[i].Item2 > data[mostWeight].Item2) mostWeight = 1;
+        if (data[i].Weight > data[mostWeight].Weight) mostWeight = i;
     }
 
     return mostWeight;
 }
 
-static void MoreThanOrEqualTo30Kg((string, int)[] data)
+static void MoreThanOrEqualTo30Kg(Fruit[] data)
 {
-    foreach (var item in data)
+    foreach (var item in data.Where((item) => item.Weight >= 30))
     {
-        if (item.Item2 >= 30) Console.WriteLine("\t- " + item.Item1);
+        Console.WriteLine("\t- " + item.Weight);
     }
 }
 
-static bool FindLessThan10((string, int)[] data, out int index)
+static bool FindLessThan10(Fruit[] data, out int index)
 {
     index = 0;
 
-    while (index < data.Length && data[index].Item2 >= 10)
+    while (index < data.Length && data[index].Weight >= 10)
     {
         index++;
     }
 
     return index < data.Length;
+}
+
+namespace Local
+{
+public record Fruit(string Name, int Weight);
 }

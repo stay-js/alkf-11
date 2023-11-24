@@ -1,4 +1,6 @@
-﻿#region a
+﻿using Local;
+
+#region a
 var data = ReadData();
 Console.WriteLine($"{data.Length} diák adata került rögzítésre.");
 #endregion
@@ -9,39 +11,41 @@ Console.WriteLine($"A megadott évben {CountStudentsByYear(data)} diák kezdte a
 
 #region c
 Console.WriteLine(FindStudent(data, out int index)
-    ? $"A megadott diák {data[index].Item1}-ban/ben kezdte az iskolát, " +
-      $"és a(z) {data[index].Item2} jelű osztályba járt."
+    ? $"A megadott diák {data[index].Year}-ban/ben kezdte az iskolát, " +
+      $"és a(z) {data[index].Class} jelű osztályba járt."
     : "A megadott diák nem található.");
 #endregion
 
 #region d
-var foundStudents = FindStudents(data);
-Console.WriteLine(foundStudents.Length > 0
-    ? $"A megadott névrészletnek megfelelő tanulók:\n" + string.Join('\n', foundStudents)
+var students = FindStudents(data);
+Console.WriteLine(students.Length > 0
+    ? $"A megadott névrészletnek megfelelő tanulók:\n" +
+        string.Join('\n', students.Select((student) =>
+        $"{student.Name}, kezdés éve: {student.Year}, osztály: {student.Class}"))
     : "Nincs a megadott névrészletnek megfelelő tanuló.");
 #endregion
 
 #region e
 var longestName = data[LongestName(data)];
-Console.WriteLine($"\nA leghosszabb nevű tanuló: {longestName.Item3}, " +
-    $"{longestName.Item1}-ban/ben kezdte a tanulmányait a(z) {longestName.Item2} jelű osztályban.");
+Console.WriteLine($"\nA leghosszabb nevű tanuló: {longestName.Name}, " +
+    $"{longestName.Year}-ban/ben kezdte a tanulmányait a(z) {longestName.Class} jelű osztályban.");
 #endregion
 
 #region f
 WriteNamesToFile(data);
 #endregion
 
-static (int, string, string)[] ReadData()
+static Student[] ReadData()
 {
     return File.ReadLines("adatok.txt")
         .Select((line) =>
         {
             var lineArr = line.Split();
-            return (int.Parse(lineArr[0]), lineArr[1], string.Join(' ', lineArr[2..]));
+            return new Student(int.Parse(lineArr[0]), lineArr[1], string.Join(' ', lineArr[2..]));
         }).ToArray();
 }
 
-static int CountStudentsByYear((int, string, string)[] data)
+static int CountStudentsByYear(Student[] data)
 {
     Console.Write("\nAdjon meg egy évszámot: ");
     int year = int.Parse(Console.ReadLine() ?? "");
@@ -50,13 +54,13 @@ static int CountStudentsByYear((int, string, string)[] data)
 
     foreach (var item in data)
     {
-        if (year == item.Item1) count++;
+        if (year == item.Year) count++;
     }
 
     return count;
 }
 
-static bool FindStudent((int, string, string)[] data, out int index)
+static bool FindStudent(Student[] data, out int index)
 {
     Console.Write("\nAdja meg egy diák nevét: ");
     string name = Console.ReadLine() ?? "";
@@ -64,7 +68,7 @@ static bool FindStudent((int, string, string)[] data, out int index)
     index = 0;
 
     while (index < data.Length
-        && !data[index].Item3.Equals(name, StringComparison.CurrentCultureIgnoreCase))
+        && !data[index].Name.Equals(name, StringComparison.CurrentCultureIgnoreCase))
     {
         index++;
     }
@@ -72,21 +76,21 @@ static bool FindStudent((int, string, string)[] data, out int index)
     return index < data.Length;
 }
 
-static (int, string, string)[] FindStudents((int, string, string)[] data)
+static Student[] FindStudents(Student[] data)
 {
     Console.Write("\nAdjon meg egy névrészletet: ");
     string query = Console.ReadLine() ?? "";
 
-    var foundStudents = new (int, string, string)[data.Length];
+    var foundStudents = new Student[data.Length];
     int i = 0;
 
     foreach (var item in
-        data.Where((x) => x.Item3.Contains(query, StringComparison.CurrentCultureIgnoreCase)))
+        data.Where((x) => x.Name.Contains(query, StringComparison.CurrentCultureIgnoreCase)))
     {
         foundStudents[i++] = item;
     }
 
-    var actualLength = new (int, string, string)[i];
+    var actualLength = new Student[i];
 
     for (i = 0; i < actualLength.Length; i++)
     {
@@ -96,21 +100,31 @@ static (int, string, string)[] FindStudents((int, string, string)[] data)
     return actualLength;
 }
 
-static int LongestName((int, string, string)[] data)
+static int LongestName(Student[] data)
 {
     int longestName = 0;
 
     for (int i = 0; i < data.Length; i++)
     {
-        if (data[i].Item3.Length > data[longestName].Item3.Length) longestName = i;
+        if (data[i].Name.Length > data[longestName].Name.Length) longestName = i;
     }
 
     return longestName;
 }
 
-static void WriteNamesToFile((int, string, string)[] data)
+static void WriteNamesToFile(Student[] data)
 {
     var output = new StreamWriter("nevsor.txt");
-    output.WriteLine(string.Join('\n', data));
+
+    foreach (var student in data)
+    {
+        output.WriteLine(student.Name);
+    }
+
     output.Close();
+}
+
+namespace Local
+{
+    public record Student(int Year, string Class, string Name);
 }

@@ -1,18 +1,13 @@
 ﻿using System.Text;
-
+using Local;
 
 #region a
 var data = ReadData();
-
-foreach (var item in data)
-{
-    Console.WriteLine($"{item.Item1}: " +
-        $"{item.Item2} + {item.Item3} = {item.Item4} pont.");
-}
+PrintAllStudents(data);
 #endregion
 
 #region b
-Console.WriteLine($"\n{data[MaxScoreIndex(data)].Item1} érte el a legmagasabb pontszámot.");
+Console.WriteLine($"\n{data[MaxScoreIndex(data)].Name} érte el a legmagasabb pontszámot.");
 #endregion
 
 #region c
@@ -24,7 +19,7 @@ if (FindStudent(data, out int index))
 {
     var student = data[index];
     Console.WriteLine($"A megadott felvételiző: " +
-        $"{student.Item2} + {student.Item3} = {student.Item4} pontot ért el.");
+        $"{student.BroughtScore} + {student.AchievedScore} = {student.TotalScore} pontot ért el.");
 }
 else Console.WriteLine("A megadott felvételiző nem található.");
 #endregion
@@ -33,7 +28,7 @@ else Console.WriteLine("A megadott felvételiző nem található.");
 WriteTotalScoresToFile(data);
 #endregion
 
-static (string, int, int, int)[] ReadData()
+static Student[] ReadData()
 {
     return File.ReadLines("felveteli.csv")
         .Select((line) =>
@@ -42,35 +37,44 @@ static (string, int, int, int)[] ReadData()
             int brought = int.Parse(lineArr[1]);
             int achieved = int.Parse(lineArr[2]);
 
-            return (lineArr[0].Trim(), brought, achieved, brought + achieved);
+            return new Student(lineArr[0].Trim(), brought, achieved, brought + achieved);
         }).ToArray();
 }
 
-static int MaxScoreIndex((string, int, int, int)[] data)
+static void PrintAllStudents(Student[] students)
+{
+    foreach (var student in students)
+    {
+        Console.WriteLine($"{student.Name}: " +
+            $"{student.BroughtScore} + {student.AchievedScore} = {student.TotalScore} pont.");
+    }
+}
+
+static int MaxScoreIndex(Student[] data)
 {
     int max = 0;
 
     for (int i = 1; i < data.Length; i++)
     {
-        if (data[i].Item4 > data[max].Item4) max = i;
+        if (data[i].TotalScore > data[max].TotalScore) max = i;
     }
 
     return max;
 }
 
-static double AvgScore((string, int, int, int)[] data)
+static double AvgScore(Student[] data)
 {
     double sum = 0;
 
     foreach (var item in data)
     {
-        sum += item.Item4;
+        sum += item.TotalScore;
     }
 
     return sum / data.Length;
 }
 
-static bool FindStudent((string, int, int, int)[] data, out int index)
+static bool FindStudent(Student[] data, out int index)
 {
     Console.Write("\nAdja meg egy felvételiző nevét: ");
     string name = Console.ReadLine() ?? "";
@@ -78,7 +82,7 @@ static bool FindStudent((string, int, int, int)[] data, out int index)
     index = 0;
 
     while (index < data.Length
-        && !data[index].Item1.Equals(name, StringComparison.CurrentCultureIgnoreCase))
+        && !data[index].Name.Equals(name, StringComparison.CurrentCultureIgnoreCase))
     {
         index++;
     }
@@ -86,7 +90,7 @@ static bool FindStudent((string, int, int, int)[] data, out int index)
     return index < data.Length;
 }
 
-static void WriteTotalScoresToFile((string, int, int, int)[] data)
+static void WriteTotalScoresToFile(Student[] data)
 {
     var output = new StreamWriter("osszpontok.csv", false, Encoding.UTF8);
 
@@ -94,8 +98,13 @@ static void WriteTotalScoresToFile((string, int, int, int)[] data)
 
     foreach (var item in data)
     {
-        output.WriteLine($"{item.Item1};{item.Item4}");
+        output.WriteLine($"{item.Name};{item.TotalScore}");
     }
 
     output.Close();
+}
+
+namespace Local
+{
+    public record Student(string Name, int BroughtScore, int AchievedScore, int TotalScore);
 }

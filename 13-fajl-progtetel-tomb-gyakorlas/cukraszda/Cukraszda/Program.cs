@@ -1,4 +1,6 @@
-﻿#region 1.feladat
+﻿using Local;
+
+#region 1.feladat
 var data = ReadData();
 #endregion
 
@@ -13,7 +15,7 @@ Console.WriteLine($"\nA torták átlagos ára: {AvgPrice(data):C0}.");
 #region 4.feladat
 var mostExpensiveCake = data[MostExpensiveCake(data)];
 Console.WriteLine($"A legdrágább torta: " +
-    $"{mostExpensiveCake.Item1} ({mostExpensiveCake.Item2:C0})");
+    $"{mostExpensiveCake.Name} ({mostExpensiveCake.Price:C0})");
 #endregion
 
 #region 5.feladat
@@ -23,61 +25,61 @@ PrintCheaperThanOrEqualTo4500(data);
 
 #region 5.feladat
 Console.WriteLine(FindCake(data, out int index)
-    ? $"A megadott torta megrendelése: {data[index].Item2:C0}-ba kerül."
+    ? $"A megadott torta megrendelése: {data[index].Price:C0}-ba kerül."
     : "A megadott torta nem található.");
 #endregion
 
-static (string, int)[] ReadData()
+static Cake[] ReadData()
 {
     return File.ReadLines("tortak.txt")
         .Select((line) =>
         {
             string[] lineArr = line.Split(';');
-            return (lineArr[0], int.Parse(lineArr[1]));
+            return new Cake(lineArr[0], int.Parse(lineArr[1]));
         }).ToArray();
 }
 
-static void PrintAllCakes((string, int)[] data)
+static void PrintAllCakes(Cake[] data)
 {
     foreach (var item in data)
     {
-        Console.WriteLine($"{item.Item1} ({item.Item2:C0})");
+        Console.WriteLine($"{item.Name} ({item.Price:C0})");
     }
 }
 
-static double AvgPrice((string, int)[] data)
+static double AvgPrice(Cake[] data)
 {
     double sum = 0;
 
     foreach (var item in data)
     {
-        sum += item.Item2;
+        sum += item.Price;
     }
 
     return sum / data.Length;
 }
 
-static int MostExpensiveCake((string, int)[] data)
+static int MostExpensiveCake(Cake[] data)
 {
-    var mostExpensive = 0;
+    int mostExpensive = 0;
 
     for (int i = 1; i < data.Length; i++)
     {
-        if (data[i].Item2 > data[mostExpensive].Item2) mostExpensive = i;
+        if (data[i].Price > data[mostExpensive].Price) mostExpensive = i;
     }
 
     return mostExpensive;
 }
 
-static void PrintCheaperThanOrEqualTo4500((string, int)[] data)
+static void PrintCheaperThanOrEqualTo4500(Cake[] data)
 {
     foreach (var item in data)
     {
-        if (item.Item2 <= 4500) Console.WriteLine("\t- " + item.Item1);
+        if (item.Price <= 4500) Console.WriteLine("\t- " + item.Name);
     }
 }
 
-static bool FindCake((string, int)[] data, out int index)
+static bool FindCake(Cake[] data, out int index)
 {
     Console.Write("\nAdja meg egy torta nevét: ");
     string name = Console.ReadLine() ?? "";
@@ -85,10 +87,15 @@ static bool FindCake((string, int)[] data, out int index)
     index = 0;
 
     while (index < data.Length
-        && !data[index].Item1.Equals(name, StringComparison.CurrentCultureIgnoreCase))
+        && !data[index].Name.Equals(name, StringComparison.CurrentCultureIgnoreCase))
     {
         index++;
     }
 
     return index < data.Length;
+}
+
+namespace Local
+{
+    public record Cake(string Name, int Price);
 }
