@@ -39,12 +39,11 @@ Console.WriteLine(FindLessThan10(data, out int index)
 
 static Fruit[] ReadData()
 {
-    return File.ReadLines("gyumolcsok.txt")
-        .Select((line) =>
-        {
-            string[] lineArr = line.Split(';');
-            return new Fruit(lineArr[0], int.Parse(lineArr[1]));
-        }).ToArray();
+    return File.ReadLines("gyumolcsok.txt").Select(line =>
+    {
+        string[] lineArr = line.Split(';');
+        return new Fruit(lineArr[0], int.Parse(lineArr[1]));
+    }).ToArray();
 }
 
 static void PrintAllFruits(Fruit[] data)
@@ -93,7 +92,7 @@ static int MostWeight(Fruit[] data)
 
 static void MoreThanOrEqualTo30Kg(Fruit[] data)
 {
-    foreach (var item in data.Where((item) => item.Weight >= 30))
+    foreach (var item in data.Where(item => item.Weight >= 30))
     {
         Console.WriteLine("\t- " + item.Weight);
     }
@@ -113,5 +112,5 @@ static bool FindLessThan10(Fruit[] data, out int index)
 
 namespace Local
 {
-public record Fruit(string Name, int Weight);
+    public record Fruit(string Name, int Weight);
 }

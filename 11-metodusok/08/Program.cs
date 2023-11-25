@@ -12,7 +12,6 @@ var result = QuadricEquation(a: a, b: b, c: c);
 Console.WriteLine($"x1 = {(double.IsNaN(result.Item1) ? "nincs megoldás" : result.Item1)}, " +
     $"x2 = {(double.IsNaN(result.Item2) ? "nincs megoldás" : result.Item2)}");
 
-
 static (double, double) QuadricEquation(double a = 0, double b = 0, double c = 0)
 {
     double discriminant = Math.Pow(b, 2) - (4 * a * c);

@@ -266,6 +266,6 @@ for (int i = 100; i <= 999; i++)
         num /= 10;
     }
 
-    if (i == digits.Select((x) => Math.Pow(x, 3)).Sum()) Console.WriteLine(i);
+    if (i == digits.Select(x => Math.Pow(x, 3)).Sum()) Console.WriteLine(i);
 }
 #endregion

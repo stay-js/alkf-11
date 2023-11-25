@@ -231,11 +231,13 @@ Console.Write($"\nA generált kód a {string.Join("", card)}:");
 if (!(firstRoom || secondRoom || thirdRoom || fourthRoom || fifthRoom || sixthRoom || seventhRoom))
     Console.WriteLine(" A kód érvénytelen!");
 else
+{
     Console.WriteLine($"\n\t- 1. helyiségbe: {(firstRoom ? "beléphet" : "nem léphet be")}" +
-    $"\n\t- 2. helyiségbe: {(secondRoom ? "beléphet" : "nem léphet be")}" +
-    $"\n\t- 3. helyiségbe: {(thirdRoom ? "beléphet" : "nem léphet be")}" +
-    $"\n\t- 4. helyiségbe: {(fourthRoom ? "beléphet" : "nem léphet be")}" +
-    $"\n\t- 5. helyiségbe: {(fifthRoom ? "beléphet" : "nem léphet be")}" +
-    $"\n\t- 6. helyiségbe: {(sixthRoom ? "beléphet" : "nem léphet be")}" +
-    $"\n\t- 7. helyiségbe: {(seventhRoom ? "beléphet" : "nem léphet be")}");
+        $"\n\t- 2. helyiségbe: {(secondRoom ? "beléphet" : "nem léphet be")}" +
+        $"\n\t- 3. helyiségbe: {(thirdRoom ? "beléphet" : "nem léphet be")}" +
+        $"\n\t- 4. helyiségbe: {(fourthRoom ? "beléphet" : "nem léphet be")}" +
+        $"\n\t- 5. helyiségbe: {(fifthRoom ? "beléphet" : "nem léphet be")}" +
+        $"\n\t- 6. helyiségbe: {(sixthRoom ? "beléphet" : "nem léphet be")}" +
+        $"\n\t- 7. helyiségbe: {(seventhRoom ? "beléphet" : "nem léphet be")}");
+}
 #endregion

@@ -51,7 +51,6 @@ string input = (Console.ReadLine() ?? "").ToLower() switch
 
 TeglalapRajzolo(a, b, Enum.TryParse(input, out color) ? color : ConsoleColor.White);
 
-
 static void TeglalapRajzolo(uint aOldal, uint bOldal, ConsoleColor szin)
 {
     var toPrint = new StringBuilder();

@@ -2,7 +2,7 @@
 Console.Write("Adja meg az osztály létszámát: ");
 int numberOfStudents = int.Parse(Console.ReadLine() ?? "");
 
-//int[] grades = Enumerable.Range(0, numberOfStudents).Select((_) => Random.Shared.Next(2, 6)).ToArray();
+//int[] grades = Enumerable.Range(0, numberOfStudents).Select(_ => Random.Shared.Next(2, 6)).ToArray();
 int[] grades = new int[numberOfStudents];
 
 for (int i = 0; i < grades.Length; i++)
@@ -24,7 +24,7 @@ foreach (int category in categories)
 #endregion
 
 #region 3.feladat
-int[] throws = Enumerable.Range(1, 50).Select((_) => Random.Shared.Next(1, 7)).ToArray();
+int[] throws = Enumerable.Range(1, 50).Select(_ => Random.Shared.Next(1, 7)).ToArray();
 
 var output = new StreamWriter("dobasok.txt");
 
@@ -43,7 +43,7 @@ var input = new StreamReader("diakok.txt");
 string[] students = new string[17];
 int count = 0;
 
-while(count < students.Length && !input.EndOfStream)
+while (count < students.Length && !input.EndOfStream)
 {
     students[count++] = (input.ReadLine() ?? "").Trim();
 }
@@ -78,7 +78,7 @@ Console.WriteLine($"Az első {max} fibonacci szám: {string.Join(", ", fib)}");
 #endregion
 
 #region 7.feladat
-int[] binary = Enumerable.Range(0, 10).Select((_) => Random.Shared.Next(2)).ToArray();
+int[] binary = Enumerable.Range(0, 10).Select(_ => Random.Shared.Next(2)).ToArray();
 int[] decimalValues = [512, 256, 128, 64, 32, 16, 8, 4, 2, 1];
 int[] value = new int[10];
 
@@ -104,7 +104,7 @@ for (int i = 0; i < speedRecords.Length; i++)
     speedRecords[i] = double.Parse(Console.ReadLine() ?? "");
 }
 
-speedRecords = speedRecords.Select((val) => val * 0.9).ToArray();
+speedRecords = speedRecords.Select(x => x * 0.9).ToArray();
 
 Console.WriteLine("\nSebesség értékek: ");
 foreach (double record in speedRecords)
@@ -114,7 +114,7 @@ foreach (double record in speedRecords)
 #endregion
 
 #region 9.feladat
-bool[] doors = Enumerable.Range(0, 100).Select((_) => false).ToArray();
+bool[] doors = Enumerable.Range(0, 100).Select(_ => false).ToArray();
 
 for (int i = 0; i <= doors.Length; i++)
 {
@@ -137,7 +137,7 @@ output.Close();
 #region 10.feladat
 Console.WriteLine();
 
-int[] pin = Enumerable.Range(0, 6).Select((_) => Random.Shared.Next(10)).ToArray();
+int[] pin = Enumerable.Range(0, 6).Select(_ => Random.Shared.Next(10)).ToArray();
 
 for (int i = 0; i < pin.Length; i++)
 {

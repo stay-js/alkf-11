@@ -5,7 +5,6 @@ while (!int.TryParse(Console.ReadLine(), out amount) || amount < 0);
 
 Penzvaltas(amount);
 
-
 static void Penzvaltas(int osszeg)
 {
     osszeg = Convert.ToInt32(Math.Round(osszeg / 5.0) * 5);

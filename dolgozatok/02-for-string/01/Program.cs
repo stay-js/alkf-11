@@ -5,7 +5,7 @@ Console.Write("Kérem az intevallum felső határát: ");
 int max = int.Parse(Console.ReadLine() ?? "");
 
 Console.WriteLine("\nAz intervallumba tartozó számok csökkenő sorrendben:");
-for (int i = max -1 ; i >= min; i--)
+for (int i = max - 1; i >= min; i--)
 {
     Console.Write(i + " ");
 }

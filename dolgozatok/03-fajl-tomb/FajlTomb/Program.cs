@@ -9,7 +9,7 @@ var data = new (int, string)[days];
 for (int i = 0; i < data.Length && !input.EndOfStream; i++)
 {
     int correctAnswers = int.Parse(input.ReadLine() ?? "");
-    data[i] = (correctAnswers, Difficulty(correctAnswers));
+    data[i] = (correctAnswers, Difficulty(correctAnswers, hard, easy));
 }
 
 input.Close();
@@ -30,8 +30,7 @@ for (int i = 0; i < data.Length - 1; i++)
     }
 }
 
-
-string Difficulty(int correctAnswers)
+static string Difficulty(int correctAnswers, int hard, int easy)
 {
     if (correctAnswers > easy) return "könnyű";
     else if (correctAnswers > hard) return "közepes";

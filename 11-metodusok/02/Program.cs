@@ -7,7 +7,6 @@ while (!int.TryParse(Console.ReadLine(), out oldal) || oldal < 0 || oldal % 2 ==
 
 RombuszRajzolo(oldal);
 
-
 static void RombuszRajzolo(int oldal)
 {
     var toPrint = new StringBuilder();

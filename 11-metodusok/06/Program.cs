@@ -5,7 +5,6 @@ while (!int.TryParse(Console.ReadLine(), out number));
 
 Console.WriteLine($"A megadott szám {(isPrime(number) ? "prím" : "nem prím")}szám.");
 
-
 static bool isPrime(int number)
 {
     int dividers = 0;

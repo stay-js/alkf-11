@@ -20,7 +20,7 @@ Console.WriteLine(FindStudent(data, out int index)
 var students = FindStudents(data);
 Console.WriteLine(students.Length > 0
     ? $"A megadott névrészletnek megfelelő tanulók:\n" +
-        string.Join('\n', students.Select((student) =>
+        string.Join('\n', students.Select(student =>
         $"{student.Name}, kezdés éve: {student.Year}, osztály: {student.Class}"))
     : "Nincs a megadott névrészletnek megfelelő tanuló.");
 #endregion
@@ -38,9 +38,9 @@ WriteNamesToFile(data);
 static Student[] ReadData()
 {
     return File.ReadLines("adatok.txt")
-        .Select((line) =>
+        .Select(line =>
         {
-            var lineArr = line.Split();
+            string[] lineArr = line.Split();
             return new Student(int.Parse(lineArr[0]), lineArr[1], string.Join(' ', lineArr[2..]));
         }).ToArray();
 }
@@ -85,7 +85,7 @@ static Student[] FindStudents(Student[] data)
     int i = 0;
 
     foreach (var item in
-        data.Where((x) => x.Name.Contains(query, StringComparison.CurrentCultureIgnoreCase)))
+        data.Where(x => x.Name.Contains(query, StringComparison.CurrentCultureIgnoreCase)))
     {
         foundStudents[i++] = item;
     }

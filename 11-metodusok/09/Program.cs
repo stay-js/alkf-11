@@ -3,7 +3,6 @@ int[] numbers = (Console.ReadLine() ?? "").Split(", ").Select(int.Parse).ToArray
 
 Console.WriteLine($"{CountNumbersWithinRange(numbers)} olyan szám van ami az értékek átlagától maximum 10-el tér el.");
 
-
 static int CountNumbersWithinRange(int[] numbers)
 {
     double avg = numbers.Average();

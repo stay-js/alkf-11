@@ -3,7 +3,6 @@
 Console.Write("Adjon meg egy szöveget: ");
 Madar(Console.ReadLine() ?? "");
 
-
 static void Madar(string szoveg)
 {
     char[] vowels = ['a', 'á', 'e', 'é', 'i', 'í', 'o', 'ó', 'ö', 'ő', 'u', 'ú', 'ü', 'ű'];

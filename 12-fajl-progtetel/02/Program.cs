@@ -31,7 +31,6 @@ if (FindNameByMonogram(names, out string foundName)) Console.WriteLine(foundName
 else Console.WriteLine("Nincs ilyen monogrammal rendelkező ember a listán.");
 #endregion
 
-
 static string[] StringBubbleSort(string[] array)
 {
     string[] sortedArray = array[..];
@@ -58,8 +57,8 @@ static bool Contains(string[] array, int length, string item)
     {
         i++;
     }
-
-   return i < length;
+    
+    return i < length;
 }
 
 static int CountPeopleWithMultipleLastNames(string[] names)
@@ -131,7 +130,7 @@ static bool FindNameByMonogram(string[] names, out string name)
     int i = 0;
 
     while (i < names.Length
-        && string.Concat(names[i].Split().Select((name) => name[0])) != monogramm)
+        && string.Concat(names[i].Split().Select(name => name[0])) != monogramm)
     {
         i++;
     }

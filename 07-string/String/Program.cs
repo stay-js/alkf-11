@@ -31,7 +31,7 @@ Console.Write("\nAdjon meg egy szót, amely legalább 3 betűből áll: ");
 string word = Console.ReadLine() ?? "";
 
 Console.WriteLine(word[0] +
-    string.Concat(word[1..^1].OrderBy((_) => Random.Shared.Next())) +
+    string.Concat(word[1..^1].OrderBy(_ => Random.Shared.Next())) +
     word[^1]);
 #endregion
 
@@ -46,11 +46,12 @@ string word2 = Console.ReadLine() ?? "";
 Console.WriteLine(word1 + word2);
 
 //b.
-if (word1.Length == word2.Length)
-    Console.WriteLine("A két szó hossza megegyezik.");
+if (word1.Length == word2.Length) Console.WriteLine("A két szó hossza megegyezik.");
 else
+{
     Console.WriteLine($"{(word1.Length > word2.Length ? "Az első" : "A második")}" +
         $"szó a hosszabb.");
+}
 
 //c.
 Console.WriteLine($"{word1};{word2}");
@@ -96,7 +97,7 @@ toPrint.Clear();
 
 foreach (char ch in str2)
 {
-    toPrint.Append(char.IsLower(ch)? char.ToUpper(ch) : char.ToLower(ch));
+    toPrint.Append(char.IsLower(ch) ? char.ToUpper(ch) : char.ToLower(ch));
 }
 
 Console.WriteLine(toPrint);
@@ -116,13 +117,13 @@ toPrint.Clear();
 toPrint.Append(name[0][..2].ToLower());
 
 //ii.
-for (int i = 0; i < 3; i++) 
+for (int i = 0; i < 3; i++)
 {
-     toPrint.Append(Random.Shared.Next(0, 10));
+    toPrint.Append(Random.Shared.Next(0, 10));
 }
 
 //iii.
-for (int i = 0; i < name[1].Length; i++) 
+for (int i = 0; i < name[1].Length; i++)
 {
     if (i % 2 != 0) toPrint.Append(name[1][i]);
 }
@@ -139,7 +140,7 @@ Console.WriteLine(toPrint);
 #region 5.feladat
 toPrint.Clear();
 
-char[] vowels = ['a', 'á', 'e', 'é', 'i', 'í', 'o', 'ó', 'ö', 'ő', 'u', 'ú', 'ü', 'ű' ];
+char[] vowels = ['a', 'á', 'e', 'é', 'i', 'í', 'o', 'ó', 'ö', 'ő', 'u', 'ú', 'ü', 'ű'];
 
 Console.Write("\nAdjon meg egy szöveget: ");
 
@@ -169,23 +170,23 @@ Console.Write("Adja meg a jelszót újra: ");
 string retypedPassword = Console.ReadLine() ?? "";
 
 //b.
-if(password != retypedPassword) Console.WriteLine("A két jelszó nem egyezik!");
+if (password != retypedPassword) Console.WriteLine("A két jelszó nem egyezik!");
 
 //c.
-if(password.Length < 8) Console.WriteLine("A jelszó hossza nem éri el a 8 karaktert!");
+if (password.Length < 8) Console.WriteLine("A jelszó hossza nem éri el a 8 karaktert!");
 
 //d.
-if(!password.Any(char.IsUpper)) Console.WriteLine("A jelszó nem tartalmaz nagybetűt!");
+if (!password.Any(char.IsUpper)) Console.WriteLine("A jelszó nem tartalmaz nagybetűt!");
 
 //e.
-if(!password.Any(char.IsLower)) Console.WriteLine("A jelszó nem tartalmaz kisbetűt!");
+if (!password.Any(char.IsLower)) Console.WriteLine("A jelszó nem tartalmaz kisbetűt!");
 
 //f.
-if(!password.Any(new[] { '!', '?', '.', '@', '#', '$' }.Contains))
+if (!password.Any(new[] { '!', '?', '.', '@', '#', '$' }.Contains))
     Console.WriteLine("A jelszó nem tartalmaz speciális karaktert!");
 
 //g.
-if(!password.Any(char.IsDigit)) Console.WriteLine("A jelszó nem tartalmaz számot!");
+if (!password.Any(char.IsDigit)) Console.WriteLine("A jelszó nem tartalmaz számot!");
 #endregion
 
 #region 8.feladat
@@ -214,7 +215,7 @@ string secondHalf = string.Concat(str4[(str4.Length / 2)..].Reverse());
 toPrint.Clear();
 
 for (int i = 0; i < firstHalf.Length + secondHalf.Length; i++)
-{ 
+{
     toPrint.Append((i % 2 == 0 ? secondHalf : firstHalf)[i / 2]);
 }
 

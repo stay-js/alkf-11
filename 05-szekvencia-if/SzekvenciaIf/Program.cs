@@ -70,7 +70,7 @@ Console.Write("Adja meg az ön által elért pontot: ");
 double scoredPoints = double.Parse(Console.ReadLine() ?? "");
 
 if (scoredPoints > max)
-     Console.WriteLine("Nem megfelelő adatok.");
+    Console.WriteLine("Nem megfelelő adatok.");
 else if (scoredPoints >= max * 0.85)
     Console.WriteLine("Jól dolgoztál, ötös a dolgozatod. Ügyes vagy.");
 else
