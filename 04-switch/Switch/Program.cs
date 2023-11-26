@@ -71,9 +71,8 @@ Console.WriteLine(int.Parse(Console.ReadLine() ?? "") switch
 #region 5. feladat
 Console.Write("\nAdjon megy egy szeptemberi napot: ");
 int day = int.Parse(Console.ReadLine() ?? "");
-var dateValue = new DateTime(2023, 09, day, 0, 0, 0, DateTimeKind.Utc);
 
-Console.WriteLine(dateValue.DayOfWeek switch
+Console.WriteLine(new DateTime(2023, 09, day, 0, 0, 0, DateTimeKind.Utc).DayOfWeek switch
 {
     DayOfWeek.Monday => "Hétfő: Matek, Töri, Angol, Német, Irodalom, Tesi",
     DayOfWeek.Tuesday => "Kedd: Webprogramozás, IKT",
@@ -149,7 +148,7 @@ Console.WriteLine($"Készpénzben fizetendő összeg: {Math.Round(amount / 5) * 
 Console.Write("\nAdjon meg egy évszámot: ");
 int year = int.Parse(Console.ReadLine() ?? "");
 
-Console.Write("Adja meg egy hónap nevét");
+Console.Write("Adja meg egy hónap nevét: ");
 Console.WriteLine((Console.ReadLine() ?? "").ToLower() switch
 {
     "január" => "31",
@@ -208,15 +207,16 @@ else Console.WriteLine("A lámpa éjszakai fénnyel világít.");
 #endregion
 
 #region 12.feldat
-int[] card = [Random.Shared.Next(1, 10), Random.Shared.Next(10), Random.Shared.Next(10), Random.Shared.Next(10)];
+int[] card = [Random.Shared.Next(1, 10),
+    .. Enumerable.Range(0, 3).Select(_ => Random.Shared.Next(10))];
 
-bool firstRoom = card[0] > 4;
-bool secondRoom = card[1] > 4;
-bool thirdRoom = card[2] > 4;
-bool fourthRoom = card[3] > 4;
-bool fifthRoom = card[0] % 2 == 0 && card[2] % 2 == 0;
-bool sixthRoom = card[1] % 2 == 0 && card[3] % 2 == 0;
-bool seventhRoom = card[0] > 4
+bool[] rooms = [card[0] > 4,
+    card[1] > 4,
+    card[2] > 4,
+    card[3] > 4,
+    card[0] % 2 == 0 && card[2] % 2 == 0,
+    card[1] % 2 == 0 && card[3] % 2 == 0,
+    card[0] > 4
     && card[1] > 4
     && card[2] > 4
     && card[3] > 4
@@ -224,20 +224,19 @@ bool seventhRoom = card[0] > 4
     && card[1] % 2 == 0
     && card[2] % 2 == 0
     && card[3] % 2 == 0
-    && !(card[0] == card[1] && card[1] == card[2] && card[2] == card[3]);
+    && !(card[0] == card[1] && card[1] == card[2] && card[2] == card[3])];
 
 Console.Write($"\nA generált kód a {string.Join("", card)}:");
 
-if (!(firstRoom || secondRoom || thirdRoom || fourthRoom || fifthRoom || sixthRoom || seventhRoom))
-    Console.WriteLine(" A kód érvénytelen!");
+if (!Array.Exists(rooms, x => x)) Console.WriteLine(" A kód érvénytelen!");
 else
 {
-    Console.WriteLine($"\n\t- 1. helyiségbe: {(firstRoom ? "beléphet" : "nem léphet be")}" +
-        $"\n\t- 2. helyiségbe: {(secondRoom ? "beléphet" : "nem léphet be")}" +
-        $"\n\t- 3. helyiségbe: {(thirdRoom ? "beléphet" : "nem léphet be")}" +
-        $"\n\t- 4. helyiségbe: {(fourthRoom ? "beléphet" : "nem léphet be")}" +
-        $"\n\t- 5. helyiségbe: {(fifthRoom ? "beléphet" : "nem léphet be")}" +
-        $"\n\t- 6. helyiségbe: {(sixthRoom ? "beléphet" : "nem léphet be")}" +
-        $"\n\t- 7. helyiségbe: {(seventhRoom ? "beléphet" : "nem léphet be")}");
+    Console.WriteLine($"\n\t- 1. helyiségbe: {(rooms[0] ? "beléphet" : "nem léphet be")}" +
+        $"\n\t- 2. helyiségbe: {(rooms[1] ? "beléphet" : "nem léphet be")}" +
+        $"\n\t- 3. helyiségbe: {(rooms[2] ? "beléphet" : "nem léphet be")}" +
+        $"\n\t- 4. helyiségbe: {(rooms[3] ? "beléphet" : "nem léphet be")}" +
+        $"\n\t- 5. helyiségbe: {(rooms[4] ? "beléphet" : "nem léphet be")}" +
+        $"\n\t- 6. helyiségbe: {(rooms[5] ? "beléphet" : "nem léphet be")}" +
+        $"\n\t- 7. helyiségbe: {(rooms[6] ? "beléphet" : "nem léphet be")}");
 }
 #endregion
