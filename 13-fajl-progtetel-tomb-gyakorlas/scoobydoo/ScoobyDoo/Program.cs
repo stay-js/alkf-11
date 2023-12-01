@@ -158,7 +158,8 @@ static int[] EvenSnacksFound(Investigation[] data)
 static void WriteAtLeast50SnacksCollectedToFile(Investigation[] data)
 {
     var output = new StreamWriter("min-50-snack.txt");
-    output.WriteLine(string.Join('\n', data.Where(item => item.SnacksCollected >= 50)));
+    output.WriteLine(string.Join('\n',
+        data.Where(item => item.SnacksCollected >= 50).Select(item => item.SnacksCollected)));
     output.Close();
 }
 
