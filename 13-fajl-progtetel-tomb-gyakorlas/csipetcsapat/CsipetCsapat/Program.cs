@@ -113,12 +113,7 @@ static int FindDividableBy5(int[] data)
 
 static void WriteTurboToFile(int[] data)
 {
-    int[] turbo = new int[data.Length];
-
-    for (int i = 0; i < turbo.Length; i++)
-    {
-        turbo[i] = data[i] * 3;
-    }
+    int[] turbo = data.Select(x => x * 3).ToArray();
 
     var output = new StreamWriter("turbo.txt");
 

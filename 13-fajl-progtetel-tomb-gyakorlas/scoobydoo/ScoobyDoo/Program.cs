@@ -24,7 +24,8 @@ Console.WriteLine($"{CountLakeHeviz(data)} alkalommal nyomoztak a Hévízi-tón�
 #endregion
 
 #region 6.feladat
-Console.WriteLine($"{data[MaxSnackCollected(data)].Location}-nál/nél találta a legtöbb nyomot Scooby-Doo.");
+Console.WriteLine(data[MaxSnackCollected(data)].Location
+    + " -nál/nél találta a legtöbb nyomot Scooby-Doo.");
 #endregion
 
 #region 7.feladat
@@ -47,7 +48,7 @@ WriteAtLeast50SnacksCollectedToFile(data);
 #endregion
 
 #region 11.feladat
-(int[] dividable, int[] unDividable) = SelectDividableAnUnDividableBy3(data);
+(int[] dividable, int[] unDividable) = DividableAndUnDividableBy3(data);
 Console.WriteLine($"\n3-mal osztható: {string.Join(", ", dividable)}");
 Console.WriteLine($"3-mal nem osztható: {string.Join(", ", unDividable)}");
 #endregion
@@ -131,6 +132,11 @@ static bool FindInvestigationByLocation(Investigation[] data, out int index)
 
 static int[] EvenSnacksFound(Investigation[] data)
 {
+    //return data
+    //    .Where(item => item.SnacksCollected % 2 == 0)
+    //    .Select(item => item.SnacksCollected)
+    //    .ToArray();
+
     int[] evenSnacks = new int[data.Length];
     int i = 0;
 
@@ -152,17 +158,19 @@ static int[] EvenSnacksFound(Investigation[] data)
 static void WriteAtLeast50SnacksCollectedToFile(Investigation[] data)
 {
     var output = new StreamWriter("min-50-snack.txt");
-
-    foreach (var item in data)
-    {
-        if (item.SnacksCollected >= 50) output.WriteLine(item.Location);
-    }
-
+    output.WriteLine(string.Join('\n', data.Where(item => item.SnacksCollected >= 50)));
     output.Close();
 }
 
-static (int[], int[]) SelectDividableAnUnDividableBy3(Investigation[] data)
+static (int[], int[]) DividableAndUnDividableBy3(Investigation[] data)
 {
+    //int[] snacksCollected = data.Select(item => item.SnacksCollected).ToArray();
+
+    //return (
+    //    snacksCollected.Where(x => x % 3 == 0).ToArray(),
+    //    snacksCollected.Where(x => x % 3 != 0).ToArray()
+    //    );
+
     int[] dividable = new int[data.Length];
     int[] unDividable = new int[data.Length];
     int i = 0;
