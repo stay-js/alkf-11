@@ -2,7 +2,7 @@
 
 #region a.
 Console.WriteLine(CountPeopleWithMultipleLastNames(names) +
-    $"beolvasott embernek van legalább 2 keresztneve.");
+    "beolvasott embernek van legalább 2 keresztneve.");
 #endregion
 
 #region b.
@@ -57,7 +57,7 @@ static bool Contains(string[] array, int length, string item)
     {
         i++;
     }
-    
+
     return i < length;
 }
 

@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Local;
+﻿using Local;
 
 #region a
 var data = ReadData();
@@ -92,15 +91,10 @@ static bool FindStudent(Student[] data, out int index)
 
 static void WriteTotalScoresToFile(Student[] data)
 {
-    var output = new StreamWriter("osszpontok.csv", false, Encoding.UTF8);
+    var output = new StreamWriter("osszpontok.csv", false, System.Text.Encoding.UTF8);
 
     output.WriteLine(data.Length);
-
-    foreach (var item in data)
-    {
-        output.WriteLine($"{item.Name};{item.TotalScore}");
-    }
-
+    output.WriteLine(string.Join('\n', data.Select(item => $"{item.Name};{item.TotalScore}")));
     output.Close();
 }
 

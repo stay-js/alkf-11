@@ -81,11 +81,15 @@ static Student[] FindStudents(Student[] data)
     Console.Write("\nAdjon meg egy névrészletet: ");
     string query = Console.ReadLine() ?? "";
 
+    //return data
+    //    .Where(item => item.Name.Contains(query, StringComparison.CurrentCultureIgnoreCase))
+    //    .ToArray();
+
     var foundStudents = new Student[data.Length];
     int i = 0;
 
     foreach (var item in
-        data.Where(x => x.Name.Contains(query, StringComparison.CurrentCultureIgnoreCase)))
+        data.Where(item => item.Name.Contains(query, StringComparison.CurrentCultureIgnoreCase)))
     {
         foundStudents[i++] = item;
     }
@@ -115,12 +119,7 @@ static int LongestName(Student[] data)
 static void WriteNamesToFile(Student[] data)
 {
     var output = new StreamWriter("nevsor.txt");
-
-    foreach (var student in data)
-    {
-        output.WriteLine(student.Name);
-    }
-
+    output.WriteLine(string.Join('\n', data.Select(item => item.Name)));
     output.Close();
 }
 
