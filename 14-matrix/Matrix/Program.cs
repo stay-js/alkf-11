@@ -1,68 +1,63 @@
 ﻿#region 1.feladat
-int[,] numbers = Generate2dRandomIntMatrix();
-
-for (int y = 0; y < numbers.GetLength(1); y++)
-{
-    for (int x = 0; x < numbers.GetLength(1); x++)
-    {
-        Console.Write($"{numbers[y, x],4}");
-    }
-
-    Console.WriteLine();
-}
+Print2dIntMatrix(Generate2dRandomIntMatrix());
 #endregion
 
 #region 2.feladat
 Console.WriteLine();
 
-string[,] names = {
-    { "Anna", "Béla", "Pista" },
-    { "János", "Péter", "Viktor" },
-    { "Gábor", "Marcell", "Zsepykesz" }
-};
-
-for (int y = 0; y < names.GetLength(0); y++)
-{
-    for (int x = 0; x < names.GetLength(0); x++)
-    {
-        Console.WriteLine($"{y + 1}. sor {x + 1}. eleme: {names[y, x]}");
-    }
-}
+GenerateAndPrintNamesMatrix();
 #endregion
 
 #region 3.feladat
 Console.WriteLine();
 
-int[][] jaggedVector = GenerateJaggedVector();
-
-foreach (int[] row in jaggedVector)
-{
-    Console.WriteLine(string.Join(" ", row));
-}
+Print2dJaggedVector(GenerateJaggedVector());
 #endregion
 
 #region 4.feladat
 Console.WriteLine();
 
-jaggedVector = GenerateJaggedVectorWithInit();
-
-foreach (int[] row in jaggedVector)
-{
-    Console.WriteLine(string.Join(" ", row));
-}
+Print2dJaggedVector(GenerateJaggedVectorWithInit());
 #endregion
 
 #region 5. feladat
-PrintNxNMatrix();
+Print2dIntMatrix(GenerateNxNMatrix());
 #endregion
 
 #region 6. feladat
-ContinuousMatrix();
+Print2dIntMatrix(GenerateContinuousMatrix());
 #endregion
 
 #region 7. feladat
-GenerateAndPrintNxNMatrix();
+PrintNxNMatrix(GenerateRandomNxNMatrix());
 #endregion
+
+static void Print2dIntMatrix(int[,] matrix)
+{
+    for (int y = 0; y < matrix.GetLength(0); y++)
+    {
+        for (int x = 0; x < matrix.GetLength(1); x++)
+        {
+            Console.Write($"{matrix[y, x],4}");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+
+static void Print2dJaggedVector(int[][] vec)
+{
+    for (int y = 0; y < vec.Length; y++)
+    {
+        for (int x = 0; x < vec[y].Length; x++)
+        {
+            Console.Write($"{vec[y][x],4}");
+        }
+
+        Console.WriteLine();
+    }
+}
 
 static int[,] Generate2dRandomIntMatrix()
 {
@@ -83,6 +78,23 @@ static int[,] Generate2dRandomIntMatrix()
     }
 
     return numbers;
+}
+
+static void GenerateAndPrintNamesMatrix()
+{
+    string[,] names = {
+    { "Anna", "Béla", "Pista" },
+    { "János", "Péter", "Viktor" },
+    { "Gábor", "Marcell", "Zsepykesz" }
+};
+
+    for (int y = 0; y < names.GetLength(0); y++)
+    {
+        for (int x = 0; x < names.GetLength(0); x++)
+        {
+            Console.WriteLine($"{y + 1}. sor {x + 1}. eleme: {names[y, x]}");
+        }
+    }
 }
 
 static int[] GenerateRow()
@@ -115,7 +127,9 @@ static int[][] GenerateJaggedVectorWithInit()
     ];
 }
 
-static void PrintNxNMatrix()
+
+
+static int[,] GenerateNxNMatrix()
 {
     Console.Write("\nAdja meg a mátrix méretét: ");
     int length = int.Parse(Console.ReadLine() ?? "");
@@ -127,18 +141,10 @@ static void PrintNxNMatrix()
         matrix[i, i] = 1;
     }
 
-    for (int y = 0; y < length; y++)
-    {
-        for (int x = 0; x < length; x++)
-        {
-            Console.Write($"{matrix[y, x],2}");
-        }
-
-        Console.WriteLine();
-    }
+    return matrix;
 }
 
-static void ContinuousMatrix()
+static int[,] GenerateContinuousMatrix()
 {
     Console.Write("\nAdja meg a mátrix hosszát: ");
     int height = int.Parse(Console.ReadLine() ?? "");
@@ -146,28 +152,20 @@ static void ContinuousMatrix()
     Console.Write("Adja meg a mátrix szélességét: ");
     int width = int.Parse(Console.ReadLine() ?? "");
 
-    int[,] numbers = new int[height, width];
+    int[,] matrix = new int[height, width];
 
     for (int y = 0; y < height; y++)
     {
         for (int x = 0; x < width; x++)
         {
-            numbers[y, x] = x;
+            matrix[y, x] = x;
         }
     }
 
-    for (int y = 0; y < height; y++)
-    {
-        for (int x = 0; x < width; x++)
-        {
-            Console.Write($"{numbers[y, x],2}");
-        }
-
-        Console.WriteLine();
-    }
+    return matrix;
 }
 
-static void GenerateAndPrintNxNMatrix()
+static int[,] GenerateRandomNxNMatrix()
 {
     Console.Write("\nAdja meg a mátrix hosszát: ");
     int width = int.Parse(Console.ReadLine() ?? "");
@@ -175,36 +173,92 @@ static void GenerateAndPrintNxNMatrix()
     Console.Write("Adja meg a mátrix szélességét: ");
     int height = int.Parse(Console.ReadLine() ?? "");
 
-    int[,] numbers = new int[width, height];
+    int[,] matrix = new int[width, height];
 
     for (int y = 0; y < width; y++)
     {
         for (int x = 0; x < height; x++)
         {
-            numbers[y, x] = Random.Shared.Next(101);
+            matrix[y, x] = Random.Shared.Next(101);
         }
     }
+
+    return matrix;
+}
+
+static void PrintNxNMatrix(int[,] matrix)
+{
+    int width = matrix.GetLength(0);
+    int height = matrix.GetLength(1);
 
     Console.WriteLine("\nAll:");
     for (int y = 0; y < width; y++)
     {
         for (int x = 0; x < height; x++)
         {
-            Console.Write($"{numbers[y, x],4}");
+            Console.Write($"{matrix[y, x],4}");
         }
 
         Console.WriteLine();
     }
 
     Console.WriteLine("\nMain diagonal:");
-    for (int i = 0; i < numbers.GetLength(0); i++)
+    for (int i = 0; i < matrix.GetLength(0); i++)
     {
-        Console.WriteLine(numbers[i, i]);
+        Console.WriteLine(matrix[i, i]);
     }
 
     Console.WriteLine("\nSecondary diagonal:");
     for (int y = 0, x = height - 1; y < width && x >= 0; y++, x--)
     {
-        Console.WriteLine(numbers[y, x]);
+        Console.WriteLine(matrix[y, x]);
+    }
+
+    Console.WriteLine("\nAbove main diagonal:");
+    for (int y = 0; y < width; y++)
+    {
+        for (int x = 0; x < height; x++)
+        {
+            if (x > y)
+            {
+                Console.WriteLine(matrix[y, x]);
+            }
+        }
+    }
+
+    Console.WriteLine("\nBelow main diagonal:");
+    for (int y = 0; y < width; y++)
+    {
+        for (int x = 0; x < height; x++)
+        {
+            if (x < y)
+            {
+                Console.WriteLine(matrix[y, x]);
+            }
+        }
+    }
+
+    Console.WriteLine("\nAbove secondary diagonal:");
+    for (int y = 0; y < width; y++)
+    {
+        for (int x = 0; x < height; x++)
+        {
+            if (x < width - y - 1)
+            {
+                Console.WriteLine(matrix[y, x]);
+            }
+        }
+    }
+
+    Console.WriteLine("\nBelow secondary diagonal:");
+    for (int y = 0; y < width; y++)
+    {
+        for (int x = 0; x < height; x++)
+        {
+            if (x >= width - y)
+            {
+                Console.WriteLine(matrix[y, x]);
+            }
+        }
     }
 }
