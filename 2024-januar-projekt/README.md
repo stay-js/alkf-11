@@ -3,7 +3,22 @@
 ## Adatok generálása
 
 ```bash
-cd rust && cargo run --bin generate_data && cd ..
+cd rust
+cargo run --bin generate_data
+```
+
+## Rust implementáció futtatása
+
+```bash
+cd rust
+cargo run --bin solution
+```
+
+## C# implementáció futtatása
+
+```bash
+cd csharp/AsztaliProjekt
+dotnet run
 ```
 
 ## Leírás
