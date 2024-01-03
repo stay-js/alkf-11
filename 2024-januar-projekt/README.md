@@ -6,12 +6,6 @@
 cd rust && cargo run --bin generate_data && cd ..
 ```
 
-## Adatok másolása a C# projektbe
-
-```bash
-cp rust/adatok.csv csharp/AsztaliProjekt/adatok.csv
-```
-
 ## Leírás
 
 Az `adatok.csv` állomány 250 tanuló nevét és jegyeit tartalmazza. A tanulók nevei és jegyei véletlenszerűen generáltak. Az állományban található adatok pontosvesszővel vannak elválasztva. A sorok első oszlopa a tanulók neveit, a többi oszlop pedig a tanulók jegyeit tartalmazza az alábbi sorrendben: magyar, matematika, történelem, angol, informatika.
@@ -61,6 +55,10 @@ Irassa ki azon tanulók nevét, akik rendelkeznek a felhasználó által megadot
 ### 11. feladat
 
 Irassa ki azon tanulók nevét, jegyeit és átlagát, akik megbuktak legalább egy tantárgyból.
+
+## Megjegyzés
+
+Tudom, hogy nem a legjobb ötlet egy mátrixos feladathoz (mivel szerintem a Rust implementációban használt adatszerkezet sokkal jobban megfelel a problémának), de sajnos nem volt jobb ötletem.
 
 <br>
 <br>

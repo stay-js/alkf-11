@@ -3,7 +3,7 @@ mod constants;
 
 use constants::{first_names::FIRST_NAMES, last_names::LAST_NAMES};
 use rand::{seq::SliceRandom, Rng};
-use std::fs;
+use std::{fs, path::Path};
 
 const NUMBER_OF_STUDENTS: usize = 250;
 const NUMBER_OF_SUBJECTS: usize = 5;
@@ -24,5 +24,10 @@ fn main() {
         })
         .collect();
 
-    fs::write("adatok.csv", data.join("\n")).expect("Unable to write file");
+    fs::write("adatok.csv", data.join("\n")).expect("Failed to write file");
+
+    if Path::new("../csharp/AsztaliProjekt").exists() {
+        fs::copy("adatok.csv", "../csharp/AsztaliProjekt/adatok.csv")
+            .expect("Failed to copy file to C# project");
+    }
 }
