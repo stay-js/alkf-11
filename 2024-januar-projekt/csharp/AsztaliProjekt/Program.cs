@@ -54,7 +54,7 @@ Console.WriteLine("\nÁtlag feletti érdemjegyek száma tantárgynként:" +
 
 #region 9. feladat
 Console.WriteLine($"\n{CountBetterInMathsThenPrevious()} olyan tanuló van aki jobb érdemjegyet" +
-    "szerzett matematikából, mint az előtte álló tanuló.");
+    "szerzett matematikából, mint az előtte álló tanuló.\n");
 #endregion
 
 #region 10. feladat
