@@ -6,18 +6,18 @@ Console.WriteLine($"{data.Length} diák adata került rögzítésre.");
 #endregion
 
 #region b
-Console.WriteLine($"A megadott évben {CountStudentsByYear(data)} diák kezdte az iskolát.");
+Console.WriteLine($"A megadott évben {CountStudentsByYear()} diák kezdte az iskolát.");
 #endregion
 
 #region c
-Console.WriteLine(FindStudent(data, out int index)
+Console.WriteLine(FindStudent(out int index)
     ? $"A megadott diák {data[index].Year}-ban/ben kezdte az iskolát, " +
       $"és a(z) {data[index].Class} jelű osztályba járt."
     : "A megadott diák nem található.");
 #endregion
 
 #region d
-var students = FindStudents(data);
+var students = FindStudents();
 Console.WriteLine(students.Length > 0
     ? $"A megadott névrészletnek megfelelő tanulók:\n" +
         string.Join('\n', students.Select(student =>
@@ -26,13 +26,13 @@ Console.WriteLine(students.Length > 0
 #endregion
 
 #region e
-var longestName = data[LongestName(data)];
+var longestName = data[LongestName()];
 Console.WriteLine($"\nA leghosszabb nevű tanuló: {longestName.Name}, " +
     $"{longestName.Year}-ban/ben kezdte a tanulmányait a(z) {longestName.Class} jelű osztályban.");
 #endregion
 
 #region f
-WriteNamesToFile(data);
+WriteNamesToFile();
 #endregion
 
 static Student[] ReadData()
@@ -45,7 +45,7 @@ static Student[] ReadData()
         }).ToArray();
 }
 
-static int CountStudentsByYear(Student[] data)
+int CountStudentsByYear()
 {
     Console.Write("\nAdjon meg egy évszámot: ");
     int year = int.Parse(Console.ReadLine() ?? "");
@@ -60,7 +60,7 @@ static int CountStudentsByYear(Student[] data)
     return count;
 }
 
-static bool FindStudent(Student[] data, out int index)
+bool FindStudent(out int index)
 {
     Console.Write("\nAdja meg egy diák nevét: ");
     string name = Console.ReadLine() ?? "";
@@ -76,7 +76,7 @@ static bool FindStudent(Student[] data, out int index)
     return index < data.Length;
 }
 
-static Student[] FindStudents(Student[] data)
+Student[] FindStudents()
 {
     Console.Write("\nAdjon meg egy névrészletet: ");
     string query = Console.ReadLine() ?? "";
@@ -86,25 +86,20 @@ static Student[] FindStudents(Student[] data)
     //    .ToArray();
 
     var foundStudents = new Student[data.Length];
-    int i = 0;
+    int len = 0;
 
     foreach (var item in
         data.Where(item => item.Name.Contains(query, StringComparison.CurrentCultureIgnoreCase)))
     {
-        foundStudents[i++] = item;
+        foundStudents[len++] = item;
     }
 
-    var actualLength = new Student[i];
+    Array.Resize(ref foundStudents, len);
 
-    for (i = 0; i < actualLength.Length; i++)
-    {
-        actualLength[i] = foundStudents[i];
-    }
-
-    return actualLength;
+    return foundStudents;
 }
 
-static int LongestName(Student[] data)
+int LongestName()
 {
     int longestName = 0;
 
@@ -116,7 +111,7 @@ static int LongestName(Student[] data)
     return longestName;
 }
 
-static void WriteNamesToFile(Student[] data)
+void WriteNamesToFile()
 {
     var output = new StreamWriter("nevsor.txt");
     output.WriteLine(string.Join('\n', data.Select(item => item.Name)));

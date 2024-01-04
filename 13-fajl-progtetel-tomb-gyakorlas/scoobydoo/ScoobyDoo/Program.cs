@@ -16,39 +16,39 @@ Console.WriteLine($"\n{data.Length} nyomozáson vettek részt.");
 #endregion
 
 #region 4.feladat
-Console.WriteLine($"Scooby-Doo átlagosan {AvgSnackCollected(data)} snacket gyűjtött össze.");
+Console.WriteLine($"Scooby-Doo átlagosan {AvgSnackCollected()} snacket gyűjtött össze.");
 #endregion
 
 #region 5.feladat
-Console.WriteLine($"{CountLakeHeviz(data)} alkalommal nyomoztak a Hévízi-tónál.");
+Console.WriteLine($"{CountLakeHeviz()} alkalommal nyomoztak a Hévízi-tónál.");
 #endregion
 
 #region 6.feladat
-Console.WriteLine(data[MaxSnackCollected(data)].Location
+Console.WriteLine(data[MaxSnackCollected()].Location
     + " -nál/nél találta a legtöbb nyomot Scooby-Doo.");
 #endregion
 
 #region 7.feladat
-Console.WriteLine((DidScoobyDooCollectedSpecifiedAmountOfSnacks(data) ? "Talált" : "Nem talált") +
+Console.WriteLine((DidScoobyDooCollectedSpecifiedAmountOfSnacks() ? "Talált" : "Nem talált") +
     " Scooby-Doo pontosan a megadott mennyiségű snacket.");
 #endregion
 
 #region 8.feladat
-Console.WriteLine(FindInvestigationByLocation(data, out int index)
+Console.WriteLine(FindInvestigationByLocation(out int index)
     ? $"{data[index].SnacksCollected} snacket talált Scooby-Doo a megadott helyszínen."
     : "A megadott helyszín nem található.");
 #endregion
 
 #region 9.feladat
-Console.WriteLine($"Páros gyűjtött snackek: {string.Join(", ", EvenSnacksFound(data))}");
+Console.WriteLine($"Páros gyűjtött snackek: {string.Join(", ", EvenSnacksFound())}");
 #endregion
 
 #region 10.feladat
-WriteAtLeast50SnacksCollectedToFile(data);
+WriteAtLeast50SnacksCollectedToFile();
 #endregion
 
 #region 11.feladat
-(int[] dividable, int[] unDividable) = DividableAndUnDividableBy3(data);
+(int[] dividable, int[] unDividable) = DividableAndUnDividableBy3();
 Console.WriteLine($"\n3-mal osztható: {string.Join(", ", dividable)}");
 Console.WriteLine($"3-mal nem osztható: {string.Join(", ", unDividable)}");
 #endregion
@@ -63,7 +63,7 @@ static Investigation[] ReadData()
         }).ToArray();
 }
 
-static double AvgSnackCollected(Investigation[] data)
+double AvgSnackCollected()
 {
     double sum = 0;
 
@@ -75,7 +75,7 @@ static double AvgSnackCollected(Investigation[] data)
     return sum / data.Length;
 }
 
-static int CountLakeHeviz(Investigation[] data)
+int CountLakeHeviz()
 {
     int count = 0;
 
@@ -87,7 +87,7 @@ static int CountLakeHeviz(Investigation[] data)
     return count;
 }
 
-static int MaxSnackCollected(Investigation[] data)
+int MaxSnackCollected()
 {
     int max = 0;
 
@@ -99,7 +99,7 @@ static int MaxSnackCollected(Investigation[] data)
     return max;
 }
 
-static bool DidScoobyDooCollectedSpecifiedAmountOfSnacks(Investigation[] data)
+bool DidScoobyDooCollectedSpecifiedAmountOfSnacks()
 {
     Console.Write("\nAdja meg a keresett értéket: ");
     int amount = int.Parse(Console.ReadLine() ?? "");
@@ -114,7 +114,7 @@ static bool DidScoobyDooCollectedSpecifiedAmountOfSnacks(Investigation[] data)
     return i < data.Length;
 }
 
-static bool FindInvestigationByLocation(Investigation[] data, out int index)
+bool FindInvestigationByLocation(out int index)
 {
     Console.Write("\nAdja meg a keresett helyszínt: ");
     string location = Console.ReadLine() ?? "";
@@ -130,7 +130,7 @@ static bool FindInvestigationByLocation(Investigation[] data, out int index)
     return index < data.Length;
 }
 
-static int[] EvenSnacksFound(Investigation[] data)
+int[] EvenSnacksFound()
 {
     //return data
     //    .Where(item => item.SnacksCollected % 2 == 0)
@@ -138,24 +138,19 @@ static int[] EvenSnacksFound(Investigation[] data)
     //    .ToArray();
 
     int[] evenSnacks = new int[data.Length];
-    int i = 0;
+    int len = 0;
 
     foreach (var item in data.Where(item => item.SnacksCollected % 2 == 0))
     {
-        evenSnacks[i++] = item.SnacksCollected;
+        evenSnacks[len++] = item.SnacksCollected;
     }
 
-    int[] actualLength = new int[i];
+    Array.Resize(ref evenSnacks, len);
 
-    for (i = 0; i < actualLength.Length; i++)
-    {
-        actualLength[i] = evenSnacks[i];
-    }
-
-    return actualLength;
+    return evenSnacks;
 }
 
-static void WriteAtLeast50SnacksCollectedToFile(Investigation[] data)
+void WriteAtLeast50SnacksCollectedToFile()
 {
     var output = new StreamWriter("min-50-snack.txt");
     output.WriteLine(string.Join('\n',
@@ -163,15 +158,8 @@ static void WriteAtLeast50SnacksCollectedToFile(Investigation[] data)
     output.Close();
 }
 
-static (int[], int[]) DividableAndUnDividableBy3(Investigation[] data)
+(int[], int[]) DividableAndUnDividableBy3()
 {
-    //int[] snacksCollected = data.Select(item => item.SnacksCollected).ToArray();
-
-    //return (
-    //    snacksCollected.Where(x => x % 3 == 0).ToArray(),
-    //    snacksCollected.Where(x => x % 3 != 0).ToArray()
-    //    );
-
     int[] dividable = new int[data.Length];
     int[] unDividable = new int[data.Length];
     int i = 0;
@@ -183,21 +171,10 @@ static (int[], int[]) DividableAndUnDividableBy3(Investigation[] data)
         else unDividable[j++] = item;
     }
 
-    int[] actualLengthDividable = new int[i];
+    Array.Resize(ref dividable, i);
+    Array.Resize(ref unDividable, j);
 
-    for (i = 0; i < actualLengthDividable.Length; i++)
-    {
-        actualLengthDividable[i] = dividable[i];
-    }
-
-    int[] actualLengthUnDividable = new int[j];
-
-    for (j = 0; j < actualLengthUnDividable.Length; j++)
-    {
-        actualLengthUnDividable[j] = unDividable[j];
-    }
-
-    return (actualLengthDividable, actualLengthUnDividable);
+    return (dividable, unDividable);
 }
 
 namespace Local

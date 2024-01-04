@@ -5,26 +5,26 @@ var data = ReadData();
 #endregion
 
 #region 2.feladat
-PrintAllCakes(data);
+PrintAllCakes();
 #endregion
 
 #region 3.feladat
-Console.WriteLine($"\nA torták átlagos ára: {AvgPrice(data):C0}.");
+Console.WriteLine($"\nA torták átlagos ára: {AvgPrice():C0}.");
 #endregion
 
 #region 4.feladat
-var mostExpensiveCake = data[MostExpensiveCake(data)];
+var mostExpensiveCake = data[MostExpensiveCake()];
 Console.WriteLine($"A legdrágább torta: " +
     $"{mostExpensiveCake.Name} ({mostExpensiveCake.Price:C0})");
 #endregion
 
 #region 5.feladat
 Console.WriteLine("4500 Ft-nál olcsóbb torták listája: ");
-PrintCheaperThanOrEqualTo4500(data);
+PrintCheaperThanOrEqualTo4500();
 #endregion
 
 #region 5.feladat
-Console.WriteLine(FindCake(data, out int index)
+Console.WriteLine(FindCake(out int index)
     ? $"A megadott torta megrendelése: {data[index].Price:C0}-ba kerül."
     : "A megadott torta nem található.");
 #endregion
@@ -39,7 +39,7 @@ static Cake[] ReadData()
         }).ToArray();
 }
 
-static void PrintAllCakes(Cake[] data)
+void PrintAllCakes()
 {
     foreach (var item in data)
     {
@@ -47,7 +47,7 @@ static void PrintAllCakes(Cake[] data)
     }
 }
 
-static double AvgPrice(Cake[] data)
+double AvgPrice()
 {
     double sum = 0;
 
@@ -59,7 +59,7 @@ static double AvgPrice(Cake[] data)
     return sum / data.Length;
 }
 
-static int MostExpensiveCake(Cake[] data)
+int MostExpensiveCake()
 {
     int mostExpensive = 0;
 
@@ -71,7 +71,7 @@ static int MostExpensiveCake(Cake[] data)
     return mostExpensive;
 }
 
-static void PrintCheaperThanOrEqualTo4500(Cake[] data)
+void PrintCheaperThanOrEqualTo4500()
 {
     foreach (var item in data)
     {
@@ -79,7 +79,7 @@ static void PrintCheaperThanOrEqualTo4500(Cake[] data)
     }
 }
 
-static bool FindCake(Cake[] data, out int index)
+bool FindCake(out int index)
 {
     Console.Write("\nAdja meg egy torta nevét: ");
     string name = Console.ReadLine() ?? "";

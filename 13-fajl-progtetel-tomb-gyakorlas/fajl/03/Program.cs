@@ -2,19 +2,19 @@
 
 #region a
 var data = ReadData();
-PrintAllStudents(data);
+PrintAllStudents();
 #endregion
 
 #region b
-Console.WriteLine($"\n{data[MaxScoreIndex(data)].Name} érte el a legmagasabb pontszámot.");
+Console.WriteLine($"\n{data[MaxScoreIndex()].Name} érte el a legmagasabb pontszámot.");
 #endregion
 
 #region c
-Console.WriteLine($"Az átlagos elért összponszám: {Math.Round(AvgScore(data), 2)} pont.");
+Console.WriteLine($"Az átlagos elért összponszám: {Math.Round(AvgScore(), 2)} pont.");
 #endregion
 
 #region d
-if (FindStudent(data, out int index))
+if (FindStudent(out int index))
 {
     var student = data[index];
     Console.WriteLine($"A megadott felvételiző: " +
@@ -24,7 +24,7 @@ else Console.WriteLine("A megadott felvételiző nem található.");
 #endregion
 
 #region e
-WriteTotalScoresToFile(data);
+WriteTotalScoresToFile();
 #endregion
 
 static Student[] ReadData()
@@ -40,16 +40,16 @@ static Student[] ReadData()
         }).ToArray();
 }
 
-static void PrintAllStudents(Student[] students)
+void PrintAllStudents()
 {
-    foreach (var student in students)
+    foreach (var student in data)
     {
         Console.WriteLine($"{student.Name}: " +
             $"{student.BroughtScore} + {student.AchievedScore} = {student.TotalScore} pont.");
     }
 }
 
-static int MaxScoreIndex(Student[] data)
+int MaxScoreIndex()
 {
     int max = 0;
 
@@ -61,7 +61,7 @@ static int MaxScoreIndex(Student[] data)
     return max;
 }
 
-static double AvgScore(Student[] data)
+double AvgScore()
 {
     double sum = 0;
 
@@ -73,7 +73,7 @@ static double AvgScore(Student[] data)
     return sum / data.Length;
 }
 
-static bool FindStudent(Student[] data, out int index)
+bool FindStudent(out int index)
 {
     Console.Write("\nAdja meg egy felvételiző nevét: ");
     string name = Console.ReadLine() ?? "";
@@ -89,7 +89,7 @@ static bool FindStudent(Student[] data, out int index)
     return index < data.Length;
 }
 
-static void WriteTotalScoresToFile(Student[] data)
+void WriteTotalScoresToFile()
 {
     var output = new StreamWriter("osszpontok.csv", false, System.Text.Encoding.UTF8);
 

@@ -13,15 +13,15 @@ for (int i = 0; i < data.Length; i++)
 #endregion
 
 #region c.
-Console.WriteLine($"\nÖsszesen {SumOfPositive(data)} pozitív szavazatot kaptak a versenyzők.");
+Console.WriteLine($"\nÖsszesen {SumOfPositive()} pozitív szavazatot kaptak a versenyzők.");
 #endregion
 
 #region d.
-Console.WriteLine($"Átlagosan {AvgOfNegative(data):N2} negtív szavazatot kaptak a versenyzők.");
+Console.WriteLine($"Átlagosan {AvgOfNegative():N2} negtív szavazatot kaptak a versenyzők.");
 #endregion
 
 #region e.
-var moreNegativeThanPositive = MoreNegativeThanPositive(data);
+var moreNegativeThanPositive = MoreNegativeThanPositive();
 
 Console.WriteLine("\nAz alábbi versenyzők esetében volt több a negatív," +
     " mint a pozitív szavazatok aránya:");
@@ -32,17 +32,17 @@ foreach (var item in moreNegativeThanPositive)
 #endregion
 
 #region f.
-WriteRatiosToFile(data);
+WriteRatiosToFile();
 #endregion
 
 #region g.
-Console.WriteLine((DoesAtLeastSpecifiedDifferenceExist(data) ? "Volt" : "Nem volt") +
+Console.WriteLine((DoesAtLeastSpecifiedDifferenceExist() ? "Volt" : "Nem volt") +
     " olyan versenyző akinek a szavazatai közti különbség legalább a megadott érték.");
 #endregion
 
 #region h.
-int minIndex = MinIndex(data);
-int maxIndex = MaxIndex(data);
+int minIndex = MinIndex();
+int maxIndex = MaxIndex();
 
 Console.WriteLine($"\n{minIndex + 1}. versenyző kapta a legkevesebb szavazatot." +
     $" pozitív: {data[minIndex].Positive} negatív: {data[minIndex].Negative}");
@@ -69,7 +69,7 @@ static Competitor[] ReadData()
     return data;
 }
 
-static int SumOfPositive(Competitor[] data)
+int SumOfPositive()
 {
     int sum = 0;
 
@@ -81,7 +81,7 @@ static int SumOfPositive(Competitor[] data)
     return sum;
 }
 
-static double AvgOfNegative(Competitor[] data)
+double AvgOfNegative()
 {
     double sum = 0;
 
@@ -93,27 +93,22 @@ static double AvgOfNegative(Competitor[] data)
     return sum / data.Length;
 }
 
-static Competitor[] MoreNegativeThanPositive(Competitor[] data)
+Competitor[] MoreNegativeThanPositive()
 {
     var moreNegativeThanPositive = new Competitor[data.Length];
-    int i = 0;
+    int len = 0;
 
     foreach (var item in data.Where(item => item.Negative > item.Positive))
     {
-        moreNegativeThanPositive[i++] = item;
+        moreNegativeThanPositive[len++] = item;
     }
 
-    var actualLength = new Competitor[i];
+    Array.Resize(ref moreNegativeThanPositive, len);
 
-    for (i = 0; i < actualLength.Length; i++)
-    {
-        actualLength[i] = moreNegativeThanPositive[i];
-    }
-
-    return actualLength;
+    return moreNegativeThanPositive;
 }
 
-static void WriteRatiosToFile(Competitor[] data)
+void WriteRatiosToFile()
 {
     var output = new StreamWriter("aranyok.txt");
 
@@ -126,7 +121,7 @@ static void WriteRatiosToFile(Competitor[] data)
     output.Close();
 }
 
-static bool DoesAtLeastSpecifiedDifferenceExist(Competitor[] data)
+bool DoesAtLeastSpecifiedDifferenceExist()
 {
     Console.Write("\nAdja meg a keresett értéket: ");
     int query = int.Parse(Console.ReadLine() ?? "");
@@ -141,7 +136,7 @@ static bool DoesAtLeastSpecifiedDifferenceExist(Competitor[] data)
     return i < data.Length;
 }
 
-static int MinIndex(Competitor[] data)
+int MinIndex()
 {
     int min = 0;
 
@@ -153,7 +148,7 @@ static int MinIndex(Competitor[] data)
     return min;
 }
 
-static int MaxIndex(Competitor[] data)
+int MaxIndex()
 {
     int max = 0;
 

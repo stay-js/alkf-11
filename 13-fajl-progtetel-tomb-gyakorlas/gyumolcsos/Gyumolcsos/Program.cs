@@ -5,11 +5,11 @@ var data = ReadData();
 #endregion
 
 #region 2.feladat
-PrintAllFruits(data);
+PrintAllFruits();
 #endregion
 
 #region 3.feladat
-double sum = SumWeight(data);
+double sum = SumWeight();
 Console.WriteLine($"\nA gyümölcsök össztömege: {sum} kg.");
 #endregion
 
@@ -18,21 +18,21 @@ Console.WriteLine($"A gyümölcsök átlagos tömege: {sum / data.Length} kg.");
 #endregion
 
 #region 5.feladat
-Console.WriteLine($"{CountExactly10Kg(data)} gyümölcsből termett pontosan 10 kg.");
+Console.WriteLine($"{CountExactly10Kg()} gyümölcsből termett pontosan 10 kg.");
 #endregion
 
 #region 6. feladat
-var mostWeight = data[MostWeight(data)];
+var mostWeight = data[MostWeight()];
 Console.WriteLine($"{mostWeight.Name}-ból/ből termett a legtöbb ({mostWeight.Weight} kg).");
 #endregion
 
 #region 7. feladat
 Console.WriteLine("Az alábbi gyűmölcsökből termett legalább 30 kg:");
-MoreThanOrEqualTo30Kg(data);
+MoreThanOrEqualTo30Kg();
 #endregion
 
 #region 8.feladat
-Console.WriteLine(FindLessThan10(data, out int index)
+Console.WriteLine(FindLessThan10(out int index)
     ? $"{data[index].Weight:C0}-ból/ből termett kevesebb mint 10 kg."
     : "Nem volt olyan gyümölcs amiből kevesebb mint 10 kg termett.");
 #endregion
@@ -46,7 +46,7 @@ static Fruit[] ReadData()
     }).ToArray();
 }
 
-static void PrintAllFruits(Fruit[] data)
+void PrintAllFruits()
 {
     foreach (var item in data)
     {
@@ -54,7 +54,7 @@ static void PrintAllFruits(Fruit[] data)
     }
 }
 
-static int SumWeight(Fruit[] data)
+int SumWeight()
 {
     int sum = 0;
 
@@ -66,7 +66,7 @@ static int SumWeight(Fruit[] data)
     return sum;
 }
 
-static int CountExactly10Kg(Fruit[] data)
+int CountExactly10Kg()
 {
     int count = 0;
 
@@ -78,7 +78,7 @@ static int CountExactly10Kg(Fruit[] data)
     return count;
 }
 
-static int MostWeight(Fruit[] data)
+int MostWeight()
 {
     int mostWeight = 0;
 
@@ -90,7 +90,7 @@ static int MostWeight(Fruit[] data)
     return mostWeight;
 }
 
-static void MoreThanOrEqualTo30Kg(Fruit[] data)
+void MoreThanOrEqualTo30Kg()
 {
     foreach (var item in data.Where(item => item.Weight >= 30))
     {
@@ -98,7 +98,7 @@ static void MoreThanOrEqualTo30Kg(Fruit[] data)
     }
 }
 
-static bool FindLessThan10(Fruit[] data, out int index)
+bool FindLessThan10(out int index)
 {
     index = 0;
 

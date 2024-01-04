@@ -13,16 +13,16 @@ Console.WriteLine($"\n{data.Length} versenyző adatait tartalmazza a fájl.");
 #endregion
 
 #region c
-Console.WriteLine($"A legalacsonyabb elért pontszám {MinScore(data)} pont, " +
-    $"a legmagasabb pedig {MaxScore(data)} pont");
+Console.WriteLine($"A legalacsonyabb elért pontszám {MinScore()} pont, " +
+    $"a legmagasabb pedig {MaxScore()} pont");
 #endregion
 
 #region d
-Console.WriteLine($"Az átlagos pontszám: {Math.Round(AvgScore(data), 2)}. pont");
+Console.WriteLine($"Az átlagos pontszám: {Math.Round(AvgScore(), 2)}. pont");
 #endregion
 
 #region e
-Console.WriteLine("A megadott versenyző " + (FindCompetitor(data, out int index)
+Console.WriteLine("A megadott versenyző " + (FindCompetitor(out int index)
     ? $"{data[index].Score} pontot ért el."
     : "nem található."));
 #endregion
@@ -32,26 +32,20 @@ static Competitor[] ReadData()
     var data = new Competitor[50];
     var input = new StreamReader("pontszamok.txt");
 
-    int i = 0;
-    while (i < data.Length && !input.EndOfStream)
+    int len = 0;
+    while (len < data.Length && !input.EndOfStream)
     {
-        data[i++] = new Competitor(input.ReadLine() ?? "", int.Parse(input.ReadLine() ?? ""));
+        data[len++] = new Competitor(input.ReadLine() ?? "", int.Parse(input.ReadLine() ?? ""));
     }
 
     input.Close();
 
-    var actualLength = new Competitor[i];
+    Array.Resize(ref data, len);
 
-    for (i = 0; i < actualLength.Length; i++)
-    {
-        actualLength[i] = data[i];
-
-    }
-
-    return actualLength;
+    return data;
 }
 
-static int MinScore(Competitor[] data)
+int MinScore()
 {
     int min = data[0].Score;
 
@@ -63,7 +57,7 @@ static int MinScore(Competitor[] data)
     return min;
 }
 
-static int MaxScore(Competitor[] data)
+int MaxScore()
 {
     int max = data[0].Score;
 
@@ -75,7 +69,7 @@ static int MaxScore(Competitor[] data)
     return max;
 }
 
-static double AvgScore(Competitor[] data)
+double AvgScore()
 {
     double sum = 0;
 
@@ -87,7 +81,7 @@ static double AvgScore(Competitor[] data)
     return sum / data.Length;
 }
 
-static bool FindCompetitor(Competitor[] data, out int index)
+bool FindCompetitor(out int index)
 {
     Console.Write("\nAdja meg egy versenyző nevét: ");
     string name = Console.ReadLine() ?? "";

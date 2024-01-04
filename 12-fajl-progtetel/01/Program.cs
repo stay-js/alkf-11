@@ -14,11 +14,11 @@ Console.WriteLine($"\n{string.Join("\t", numbers)}");
 #endregion
 
 #region d.
-WriteNumbersInPairsToFile(numbers);
+WriteNumbersInPairsToFile();
 #endregion
 
 #region e.
-double sum = SumOfNumbers(numbers);
+double sum = SumOfNumbers();
 Console.WriteLine($"\nA számok összege: {sum}");
 #endregion
 
@@ -27,26 +27,26 @@ Console.WriteLine($"A számok átlaga: {sum / numbers.Length}");
 #endregion
 
 #region g.
-Console.WriteLine($"A számok maximuma: {MaxOfNumbers(numbers)}");
+Console.WriteLine($"A számok maximuma: {MaxOfNumbers()}");
 #endregion
 
 #region h.
-Console.WriteLine($"A számok minimuma: {MinOfNumbers(numbers)}");
+Console.WriteLine($"A számok minimuma: {MinOfNumbers()}");
 #endregion
 
 #region i.
-Console.WriteLine($"A számok között {(ContainsZero(numbers) ? "van" : "nincs")} nulla.");
+Console.WriteLine($"A számok között {(ContainsZero() ? "van" : "nincs")} nulla.");
 #endregion
 
 #region j.
-if (FirstNegative(numbers, out int index))
+if (FirstNegative(out int index))
     Console.WriteLine($"Az első negaív szám a {index}. helyen áll.");
 else
     Console.WriteLine("Nincs negatív szám a számok között.");
 #endregion
 
 #region k.
-Console.WriteLine($"A számok {PositivePercent(numbers):P2} pozitív.");
+Console.WriteLine($"A számok {PositivePercent():P2} pozitív.");
 #endregion
 
 static int[] ReadData()
@@ -67,7 +67,7 @@ static int[] ReadData()
     return numbers;
 }
 
-static void WriteNumbersInPairsToFile(int[] numbers)
+void WriteNumbersInPairsToFile()
 {
     var output = new StreamWriter("parosaval.txt");
 
@@ -81,7 +81,7 @@ static void WriteNumbersInPairsToFile(int[] numbers)
     output.Close();
 }
 
-static int SumOfNumbers(int[] numbers)
+int SumOfNumbers()
 {
     int sum = 0;
 
@@ -93,7 +93,7 @@ static int SumOfNumbers(int[] numbers)
     return sum;
 }
 
-static int MaxOfNumbers(int[] numbers)
+int MaxOfNumbers()
 {
     int max = numbers[0];
 
@@ -105,7 +105,7 @@ static int MaxOfNumbers(int[] numbers)
     return max;
 }
 
-static int MinOfNumbers(int[] numbers)
+int MinOfNumbers()
 {
     int min = numbers[0];
 
@@ -117,7 +117,7 @@ static int MinOfNumbers(int[] numbers)
     return min;
 }
 
-static bool ContainsZero(int[] numbers)
+bool ContainsZero()
 {
     int i = 0;
 
@@ -129,7 +129,7 @@ static bool ContainsZero(int[] numbers)
     return i < numbers.Length;
 }
 
-static bool FirstNegative(int[] numbers, out int index)
+bool FirstNegative(out int index)
 {
     index = 0;
 
@@ -141,7 +141,7 @@ static bool FirstNegative(int[] numbers, out int index)
     return index < numbers.Length;
 }
 
-static double PositivePercent(int[] numbers)
+double PositivePercent()
 {
     double countOfPositive = 0;
 
