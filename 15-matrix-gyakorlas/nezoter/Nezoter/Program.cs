@@ -10,7 +10,7 @@ int[,] categories = ReadCategories();
 
 #region 2. feladat
 Console.WriteLine("2. feladat");
-Console.WriteLine($"Az ön által megadott szék {(IsOccupied() ? "foglalt" : "szabad" )}.");
+Console.WriteLine($"Az ön által megadott szék {(IsOccupied() ? "foglalt" : "szabad")}.");
 #endregion
 
 #region 3. feladat
@@ -18,7 +18,7 @@ Console.WriteLine("\n3. feladat");
 
 int sold = CountSoldTickets();
 Console.WriteLine($"Az előadásra eddig {sold} jegyet adtak el, ez a nézőtér " +
-    $"{Convert.ToDouble(sold)/Convert.ToDouble(ROWS*COLUMNS):P2}-a.");
+    $"{Convert.ToDouble(sold) / Convert.ToDouble(ROWS * COLUMNS):P2}-a.");
 #endregion
 
 #region 4. feladat
@@ -37,7 +37,7 @@ Console.WriteLine($"{StandaloneEmptySeats()} egyedülálló üres hely van a né
 #endregion
 
 #region 7. feladat
-WriteEmptySeatsToFile();
+WriteDataToFile();
 #endregion
 
 static bool[,] ReadOccupancy()
@@ -48,15 +48,15 @@ static bool[,] ReadOccupancy()
     for (int i = 0; i < ROWS && !input.EndOfStream; i++)
     {
         string row = input.ReadLine() ?? "";
-        
+
         for (int j = 0; j < COLUMNS; j++)
         {
             occupancy[i, j] = row[j] == 'x';
         }
     }
-    
+
     input.Close();
-    
+
     return occupancy;
 }
 
@@ -68,29 +68,29 @@ static int[,] ReadCategories()
     for (int i = 0; i < ROWS && !input.EndOfStream; i++)
     {
         string row = input.ReadLine() ?? "";
-        
+
         for (int j = 0; j < COLUMNS; j++)
         {
-            categories[i, j] = int.Parse(string.Concat(row[j]));
+            categories[i, j] = row[j] - '0';
         }
     }
-    
+
     input.Close();
-    
+
     return categories;
 }
 
 bool IsOccupied()
 {
-    int row, col;
-    
+    int row, column;
+
     do Console.Write("Adjon meg egy sor számot: ");
     while (!int.TryParse(Console.ReadLine(), out row));
-    
-    do Console.Write("Adjon meg egy szék számot: ");
-    while (!int.TryParse(Console.ReadLine(), out col));
 
-    return occupancy[row - 1, col - 1];
+    do Console.Write("Adjon meg egy szék számot: ");
+    while (!int.TryParse(Console.ReadLine(), out column));
+
+    return occupancy[row - 1, column - 1];
 }
 
 int CountSoldTickets()
@@ -111,7 +111,7 @@ int CountSoldTickets()
 int MostSoldCategory()
 {
     int[] counts = new int[5];
-    
+
     for (int i = 0; i < ROWS; i++)
     {
         for (int j = 0; j < COLUMNS; j++)
@@ -119,7 +119,7 @@ int MostSoldCategory()
             if (occupancy[i, j]) counts[categories[i, j] - 1]++;
         }
     }
-    
+
     int max = 0;
 
     for (int i = 1; i < counts.Length; i++)
@@ -163,10 +163,10 @@ int StandaloneEmptySeats()
     {
         for (int j = 0; j < COLUMNS; j++)
         {
-            if (j == 0 && !occupancy[i, j + 1]) standaloneEmptySeats++;
-            else if (j == COLUMNS - 1 && !occupancy[i, j - 1]) standaloneEmptySeats++;
-            else if (j != 0 && j != COLUMNS - 1 
-                && occupancy[i, j] && !occupancy[i, j - 1] && !occupancy[i, j + 1])
+            if (j == 0 && occupancy[i, j + 1]) standaloneEmptySeats++;
+            else if (j == COLUMNS - 1 && occupancy[i, j - 1]) standaloneEmptySeats++;
+            else if (j != 0 && j != COLUMNS - 1
+                && !occupancy[i, j] && occupancy[i, j - 1] && occupancy[i, j + 1])
             {
                 standaloneEmptySeats++;
             }
@@ -176,22 +176,21 @@ int StandaloneEmptySeats()
     return standaloneEmptySeats;
 }
 
-void WriteEmptySeatsToFile()
+void WriteDataToFile()
 {
     var output = new StreamWriter("szabad.txt");
 
     for (int i = 0; i < ROWS; i++)
     {
         var toPrint = new StringBuilder();
-        
+
         for (int j = 0; j < COLUMNS; j++)
         {
-            if (!occupancy[i, j]) toPrint.Append('x');
-            else toPrint.Append(categories[i, j]);
+            toPrint.Append(occupancy[i, j] ? categories[i, j].ToString() : 'x');
         }
-        
+
         output.WriteLine(toPrint);
     }
-    
+
     output.Close();
 }
