@@ -158,12 +158,12 @@ void CreateDiagram()
     do Console.Write("A vizsgált szelvény oszlopának azonosítója=");
     while (!int.TryParse(Console.ReadLine(), out column));
 
-    var output = new StreamWriter("diagram.txt");
+    string[] output = new string[data.GetLength(0)];
 
     for (int i = 0; i < data.GetLength(0); i++)
     {
-        output.WriteLine($"{i:D2}{new string('*', data[i, column])}");
+        output[i] = $"{i:D2}{new string('*', data[i, column])}";
     }
 
-    output.Close();
+    File.WriteAllLines("diagram.txt", output);
 }
