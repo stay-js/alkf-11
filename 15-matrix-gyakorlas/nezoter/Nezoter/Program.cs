@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-const int ROWS = 15;
+﻿const int ROWS = 15;
 const int COLUMNS = 20;
 
 #region 1. feladat
@@ -15,10 +13,9 @@ Console.WriteLine($"Az ön által megadott szék {(IsOccupied() ? "foglalt" : "s
 
 #region 3. feladat
 Console.WriteLine("\n3. feladat");
-
-int sold = CountSoldTickets();
+double sold = CountSoldTickets();
 Console.WriteLine($"Az előadásra eddig {sold} jegyet adtak el, ez a nézőtér " +
-    $"{Convert.ToDouble(sold) / Convert.ToDouble(ROWS * COLUMNS):P2}-a.");
+    $"{sold / Convert.ToDouble(ROWS * COLUMNS):P2}-a.");
 #endregion
 
 #region 4. feladat
@@ -42,40 +39,32 @@ WriteDataToFile();
 
 static bool[,] ReadOccupancy()
 {
+    string[] input = File.ReadAllLines("foglaltsag.txt");
     bool[,] occupancy = new bool[ROWS, COLUMNS];
-    var input = new StreamReader("foglaltsag.txt");
 
-    for (int i = 0; i < ROWS && !input.EndOfStream; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        string row = input.ReadLine() ?? "";
-
         for (int j = 0; j < COLUMNS; j++)
         {
-            occupancy[i, j] = row[j] == 'x';
+            occupancy[i, j] = input[i][j] == 'x';
         }
     }
-
-    input.Close();
 
     return occupancy;
 }
 
 static int[,] ReadCategories()
 {
+    string[] input = File.ReadAllLines("kategoria.txt");
     int[,] categories = new int[ROWS, COLUMNS];
-    var input = new StreamReader("kategoria.txt");
 
-    for (int i = 0; i < ROWS && !input.EndOfStream; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        string row = input.ReadLine() ?? "";
-
         for (int j = 0; j < COLUMNS; j++)
         {
-            categories[i, j] = row[j] - '0';
+            categories[i, j] = input[i][j] - '0';
         }
     }
-
-    input.Close();
 
     return categories;
 }
@@ -165,8 +154,11 @@ int StandaloneEmptySeats()
         {
             if (j == 0 && occupancy[i, j + 1]) standaloneEmptySeats++;
             else if (j == COLUMNS - 1 && occupancy[i, j - 1]) standaloneEmptySeats++;
-            else if (j != 0 && j != COLUMNS - 1
-                && !occupancy[i, j] && occupancy[i, j - 1] && occupancy[i, j + 1])
+            else if (j != 0
+                && j != COLUMNS - 1
+                && !occupancy[i, j]
+                && occupancy[i, j - 1]
+                && occupancy[i, j + 1])
             {
                 standaloneEmptySeats++;
             }
@@ -178,19 +170,15 @@ int StandaloneEmptySeats()
 
 void WriteDataToFile()
 {
-    var output = new StreamWriter("szabad.txt");
+    string[] toPrint = new string[ROWS];
 
     for (int i = 0; i < ROWS; i++)
     {
-        var toPrint = new StringBuilder();
-
         for (int j = 0; j < COLUMNS; j++)
         {
-            toPrint.Append(occupancy[i, j] ? categories[i, j].ToString() : 'x');
+            toPrint[i] += occupancy[i, j] ? categories[i, j].ToString() : 'x';
         }
-
-        output.WriteLine(toPrint);
     }
 
-    output.Close();
+    File.WriteAllLines("szabad.txt", toPrint);
 }
