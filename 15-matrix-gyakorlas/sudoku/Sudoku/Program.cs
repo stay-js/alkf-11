@@ -42,26 +42,24 @@ TrySteps();
 
 static (int[,], Step[]) ReadData(string file)
 {
-    var input = new StreamReader(file);
-
+    string[] input = File.ReadAllLines(file);
     int[,] table = new int[TABLE_SIZE, TABLE_SIZE];
+    var steps = new Step[4];
 
     for (int i = 0; i < TABLE_SIZE; i++)
     {
-        string[] row = (input.ReadLine() ?? "").Split();
+        int[] row = input[i].Split().Select(int.Parse).ToArray();
 
         for (int j = 0; j < TABLE_SIZE; j++)
         {
-            table[i, j] = int.Parse(row[j]);
+            table[i, j] = row[j];
         }
     }
 
-    var steps = new Step[4];
-
     for (int i = 0; i < steps.Length; i++)
     {
-        int[] row = (input.ReadLine() ?? "").Split().Select(int.Parse).ToArray();
-        steps[i] = new Step(row[0] - 1, row[1] - 1, row[2]);
+        int[] row = input[TABLE_SIZE + i].Split().Select(int.Parse).ToArray();
+        steps[i] = new Step(row[0], row[1] - 1, row[2] - 1);
     }
 
     return (table, steps);
@@ -190,16 +188,16 @@ double CalculateEmptyRatio()
 
 void TrySteps()
 {
-    foreach (var (row, column, num) in steps)
+    foreach (var (number, row, column) in steps)
     {
-        Console.WriteLine($"A kiválasztott sor: {row + 1} oszlop: {column + 1} a szám: {num}");
+        Console.WriteLine($"A kiválasztott sor: {row + 1} oszlop: {column + 1} a szám: {number}");
         if (table[row, column] != 0)
             Console.WriteLine("A helyet már kitöltötték.\n");
-        else if (!CheckRow(table, row, num))
+        else if (!CheckRow(table, row, number))
             Console.WriteLine("Az adott sorban már szerepel a szám.\n");
-        else if (!CheckColumn(table, column, num))
+        else if (!CheckColumn(table, column, number))
             Console.WriteLine("Az adott oszlopban már szerepel a szám.\n");
-        else if (!CheckPartTable(table, row, column, num))
+        else if (!CheckPartTable(table, row, column, number))
             Console.WriteLine("Az adott résztáblázatban már szerepel a szám.\n");
         else
             Console.WriteLine("A lépés megtehető.\n");
@@ -208,5 +206,5 @@ void TrySteps()
 
 namespace Local
 {
-    public record Step(int Row, int Column, int Number);
+    public record Step(int Number, int Row, int Column);
 }
