@@ -39,23 +39,21 @@ CreateDiagram();
 
 static int[,] ReadData()
 {
-    var input = new StreamReader("melyseg.txt");
-    int rows = int.Parse(input.ReadLine() ?? "");
-    int columns = int.Parse(input.ReadLine() ?? "");
+    string[] input = File.ReadAllLines("melyseg.txt");
+    int rows = int.Parse(input[0]);
+    int columns = int.Parse(input[1]);
 
     int[,] data = new int[rows, columns];
 
     for (int i = 0; i < rows; i++)
     {
-        string[] line = (input.ReadLine() ?? "").Split();
+        string[] line = input[i + 2].Split();
 
         for (int j = 0; j < columns; j++)
         {
             data[i, j] = int.Parse(line[j]);
         }
     }
-
-    input.Close();
 
     return data;
 }
@@ -90,7 +88,7 @@ int GetReading()
         }
     }
 
-    return (surface, (sumOfDepth / 10) / surface);
+    return (surface, sumOfDepth / surface / 10);
 }
 
 int MaxDepth()
@@ -134,15 +132,19 @@ int CalculateShoreLength()
     {
         for (int j = 0; j < data.GetLength(1); j++)
         {
-            if (data[i, j] != 0 && (
-                data[i - 1, j] == 0 || data[i + 1, j] == 0 || data[i, j - 1] == 0 || data[i, j + 1] == 0
-                ))
+            if (data[i, j] == 0) continue;
+            if (data[i - 1, j] != 0
+                && data[i + 1, j] != 0
+                && data[i, j - 1] != 0
+                && data[i, j + 1] != 0)
             {
-                if (data[i - 1, j] == 0) shoreLength++;
-                if (data[i + 1, j] == 0) shoreLength++;
-                if (data[i, j - 1] == 0) shoreLength++;
-                if (data[i, j + 1] == 0) shoreLength++;
+                continue;
             }
+
+            if (data[i - 1, j] == 0) shoreLength++;
+            if (data[i + 1, j] == 0) shoreLength++;
+            if (data[i, j - 1] == 0) shoreLength++;
+            if (data[i, j + 1] == 0) shoreLength++;
         }
     }
 
