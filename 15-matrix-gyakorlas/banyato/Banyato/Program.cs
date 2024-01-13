@@ -28,11 +28,12 @@ Console.WriteLine();
 #endregion
 
 #region 5.feladat
-//Console.WriteLine("5. feladat");
-//Console.WriteLine($"A tó partvonala {CalculateShoreLength()} m hosszú");
+Console.WriteLine("5. feladat");
+Console.WriteLine($"A tó partvonala {CalculateShoreLength()} m hosszú");
 #endregion
 
 #region
+Console.WriteLine("6. feladat");
 CreateDiagram();
 #endregion
 
@@ -125,25 +126,28 @@ int MaxDepth()
     return points;
 }
 
-//int CalculateShoreLength()
-//{
-//    int shoreLength = 0;
+int CalculateShoreLength()
+{
+    int shoreLength = 0;
 
-//    for (int i = 0; i < data.GetLength(0); i++)
-//    {
-//        for (int j = 0; j < data.GetLength(1); j++)
-//        {
-//            if (data[i, j] != 0 && (
-//                data[i - 1, j] == 0 || data[i + 1, j] == 0 || data[i, j - 1] == 0 || data[i, j + 1] == 0
-//                ))
-//            {
-//                shoreLength++;
-//            }
-//        }
-//    }
+    for (int i = 0; i < data.GetLength(0); i++)
+    {
+        for (int j = 0; j < data.GetLength(1); j++)
+        {
+            if (data[i, j] != 0 && (
+                data[i - 1, j] == 0 || data[i + 1, j] == 0 || data[i, j - 1] == 0 || data[i, j + 1] == 0
+                ))
+            {
+                if (data[i - 1, j] == 0) shoreLength++;
+                if (data[i + 1, j] == 0) shoreLength++;
+                if (data[i, j - 1] == 0) shoreLength++;
+                if (data[i, j + 1] == 0) shoreLength++;
+            }
+        }
+    }
 
-//    return shoreLength;
-//}
+    return shoreLength;
+}
 
 void CreateDiagram()
 {
