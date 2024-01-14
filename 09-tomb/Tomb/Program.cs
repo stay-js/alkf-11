@@ -52,7 +52,7 @@ string[] students = ["Ádám János Dániel",
     "Veress Csaba",
     "Zsigmond-Barna Zoltán László"];
 
-Console.WriteLine($"\nA kisorsolt tanuló: {students[Random.Shared.Next(students.Length - 1)]}");
+Console.WriteLine($"\nA kisorsolt tanuló: {students[Random.Shared.Next(students.Length)]}");
 #endregion
 
 #region 5.feladat
