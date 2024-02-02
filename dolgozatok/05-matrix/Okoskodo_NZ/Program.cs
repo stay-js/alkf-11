@@ -15,7 +15,7 @@ Console.WriteLine("Eredmények:\n" +
       string.Concat(Enumerable.Range(1, numberOfSubjects).Select(x => $"{x}.".PadRight(5))) +
     " Összesen:");
 
-for (int i = 0; i < names.Length; i++)
+for (int i = 0; i < numberOfStudents; i++)
 {
     Console.WriteLine(names[i].PadRight(spaceForName) +
         string.Concat(Enumerable.Range(0, numberOfSubjects).Select(x => $"{scores[i, x],-5}")) +
