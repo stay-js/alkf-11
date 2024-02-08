@@ -38,7 +38,7 @@ Console.WriteLine($"{AmountOfBooks()} jutalomkönyvet kell vásárolni.");
 
 #region 6. feladat
 Console.WriteLine(LessThan5Points(out int idx, out int exerciseIdx)
-    ? $"{names[idx]} a(z) {exerciseIdx + 1} feladatára 5 pontnál kevesebbet kapott."
+    ? $"{names[idx]} a(z) {exerciseIdx + 1}. feladatára 5 pontnál kevesebbet kapott."
     : "Nincs ilyen tanuló.");
 #endregion
 
