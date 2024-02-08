@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34003.232
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordProgTetel", "RecordProgTetel\RecordProgTetel.csproj", "{FF987E74-175D-494F-BC2C-26E164E6E942}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF987E74-175D-494F-BC2C-26E164E6E942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF987E74-175D-494F-BC2C-26E164E6E942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF987E74-175D-494F-BC2C-26E164E6E942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF987E74-175D-494F-BC2C-26E164E6E942}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {60740AED-6817-4D58-ACE6-8D93EC1E8776}
+	EndGlobalSection
+EndGlobal
