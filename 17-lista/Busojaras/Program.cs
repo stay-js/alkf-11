@@ -1,37 +1,37 @@
 ﻿const int SPOTS = 40;
 
 #region 1. feladat
-var entries = File.ReadLines("jelentkezok.txt").ToList();
-Console.WriteLine($"Jelentkezők listája:\n{string.Join("\n", entries)}");
+var applicants = File.ReadLines("jelentkezok.txt").ToList();
+Console.WriteLine($"Jelentkezők listája:\n{string.Join("\n", applicants)}");
 #endregion
 
 #region 2. feladat
-var accepted = entries.Take(SPOTS).ToList();
+var accepted = applicants.Take(SPOTS).ToList();
 accepted.Sort();
 
 Console.WriteLine($"\nElfogadottak listája:\n{string.Join("\n", accepted)}");
 #endregion
 
 #region 3. feladat
-var rejected = entries.Except(accepted);
-Console.WriteLine($"\nHelyhiány miatt elutasítottak listája:\n{string.Join("\n", rejected)}");
+Console.WriteLine($"\nHelyhiány miatt elutasítottak listája:\n" +
+    string.Join("\n", applicants.Except(accepted)));
 #endregion
 
 #region 4. feladat
 var failed = File.ReadLines("bukott.txt").ToList();
 
-var toBeRemoved = entries.Intersect(failed).ToList();
-toBeRemoved.Sort();
+var removedDueToFailing = applicants.Intersect(failed).ToList();
+removedDueToFailing.Sort();
 
-Console.WriteLine($"\n{toBeRemoved.Count} diákot kellett utólag törölni.");
-File.WriteAllLines("torolt.txt", toBeRemoved);
+accepted.RemoveAll(removedDueToFailing.Contains);
 
-accepted = accepted.Except(toBeRemoved).ToList();
+Console.WriteLine($"\n{removedDueToFailing.Count} diákot kellett utólag törölni.");
+File.WriteAllLines("torolt.txt", removedDueToFailing);
 #endregion
 
 #region 5. feladat
-var toBeAccepted = entries
-    .Except(toBeRemoved)
+var toBeAccepted = applicants
+    .Except(removedDueToFailing)
     .Except(accepted)
     .Take(SPOTS - accepted.Count);
 
@@ -46,8 +46,8 @@ File.WriteAllLines("resztvevok.txt", accepted);
 Console.Write("\nAdja meg a keresett nevet: ");
 string name = Console.ReadLine() ?? "";
 
-if (!entries.Contains(name)) Console.WriteLine("Nem jelentkezett.");
+if (!applicants.Contains(name)) Console.WriteLine("Nem jelentkezett.");
 else if (accepted.Contains(name)) Console.WriteLine("Részt vehet a kiránduláson.");
-else if (toBeRemoved.Contains(name)) Console.WriteLine("Bukás miatt elutasítva.");
+else if (removedDueToFailing.Contains(name)) Console.WriteLine("Bukás miatt elutasítva.");
 else Console.WriteLine("Helyhiány miatt elutasítva.");
 #endregion
