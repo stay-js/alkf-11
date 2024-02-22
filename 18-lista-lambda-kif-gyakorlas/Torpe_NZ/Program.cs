@@ -158,7 +158,7 @@ Console.WriteLine(data.DistinctBy(x => x.Weight).Count() +
     " különböző testsúlyú törpe jött el.");
 #endregion
 
-#region 24. feladat
+#region 25. feladat
 PrintExerciseNumber();
 Console.WriteLine("Az 5 legalacsonyabb férfi törpe:\n\t" +
     string.Join("\n\t", data
