@@ -29,7 +29,7 @@ WriteTotalScoresToFile();
 
 static Student[] ReadData()
 {
-    return File.ReadLines("felveteli.csv")
+    return File.ReadAllLines("felveteli.csv")
         .Select(line =>
         {
             string[] lineArr = line.Split(';');

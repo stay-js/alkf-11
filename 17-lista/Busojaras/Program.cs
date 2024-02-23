@@ -1,7 +1,7 @@
 ﻿const int SPOTS = 40;
 
 #region 1. feladat
-var applicants = File.ReadLines("jelentkezok.txt").ToList();
+var applicants = File.ReadAllLines("jelentkezok.txt").ToList();
 Console.WriteLine($"Jelentkezők listája:\n{string.Join("\n", applicants)}");
 #endregion
 
@@ -18,7 +18,7 @@ Console.WriteLine($"\nHelyhiány miatt elutasítottak listája:\n" +
 #endregion
 
 #region 4. feladat
-var failed = File.ReadLines("bukott.txt").ToList();
+var failed = File.ReadAllLines("bukott.txt").ToList();
 
 var removedDueToFailing = applicants.Intersect(failed).ToList();
 removedDueToFailing.Sort();

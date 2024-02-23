@@ -39,7 +39,7 @@ Console.WriteLine(FindLessThan10(out int index)
 
 static Fruit[] ReadData()
 {
-    return File.ReadLines("gyumolcsok.txt").Select(line =>
+    return File.ReadAllLines("gyumolcsok.txt").Select(line =>
     {
         string[] lineArr = line.Split(';');
         return new Fruit(lineArr[0], int.Parse(lineArr[1]));

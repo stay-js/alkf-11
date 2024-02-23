@@ -37,7 +37,7 @@ WriteNamesToFile();
 
 static Student[] ReadData()
 {
-    return File.ReadLines("adatok.txt")
+    return File.ReadAllLines("adatok.txt")
         .Select(line =>
         {
             string[] lineArr = line.Split();

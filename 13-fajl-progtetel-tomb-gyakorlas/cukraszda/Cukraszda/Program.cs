@@ -31,7 +31,7 @@ Console.WriteLine(FindCake(out int index)
 
 static Cake[] ReadData()
 {
-    return File.ReadLines("tortak.txt")
+    return File.ReadAllLines("tortak.txt")
         .Select(line =>
         {
             string[] lineArr = line.Split(';');

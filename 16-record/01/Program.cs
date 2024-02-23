@@ -33,7 +33,7 @@ Console.WriteLine("\nAz alábbi osztályok értek el 50-nél kevesebb pontot:\n\
 
 static Class[] ReadData()
 {
-    return File.ReadLines("aprilis.txt").Select(line =>
+    return File.ReadAllLines("aprilis.txt").Select(line =>
     {
         string[] parts = line.Split(';');
         return new Class(parts[0], int.Parse(parts[1]));

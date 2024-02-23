@@ -55,7 +55,7 @@ Console.WriteLine($"3-mal nem osztható: {string.Join(", ", unDividable)}");
 
 static Investigation[] ReadData()
 {
-    return File.ReadLines("nyomozas.txt")
+    return File.ReadAllLines("nyomozas.txt")
         .Select(line =>
         {
             string[] lineArr = line.Split();
