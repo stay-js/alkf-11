@@ -3,19 +3,20 @@
 int current = 1;
 
 #region 1. feladat
-var data = File.ReadAllLines("torpek.txt")
+var data = File
+    .ReadAllLines("torpek.txt")
     .Skip(1)
     .Select(line =>
     {
         string[] parts = line.Split(';');
-        
+
         return new Dwarf(
             parts[0],
             parts[1],
-            parts[2] == "F" ? Gender.Male : Gender.Female, 
-            int.Parse(parts[3]), 
+            parts[2] == "F" ? Gender.Male : Gender.Female,
+            int.Parse(parts[3]),
             int.Parse(parts[4])
-        );
+            );
     })
     .ToList();
 #endregion
@@ -54,7 +55,7 @@ Console.WriteLine($"A legkisebb TTI érték: {data.Min(x => x.BMI):N1}");
 
 #region 7. feladat
 PrintExerciseNumber();
-Console.WriteLine("Nőnemű törpék: " + 
+Console.WriteLine("Nőnemű törpék: " +
     string.Join(", ", data.Where(x => x.Gender == Gender.Female)));
 #endregion
 
@@ -66,7 +67,7 @@ Console.WriteLine("Résztvevők:\n\t" +
 
 #region 9. feladat
 PrintExerciseNumber();
-Console.WriteLine("Klánok: " + 
+Console.WriteLine("Klánok: " +
     string.Join(", ", data.DistinctBy(x => x.Clan).Select(x => x.Clan)));
 #endregion
 
@@ -105,7 +106,7 @@ Console.WriteLine($"A férfi törpék átlagos TTI-je:" +
 
 #region 16. feladat
 PrintExerciseNumber();
-Console.WriteLine($"A legalacsonyabb TTI-vel rendelkező törpe neve: " + 
+Console.WriteLine($"A legalacsonyabb TTI-vel rendelkező törpe neve: " +
     data.MinBy(x => x.BMI)!.Name);
 #endregion
 
@@ -129,9 +130,8 @@ Console.WriteLine((data.Exists(x => x.BMI > 40) ? "Létezik" : "Nem létezik") +
 
 #region 20. feladat
 PrintExerciseNumber();
-Console.WriteLine((data.Exists(x =>
-    x is { Clan: "Kova", Gender: Gender.Female }) ? "Jött" : "Nem jött") + 
-    " női törpe a Kova klánból");
+Console.WriteLine((data.Exists(x => x is { Clan: "Kova", Gender: Gender.Female })
+    ? "Jött" : "Nem jött") + " női törpe a Kova klánból");
 #endregion
 
 #region 21. feladat
@@ -161,10 +161,7 @@ Console.WriteLine(data.DistinctBy(x => x.Weight).Count() +
 #region 25. feladat
 PrintExerciseNumber();
 Console.WriteLine("Az 5 legalacsonyabb férfi törpe:\n\t" +
-    string.Join("\n\t", data
-        .Where(x => x.Gender == Gender.Male)
-        .OrderBy(x => x.Height)
-        .Take(5)));
+    string.Join("\n\t", data.Where(x => x.Gender == Gender.Male).OrderBy(x => x.Height).Take(5)));
 #endregion
 
 void PrintExerciseNumber()

@@ -18,7 +18,7 @@ namespace Torpe_NZ
                 $"\n\tSúly: {Weight} kg" +
                 $"\n\tMagasság: {Height} kg");
         }
-        
+
         public override string ToString()
         {
             return $"{Name} ({Clan})";
