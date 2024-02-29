@@ -10,10 +10,9 @@ int spaceForName = LongestName() + 2;
 int[] totalScorePerStudent = TotalScorePerStudent();
 double[] avgScorePerSubject = AvgScorePerSubject();
 
-Console.WriteLine("Eredmények:\n" +
-    new string(' ', spaceForName) +
-      string.Concat(Enumerable.Range(1, numberOfSubjects).Select(x => $"{x}.".PadRight(5))) +
-    " Összesen:");
+Console.WriteLine($"Eredmények:\n{new string(' ', spaceForName)}" +
+    string.Concat(Enumerable.Range(1, numberOfSubjects).Select(x => $"{x}.".PadRight(5)))
+    + " Összesen:");
 
 for (int i = 0; i < numberOfStudents; i++)
 {
