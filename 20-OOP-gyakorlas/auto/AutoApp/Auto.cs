@@ -2,7 +2,7 @@ namespace AutoApp
 {
     internal class Auto
     {
-        private readonly List<int> _sebessegek;
+        private readonly List<int> _sebessegek = new();
 
         public string Tipus { get; init; }
         public string Vezeto { get; set; }
@@ -12,7 +12,6 @@ namespace AutoApp
 
         public Auto()
         {
-            _sebessegek = new List<int>();
             Tipus = "Ismeretlen";
             Vezeto = "";
             MaxSebesseg = 100;
@@ -20,7 +19,6 @@ namespace AutoApp
 
         public Auto(string tipus, string vezeto, int maximalisSebesseg)
         {
-            _sebessegek = new List<int>();
             Tipus = tipus;
             Vezeto = vezeto;
             MaxSebesseg = maximalisSebesseg < 100 ? 100 : maximalisSebesseg;
@@ -28,7 +26,7 @@ namespace AutoApp
 
         public int SebessegMeres()
         {
-            if (Vezeto == "") return 0;
+            if (Vezeto == string.Empty) return 0;
 
             int sebesseg = Random.Shared.Next(MaxSebesseg / 4, MaxSebesseg);
             _sebessegek.Add(sebesseg);
