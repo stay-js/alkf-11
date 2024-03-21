@@ -1,0 +1,25 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34003.232
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepApp", "RepApp\RepApp.csproj", "{C9018324-5E49-4BAD-B8C4-BF80845567FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9018324-5E49-4BAD-B8C4-BF80845567FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9018324-5E49-4BAD-B8C4-BF80845567FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9018324-5E49-4BAD-B8C4-BF80845567FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9018324-5E49-4BAD-B8C4-BF80845567FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F25B6FF4-CD0A-4645-B2CD-05AFA78E951B}
+	EndGlobalSection
+EndGlobal
