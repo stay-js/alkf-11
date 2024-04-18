@@ -24,7 +24,7 @@
 
         public static string MountainRanges(this IEnumerable<Mountain> mountains)
         {
-            return string.Join(";", mountains.Select(m => m.MountainRange).Distinct().Order());
+            return string.Join(';', mountains.Select(m => m.MountainRange).Distinct().Order());
         }
 
         public static int CountTallerThanFeet(this IEnumerable<Mountain> mountains, int heightInFeet)
