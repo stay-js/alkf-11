@@ -4,9 +4,9 @@ namespace Varosok_Lib
 {
     public static class Extensions
     {
-        public static List<City> ParseToCityList(this IEnumerable<string> lines)
+        public static IEnumerable<City> ParseToCities(this IEnumerable<string> lines)
         {
-            return lines.Skip(1).Select(line => new City(line)).ToList();
+            return lines.Skip(1).Select(line => new City(line));
         }
 
         public static City FirstLowerThan(this IEnumerable<City> cities, uint population)
@@ -46,17 +46,14 @@ namespace Varosok_Lib
             return toReturn.ToString();
         }
 
-        public static string CitiesInCounty(this IEnumerable<City> cities, string county)
+        public static IEnumerable<string> CitiesInCounty(this IEnumerable<City> cities, string county)
         {
-            return string.Join(", ",
-                cities.Where(c => c.County == county).Select(c => c.Name).Order());
+            return cities.Where(c => c.County == county).Select(c => c.Name).Order();
         }
 
-        public static string AmountOfCitiesPerCounty(this IEnumerable<City> cities)
+        public static IEnumerable<string> AmountOfCitiesPerCounty(this IEnumerable<City> cities)
         {
-            return string.Join('\n',
-                cities.GroupBy(c => c.County).Select(group => $"\t{group.Key}: {group.Count()}")
-                );
+            return cities.GroupBy(c => c.County).Select(group => $"\t{group.Key}: {group.Count()}");
         }
     }
 }

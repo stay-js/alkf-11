@@ -1,11 +1,11 @@
 ﻿using Hegyek_Lib;
 
 #region 1.feladat
-var mountains = File.ReadAllLines("hegyekMo.txt").ParseToMountainList();
+var mountains = File.ReadAllLines("hegyekMo.txt").ParseToMountains();
 #endregion
 
 #region 2.feladat
-Console.WriteLine($"2. feladat: Tárolt hegycsúcsok száma: {mountains.Count}");
+Console.WriteLine($"2. feladat: Tárolt hegycsúcsok száma: {mountains.Count()}");
 #endregion
 
 #region 3.feladat
@@ -27,7 +27,7 @@ Console.WriteLine("6. feladat: \"bérc\"-et tartalmazó hegycsúcsok száma: " +
 #endregion
 
 #region 7.feladat
-Console.WriteLine($"7. feladat: Hegységek: {mountains.MountainRanges()}");
+Console.WriteLine($"7. feladat: Hegységek: {string.Join(';', mountains.MountainRanges())}");
 #endregion
 
 #region 8.feladat

@@ -1,11 +1,11 @@
 ﻿using VB_Lib;
 
 #region 1.feladat
-var stadiums = File.ReadAllLines("vb2018.txt").ParseToStadiumList();
+var stadiums = File.ReadAllLines("vb2018.txt").ParseToStadiums();
 #endregion
 
 #region 2.feladat
-Console.WriteLine($"2. feladat: {stadiums.Count} stadionban játszottak mérkőzést.");
+Console.WriteLine($"2. feladat: {stadiums.Count()} stadionban játszottak mérkőzést.");
 #endregion
 
 #region 3.feladat
@@ -28,7 +28,7 @@ Console.WriteLine("6. feladat: Arénát tartalmazó stadionok száma: " +
 #endregion
 
 #region 7.feladat
-Console.WriteLine($"7. feladat: Városok: {stadiums.Cities()}");
+Console.WriteLine($"7. feladat: Városok: {string.Join(';', stadiums.Cities())}");
 #endregion
 
 #region 8.feladat

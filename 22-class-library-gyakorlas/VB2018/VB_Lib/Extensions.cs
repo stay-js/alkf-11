@@ -2,9 +2,9 @@ namespace VB_Lib
 {
     public static class Extensions
     {
-        public static List<Stadium> ParseToStadiumList(this IEnumerable<string> lines)
+        public static IEnumerable<Stadium> ParseToStadiums(this IEnumerable<string> lines)
         {
-            return lines.Skip(1).Select(line => new Stadium(line)).ToList();
+            return lines.Skip(1).Select(line => new Stadium(line));
         }
 
         public static double AvgCapacity(this IEnumerable<Stadium> stadiums)
@@ -22,9 +22,9 @@ namespace VB_Lib
             return stadiums.Count(s => s.Name.Contains(toContain));
         }
 
-        public static string Cities(this IEnumerable<Stadium> stadiums)
+        public static IEnumerable<string> Cities(this IEnumerable<Stadium> stadiums)
         {
-            return string.Join(';', stadiums.Select(s => s.City).Distinct().Order());
+            return stadiums.Select(s => s.City).Distinct().Order();
         }
 
         public static void WriteToFile(this IEnumerable<Stadium> stadiums, string path)

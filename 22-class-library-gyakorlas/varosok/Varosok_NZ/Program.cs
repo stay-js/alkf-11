@@ -1,11 +1,11 @@
 ﻿using Varosok_Lib;
 
 #region 1.feladat
-var cities = File.ReadAllLines("varosok.txt").ParseToCityList();
+var cities = File.ReadAllLines("varosok.txt").ParseToCities();
 #endregion
 
 #region 2.feladat
-Console.WriteLine($"2. feladat: Magyarország {cities.Count} városa szerepel a listában");
+Console.WriteLine($"2. feladat: Magyarország {cities.Count()} városa szerepel a listában");
 #endregion
 
 #region 3.feladat
@@ -50,9 +50,10 @@ Console.WriteLine(cities.TopCities("Pest", 3));
 
 #region 9.feladat
 Console.WriteLine("9. feladat: Nógrád vármegyei városok:");
-Console.WriteLine(cities.CitiesInCounty("Nógrád"));
+Console.WriteLine(string.Join(", ", cities.CitiesInCounty("Nógrád")));
 #endregion
 
 #region 10.feladat
-Console.WriteLine($"10. feladat: Vármegyék városainak száma:\n{cities.AmountOfCitiesPerCounty()}");
+Console.WriteLine($"10. feladat: Vármegyék városainak száma:\n" +
+    string.Join('\n', cities.AmountOfCitiesPerCounty()));
 #endregion

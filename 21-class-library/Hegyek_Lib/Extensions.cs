@@ -2,9 +2,9 @@
 {
     public static class Extensions
     {
-        public static List<Mountain> ParseToMountainList(this IEnumerable<string> lines)
+        public static IEnumerable<Mountain> ParseToMountains(this IEnumerable<string> lines)
         {
-            return lines.Skip(1).Select(line => new Mountain(line)).ToList();
+            return lines.Skip(1).Select(line => new Mountain(line));
         }
 
         public static double AvgHeight(this IEnumerable<Mountain> mountains)
@@ -22,9 +22,9 @@
             return mountains.Count(m => m.Name.Contains(toContain));
         }
 
-        public static string MountainRanges(this IEnumerable<Mountain> mountains)
+        public static IEnumerable<string> MountainRanges(this IEnumerable<Mountain> mountains)
         {
-            return string.Join(';', mountains.Select(m => m.MountainRange).Distinct().Order());
+            return mountains.Select(m => m.MountainRange).Distinct().Order();
         }
 
         public static int CountTallerThanFeet(this IEnumerable<Mountain> mountains, int heightInFeet)
