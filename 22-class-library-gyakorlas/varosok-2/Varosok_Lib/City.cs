@@ -21,8 +21,8 @@
         public override string ToString()
         {
             return $"\tNév: {Name}" +
-                   $"\n\tOrszág: {Country}" +
-                   $"\n\tLakosság: {PopulationInThousands} ezer fő";
+                $"\n\tOrszág: {Country}" +
+                $"\n\tLakosság: {PopulationInThousands} ezer fő";
         }
     }
 }
