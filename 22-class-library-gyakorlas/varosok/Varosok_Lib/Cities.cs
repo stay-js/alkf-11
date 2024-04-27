@@ -2,9 +2,9 @@
 
 namespace Varosok_Lib
 {
-    public static class Extensions
+    public static class Cities
     {
-        public static IEnumerable<City> ParseToCities(this IEnumerable<string> lines)
+        public static IEnumerable<City> Parse(IEnumerable<string> lines)
         {
             return lines.Skip(1).Select(line => new City(line));
         }

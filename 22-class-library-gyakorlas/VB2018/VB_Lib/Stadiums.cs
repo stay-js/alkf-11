@@ -1,8 +1,8 @@
 namespace VB_Lib
 {
-    public static class Extensions
+    public static class Stadiums
     {
-        public static IEnumerable<Stadium> ParseToStadiums(this IEnumerable<string> lines)
+        public static IEnumerable<Stadium> Parse(IEnumerable<string> lines)
         {
             return lines.Skip(1).Select(line => new Stadium(line));
         }

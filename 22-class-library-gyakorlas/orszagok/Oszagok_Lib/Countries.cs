@@ -1,8 +1,8 @@
 ﻿namespace Oszagok_Lib
 {
-    public static class Extensions
+    public static class Countries
     {
-        public static IEnumerable<Country> ParseToCountries(this IEnumerable<string> lines)
+        public static IEnumerable<Country> Parse(IEnumerable<string> lines)
         {
             return lines.Skip(1).Select(line =>
             {

@@ -1,7 +1,7 @@
 ﻿using Varosok_Lib;
 
 #region 1.feladat
-var cities = File.ReadAllLines("varosok.txt").ParseToCities();
+var cities = Cities.Parse(File.ReadAllLines("varosok.txt"));
 #endregion
 
 #region 2.feladat

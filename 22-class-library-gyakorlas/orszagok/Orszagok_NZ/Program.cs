@@ -1,7 +1,7 @@
 ﻿using Oszagok_Lib;
 
 #region 6. feladat
-var countries = File.ReadAllLines("orszagok.csv").ParseToCountries();
+var countries = Countries.Parse(File.ReadAllLines("orszagok.csv"));
 #endregion
 
 #region 7. feladat

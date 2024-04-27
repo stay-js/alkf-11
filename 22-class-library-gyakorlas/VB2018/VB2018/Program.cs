@@ -1,7 +1,7 @@
 ﻿using VB_Lib;
 
 #region 1.feladat
-var stadiums = File.ReadAllLines("vb2018.txt").ParseToStadiums();
+var stadiums = Stadiums.Parse(File.ReadAllLines("vb2018.txt"));
 #endregion
 
 #region 2.feladat

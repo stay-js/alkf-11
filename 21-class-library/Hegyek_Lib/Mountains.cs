@@ -1,8 +1,8 @@
 ﻿namespace Hegyek_Lib
 {
-    public static class Extensions
+    public static class Mountains
     {
-        public static IEnumerable<Mountain> ParseToMountains(this IEnumerable<string> lines)
+        public static IEnumerable<Mountain> Parse(IEnumerable<string> lines)
         {
             return lines.Skip(1).Select(line => new Mountain(line));
         }

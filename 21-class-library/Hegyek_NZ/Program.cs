@@ -1,7 +1,7 @@
 ﻿using Hegyek_Lib;
 
 #region 1.feladat
-var mountains = File.ReadAllLines("hegyekMo.txt").ParseToMountains();
+var mountains = Mountains.Parse(File.ReadAllLines("hegyekMo.txt"));
 #endregion
 
 #region 2.feladat
