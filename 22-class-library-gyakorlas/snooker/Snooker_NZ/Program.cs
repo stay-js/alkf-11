@@ -29,7 +29,7 @@ Console.WriteLine($"6. feladat: {competitors.CountNotFrom("Anglia")}" +
 
 #region 7.feladat
 Console.WriteLine("7. feladat: A legjobban kereső kínai versenyző:\n" +
-    competitors.HighestPaidFrom("Kína")!.InfoWithAwardInHuf());
+    competitors.HighestPaidFrom("Kína")?.InfoWithAwardInHuf());
 #endregion
 
 #region 8.feladat
@@ -41,8 +41,8 @@ Console.WriteLine($"\t{(competitors.ExistsFrom(country) ? "Van" : "Nincs")} {cou
 #endregion
 
 #region 9.feladat
-Console.WriteLine("9. feladat: A 3 legelőkelőbb helyen álló angol versenyző:\n\t"
-    + string.Join("\n\t", competitors.TopFrom(3, "Anglia")));
+Console.WriteLine("9. feladat: A 3 legelőkelőbb helyen álló angol versenyző:\n\t" +
+    string.Join("\n\t", competitors.TopFrom(3, "Anglia")));
 #endregion
 
 #region 10.feladat
